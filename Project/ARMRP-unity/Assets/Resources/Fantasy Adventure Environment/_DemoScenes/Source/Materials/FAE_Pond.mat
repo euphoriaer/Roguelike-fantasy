@@ -4,12 +4,13 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: FAE_Pond
-  m_Shader: {fileID: 4800000, guid: f8df9d72baf4e0c4bac2d4036f6c5d7b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e02af2867afa32a46ae65b908b67dbed, type: 3}
   m_ShaderKeywords: _USEINTERSECTIONHIGHLIGHT_ON _WORLDSPACETILING_ON
-  m_LightmapFlags: 5
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -47,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normals:
-        m_Texture: {fileID: 947374229, guid: e3d849a71cf1896458f0932f079b66a3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -71,28 +72,40 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Shadermap:
-        m_Texture: {fileID: -1511549886, guid: e3d849a71cf1896458f0932f079b66a3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
+    - Vector1_1942CF3A: 1
+    - Vector1_67814CC1: 0.1
+    - Vector1_7DFD32F9: 2
+    - Vector1_BE75C478: 32
+    - Vector1_E23F9E57: 0.5
+    - Vector1_E796673B: 10
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _Depth: 0
     - _Depthdarkness: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeFade: 0.1
     - _FlowSpeed: 1
     - _Fresnelexponent: 4.11
     - _Glossiness: 3
     - _HighlightPanning: 0
     - _Metallic: 0
+    - _Metallicness: 0.1
     - _Mode: 0
+    - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Reflection: 0.33
     - _RefractionAmount: 0.136
     - _RimDistance: 0.1
+    - _RimRize: 1
     - _RimSize: 0.61
+    - _RimTiling: 0.025
     - _Rimfalloff: 0.21
     - _Rimtiling: 2
     - _SrcBlend: 1
@@ -111,8 +124,11 @@ Material:
     - _Worldspacetiling: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_D0289068: {r: 0, g: 0.9394503, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _WaterColor: {r: 0.4044118, g: 0.67961466, b: 1, a: 1}
+    - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
+  m_BuildTextureStacks: []
