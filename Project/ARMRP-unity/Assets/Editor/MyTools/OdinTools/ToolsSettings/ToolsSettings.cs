@@ -15,8 +15,9 @@ public class ToolsSettings : GlobalConfig<ToolsSettings>
     [LabelText("AvatarPath")]
     public string Avatarfolder;
 
-
     [HorizontalGroup]
     [LabelText("FBXPath")]
     public string FBXfolder;
+
+
 }
