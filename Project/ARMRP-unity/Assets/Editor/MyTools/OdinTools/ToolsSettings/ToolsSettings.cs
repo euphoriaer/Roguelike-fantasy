@@ -2,22 +2,32 @@ using Sirenix.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
-public class ToolsSettings : GlobalConfig<ToolsSettings>
+public class ToolsSettings : AssetPostprocessor
 {
-    //动画资源自动分类处理 fbx animationClip Avatar 自动分类，所有资源自动处理型配置
-    [HorizontalGroup]
-    [LabelText("AnimationClipPath")]
-    public string AnimationClipfolder;
+    ////动画资源自动分类处理 fbx animationClip Avatar 自动分类，所有资源自动处理型配置
+   
+    //[LabelText("AnimationClipPath")]
+    //public string AnimationClipfolder;
 
-    [HorizontalGroup]
-    [LabelText("AvatarPath")]
-    public string Avatarfolder;
+   
+    //[LabelText("AvatarPath")]
+    //public string Avatarfolder;
 
-    [HorizontalGroup]
-    [LabelText("FBXPath")]
-    public string FBXfolder;
+   
+    //[LabelText("FBXPath")]
+    //public string FBXfolder;
 
+    //void OnPreprocessModel()
+    //{
+    //    Debug.Log("12345"+assetPath);
+    //    if (assetPath.Contains("@"))
+    //    {
+    //        ModelImporter modelImporter = assetImporter as ModelImporter;
+    //        modelImporter.materialImportMode = ModelImporterMaterialImportMode.None;
+    //    }
+    //}
 
 }
