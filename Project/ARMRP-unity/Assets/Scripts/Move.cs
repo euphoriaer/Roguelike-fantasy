@@ -6,22 +6,25 @@ public class Move : MonoBehaviour
     public Cutscene cutscene;
 
     public GameObject babala;
+
     // Start is called before the first frame update
     private void Start()
     {
-        GameObject slate = Resources.Load<GameObject>("Slate/run");
-        var cutscene = slate.GetComponent<Cutscene>();
+        GameObject slateRes = Resources.Load<GameObject>("Slate/dodge");
+        var slate = GameObject.Instantiate(slateRes);
+        cutscene = slate.GetComponent<Cutscene>();
+        foreach (var cutsceneGroup in cutscene.groups)
+        {
+            cutsceneGroup.actor = babala;
+        }
+
+        //cutscene.playingWrapMode = Cutscene.WrapMode.Loop;
+
+        cutscene.Play();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        cutscene.Play();
-      
-    }
-
-    public void Cutscene_OnStop()
-    {
-        Debug.Log("12345");
     }
 }
