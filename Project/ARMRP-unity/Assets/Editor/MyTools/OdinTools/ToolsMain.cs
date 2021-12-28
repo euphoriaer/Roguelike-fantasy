@@ -19,6 +19,8 @@ public class ToolsMain : OdinMenuEditorWindow
         OdinMenuTree tree = new OdinMenuTree();
         tree.Add("设置", ToolsSettings.Instance, EditorIcons.SettingsCog);
         tree.Add("一键打包工具", OneKeyBuildlEditor.Instance, EditorIcons.SmartPhone);
+        tree.DefaultMenuStyle.SetHeight(80);
+        tree.DefaultMenuStyle.IconSize = 80;
         return tree;
     }
   

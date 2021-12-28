@@ -10,8 +10,8 @@ public class PlayAnimClip : ClipBase<Animator>
 {
     [LabelText("动作名")]
     [SerializeField]
-    public string _animName = null;
-
+    public string _animName;
+     
     [LabelText("播放速度")]
     [SerializeField]
     public float _playSpeed = 1;
@@ -23,34 +23,61 @@ public class PlayAnimClip : ClipBase<Animator>
     [HideInInspector]
     [SerializeField] private float _length = 1 / 30f;
 
+    private AnimationClip CurClip;
+
+    /// <summary>
+    /// 默认长度为整个动画的时长
+    /// </summary>
     public override float length
     {
         get { return _length; }
         set { _length = value; }
     }
 
+    protected override void OnCreate()
+    {
+        Debug.Log("获取当前Actor的所有Clip");
+      
+    }
+
     protected override void OnEnter()
     {
         if (!Application.isPlaying)
         {
-            Debug.Log("编辑状态");
             ActorComponent.speed = _playSpeed;
-            var playClip = ActorComponent.GetCurrentAnimatorClipInfo(0).Where(p => p.clip.name == _animName);
-            // playClip?.First().clip.isLooping = true;
+            var playClips = ActorComponent.GetCurrentAnimatorClipInfo(0).Where(p => p.clip.name == _animName);
+            if (playClips.ToList().Count<=0)
+            {
+                Debug.LogError("没有对应的动画可以播放");
+            }
+            CurClip = playClips.First().clip;
             ActorComponent.Play(_animName);
+          
         }
     }
 
     protected override void OnUpdate(float time)
     {
+        //编辑模式预览动画
+
+        //得到当前的动画长度
+        var curClipLength = CurClip.length;
+        float normalizedBefore = time;//0-1 表示开始与 播放结束，
         if (!Application.isPlaying)
         {
-            Debug.Log("编辑状态");
+            if (_loop && time > curClipLength)
+            {
+                //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
+                normalizedBefore = time % curClipLength;
+            }
+
+            ActorComponent.Play(_animName, 0, normalizedBefore/curClipLength);
+            ActorComponent.Update(0);
+        }
+        else
+        {
+            //运行模式直接播放
             ActorComponent.Play(_animName);
         }
     }
-
-    public float subClipOffset { get; set; }
-    public float subClipSpeed { get; }
-    public float subClipLength { get; }
 }

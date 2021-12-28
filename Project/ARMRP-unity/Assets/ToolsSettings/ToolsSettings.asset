@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e654cc420e74ccc459135adc1f537fdf, type: 3}
   m_Name: ToolsSettings
   m_EditorClassIdentifier: 
-  Anim: 
-  Mark: 
-  Avatarfolder: 
-  FBXfolder: 
+  Anim: Assets/Resources/Role/Anim
+  Mark: '@'
+  Avatarfolder: Assets/Resources/Role/Avatar
+  FBXfolder: Assets/Resources/Role/FBX

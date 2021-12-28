@@ -1,8 +1,10 @@
-﻿using Slate.ActionClips;
+﻿using System;
+using Slate.ActionClips;
 using UnityEngine;
 
 namespace Assets.Scripts.Slate.Base
 {
+    [Serializable]
     public class ClipBase<T> : ActorActionClip where T : Component
     {
         private T _actorComponent;
