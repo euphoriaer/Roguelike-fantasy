@@ -1,33 +1,31 @@
-using Sirenix.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEditor;
-using UnityEngine;
+using Sirenix.Utilities;
+using Slate;
 
-public class ToolsSettings : AssetPostprocessor
+[LabelWidth(100)]
+public class ToolsSettings : GlobalConfig<ToolsSettings>
+//动画资源自动分类处理 fbx animationClip Avatar 自动分类，所有资源自动处理型配置
 {
-    ////动画资源自动分类处理 fbx animationClip Avatar 自动分类，所有资源自动处理型配置
-   
-    //[LabelText("AnimationClipPath")]
-    //public string AnimationClipfolder;
+    [LabelWidth(30)]
+    [BoxGroup("AnimClip")]
+    [HorizontalGroup("AnimClip/AnimationClip")]
+    [FolderPath]
+    public string Anim;
 
-   
-    //[LabelText("AvatarPath")]
-    //public string Avatarfolder;
+    [LabelWidth(30)]
+    [BoxGroup("AnimClip")]
+    [HorizontalGroup("AnimClip/AnimationClip", width: 80)]
+    public string Mark;
 
-   
-    //[LabelText("FBXPath")]
-    //public string FBXfolder;
+    [LabelWidth(75)]
+    [FolderPath]
+    [BoxGroup("AnimationClip")]
+    [LabelText("AvatarPath")]
+    public string Avatarfolder;
 
-    //void OnPreprocessModel()
-    //{
-    //    Debug.Log("12345"+assetPath);
-    //    if (assetPath.Contains("@"))
-    //    {
-    //        ModelImporter modelImporter = assetImporter as ModelImporter;
-    //        modelImporter.materialImportMode = ModelImporterMaterialImportMode.None;
-    //    }
-    //}
-
+    [LabelWidth(50)]
+    [FolderPath]
+    [BoxGroup("Fbx")]
+    [LabelText("FBXPath")]
+    public string FBXfolder;
 }

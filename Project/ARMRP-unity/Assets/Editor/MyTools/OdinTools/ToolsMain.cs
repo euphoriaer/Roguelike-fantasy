@@ -17,6 +17,7 @@ public class ToolsMain : OdinMenuEditorWindow
     protected override OdinMenuTree BuildMenuTree()
     {
         OdinMenuTree tree = new OdinMenuTree();
+        tree.Add("设置", ToolsSettings.Instance, EditorIcons.SettingsCog);
         tree.Add("一键打包工具", OneKeyBuildlEditor.Instance, EditorIcons.SmartPhone);
         return tree;
     }

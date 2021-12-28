@@ -95,7 +95,6 @@ namespace Slate.ActionClips
 
             state = actor[animationClip.name];
             state.time = time * playbackSpeed;
-
             var animLength = animationClip.length / playbackSpeed;
             if ( length <= animLength ) {
                 state.wrapMode = WrapMode.Once;
