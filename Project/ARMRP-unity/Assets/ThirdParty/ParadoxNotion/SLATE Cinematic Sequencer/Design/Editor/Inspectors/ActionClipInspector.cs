@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 
+using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Slate
     }
 
     [CustomEditor(typeof(ActionClip), true)]
-    public class ActionClipInspector : Editor
+    public class ActionClipInspector :OdinEditor
     {
 
         private ActionClip action { get { return (ActionClip)target; } }
