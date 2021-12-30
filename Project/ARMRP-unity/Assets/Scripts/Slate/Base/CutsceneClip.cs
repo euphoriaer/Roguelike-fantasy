@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Slate.Base
 {
     [Serializable]
-    public class ClipBase<T> : ActorActionClip where T : Component
+    public abstract class CutsceneClip<T> : ActorActionClip where T : Component
     {
         private T _actorComponent;
 
@@ -21,6 +21,8 @@ namespace Assets.Scripts.Slate.Base
                 return _actorComponent = base.actor != null ? base.actor.GetComponent<T>() : null;
             }
         }
+
+        public abstract void Refresh();
 
         public override bool isValid
         {

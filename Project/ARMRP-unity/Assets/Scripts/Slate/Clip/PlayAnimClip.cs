@@ -6,12 +6,13 @@ using UnityEngine;
 
 [Name("播放动画")]
 [Attachable(typeof(AnimTrack))]
-public class PlayAnimClip : ClipBase<Animator>
+public class PlayAnimCutsceneClip : CutsceneClip<Animator>
 {
     [LabelText("动作名")]
+    [ValueDropdown("ClipsName")]
     [SerializeField]
     public string _animName;
-     
+
     [LabelText("播放速度")]
     [SerializeField]
     public float _playSpeed = 1;
@@ -34,10 +35,17 @@ public class PlayAnimClip : ClipBase<Animator>
         set { _length = value; }
     }
 
+    private ValueDropdownList<string> ClipsName = new ValueDropdownList<string>();
+
     protected override void OnCreate()
     {
         Debug.Log("获取当前Actor的所有Clip");
-      
+        var Animclips = ActorComponent.GetCurrentAnimatorClipInfo(0);
+
+        foreach (var animatorClipInfo in Animclips)
+        {
+            ClipsName.Add(animatorClipInfo.clip.name);
+        }
     }
 
     protected override void OnEnter()
@@ -46,13 +54,12 @@ public class PlayAnimClip : ClipBase<Animator>
         {
             ActorComponent.speed = _playSpeed;
             var playClips = ActorComponent.GetCurrentAnimatorClipInfo(0).Where(p => p.clip.name == _animName);
-            if (playClips.ToList().Count<=0)
+            if (playClips.ToList().Count <= 0)
             {
                 Debug.LogError("没有对应的动画可以播放");
             }
             CurClip = playClips.First().clip;
             ActorComponent.Play(_animName);
-          
         }
     }
 
@@ -62,16 +69,16 @@ public class PlayAnimClip : ClipBase<Animator>
 
         //得到当前的动画长度
         var curClipLength = CurClip.length;
-        float normalizedBefore = time;//0-1 表示开始与 播放结束，
+        float normalizedBefore = time * _playSpeed;
         if (!Application.isPlaying)
         {
             if (_loop && time > curClipLength)
             {
                 //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
-                normalizedBefore = time % curClipLength;
+                normalizedBefore = time * _playSpeed % curClipLength;
             }
-
-            ActorComponent.Play(_animName, 0, normalizedBefore/curClipLength);
+            //normalzedTime,0-1 表示开始与 播放结束，
+            ActorComponent.Play(_animName, 0, normalizedBefore / curClipLength);
             ActorComponent.Update(0);
         }
         else
@@ -79,5 +86,10 @@ public class PlayAnimClip : ClipBase<Animator>
             //运行模式直接播放
             ActorComponent.Play(_animName);
         }
+    }
+
+    public override void Refresh()
+    {
+       
     }
 }

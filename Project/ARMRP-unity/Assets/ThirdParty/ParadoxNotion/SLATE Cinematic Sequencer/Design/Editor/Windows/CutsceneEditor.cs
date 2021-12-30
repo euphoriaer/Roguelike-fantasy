@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Slate
 {
 
-    public class CutsceneEditor : EditorWindow
+    public partial class CutsceneEditor : EditorWindow
     {
 
         enum EditorPlaybackState
@@ -1152,6 +1152,8 @@ namespace Slate
                 menu.AddItem(new GUIContent("60 FPS"), false, () => { Prefs.timeStepMode = Prefs.TimeStepMode.Frames; Prefs.frameRate = 60; });
                 menu.ShowAsContext();
             }
+            
+            CustomButton();
 
             GUILayout.Space(10);
 
