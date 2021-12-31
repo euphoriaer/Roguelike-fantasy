@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using Assets.Scripts.Slate.Base;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Slate
@@ -33,7 +35,7 @@ namespace Slate
             if (GUILayout.Button("刷新", EditorStyles.toolbarButton, GUILayout.Width(60)))
             {
                 //error
-                CutsceneEditorHelper.Refresh();
+                CutsceneEditorHelper.Refresh(cutscene);
             }
             //GUI.color = Color.white;
 
@@ -43,10 +45,24 @@ namespace Slate
 
     public static class CutsceneEditorHelper
     {
-        public static void Refresh()
+        public static void Refresh(Cutscene cutscene)
         {
-            Debug.Log("刷新");
-            //error 查找所有 继承了CutsceneClip /且带有特性 Attachable的类，调用其Refresh 函数
+         
+            //通过cutscene 对象找到所有的Clips，调用带有ClipRefresh 接口的函数
+            foreach (var group in cutscene.groups)
+            {
+                foreach (var track in group.tracks)
+                {
+                    var clips = track.clips.ToList();
+                    var Test = clips;
+                    for (int i = 0; i < Test.Count; i++)
+                    {  //error 每次都回跳过0号元素
+                        var curClip = Test[i];
+                        curClip.TryGetComponent(out ClipRefresh compontent);
+                        compontent.Refresh();
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
-using Slate.ActionClips;
+﻿using Slate.ActionClips;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Slate.Base
 {
     [Serializable]
-    public abstract class CutsceneClip<T> : ActorActionClip where T : Component
+    public abstract class CutsceneClip<T> : ActorActionClip, ClipRefresh where T : Component
     {
         private T _actorComponent;
 
@@ -28,5 +28,10 @@ namespace Assets.Scripts.Slate.Base
         {
             get { return actor != null && base.isValid; }
         }
+    }
+
+    public interface ClipRefresh
+    {
+        public void Refresh();
     }
 }

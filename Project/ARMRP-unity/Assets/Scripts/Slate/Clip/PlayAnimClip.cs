@@ -1,17 +1,19 @@
 using Assets.Scripts.Slate.Base;
 using Sirenix.OdinInspector;
 using Slate;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 [Name("播放动画")]
 [Attachable(typeof(AnimTrack))]
-public class PlayAnimCutsceneClip : CutsceneClip<Animator>
+public class PlayAnimClip : CutsceneClip<Animator>
 {
     [LabelText("动作名")]
-    [ValueDropdown("ClipsName")]
+    [ValueDropdown("GetString")]
     [SerializeField]
-    public string _animName;
+    [OnValueChanged("Refresh")]
+    public string AnimName;
 
     [LabelText("播放速度")]
     [SerializeField]
@@ -31,21 +33,30 @@ public class PlayAnimCutsceneClip : CutsceneClip<Animator>
     /// </summary>
     public override float length
     {
-        get { return _length; }
+        get { return _length; }//将默认长度变为当前动画长度
         set { _length = value; }
     }
 
-    private ValueDropdownList<string> ClipsName = new ValueDropdownList<string>();
 
-    protected override void OnCreate()
+    private List<string> GetString()
     {
-        Debug.Log("获取当前Actor的所有Clip");
-        var Animclips = ActorComponent.GetCurrentAnimatorClipInfo(0);
+        List<string> ClipsNames = new List<string>();
+        ClipsNames.Clear();
+        var Animclips = ActorComponent.runtimeAnimatorController.animationClips;
 
         foreach (var animatorClipInfo in Animclips)
         {
-            ClipsName.Add(animatorClipInfo.clip.name);
+            ClipsNames.Add(animatorClipInfo.name);
         }
+
+        return ClipsNames.ToList();
+
+
+    }
+
+    protected override void OnCreate()
+    {
+        Refresh();
     }
 
     protected override void OnEnter()
@@ -53,13 +64,13 @@ public class PlayAnimCutsceneClip : CutsceneClip<Animator>
         if (!Application.isPlaying)
         {
             ActorComponent.speed = _playSpeed;
-            var playClips = ActorComponent.GetCurrentAnimatorClipInfo(0).Where(p => p.clip.name == _animName);
+            var playClips = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName);
             if (playClips.ToList().Count <= 0)
             {
                 Debug.LogError("没有对应的动画可以播放");
             }
-            CurClip = playClips.First().clip;
-            ActorComponent.Play(_animName);
+            CurClip = playClips.First();
+            ActorComponent.Play(AnimName);
         }
     }
 
@@ -78,18 +89,20 @@ public class PlayAnimCutsceneClip : CutsceneClip<Animator>
                 normalizedBefore = time * _playSpeed % curClipLength;
             }
             //normalzedTime,0-1 表示开始与 播放结束，
-            ActorComponent.Play(_animName, 0, normalizedBefore / curClipLength);
+            ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
             ActorComponent.Update(0);
         }
         else
         {
             //运行模式直接播放
-            ActorComponent.Play(_animName);
+            ActorComponent.Play(AnimName);
         }
     }
 
     public override void Refresh()
-    {
-       
+    {   //设置Length 为对应_animName的长度
+        length = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName).First().length;
     }
+
+    //OnGui
 }
