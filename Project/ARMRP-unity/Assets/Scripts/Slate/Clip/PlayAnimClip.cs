@@ -37,7 +37,6 @@ public class PlayAnimClip : CutsceneClip<Animator>
         set { _length = value; }
     }
 
-
     private List<string> GetString()
     {
         List<string> ClipsNames = new List<string>();
@@ -50,8 +49,6 @@ public class PlayAnimClip : CutsceneClip<Animator>
         }
 
         return ClipsNames.ToList();
-
-
     }
 
     protected override void OnCreate()
@@ -100,9 +97,11 @@ public class PlayAnimClip : CutsceneClip<Animator>
     }
 
     public override void Refresh()
-    {   //设置Length 为对应_animName的长度
+    {   //设置Length 为对应_animName的长度 与播放速度成比例
+        var m = AnimName;
         length = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName).First().length;
+        length = length / _playSpeed;
     }
 
-    //OnGui
+    //Todo OnGui 红色表示动画长度
 }

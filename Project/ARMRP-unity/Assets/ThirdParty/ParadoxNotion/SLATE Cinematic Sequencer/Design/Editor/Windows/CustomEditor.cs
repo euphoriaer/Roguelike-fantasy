@@ -34,7 +34,6 @@ namespace Slate
 
             if (GUILayout.Button("刷新", EditorStyles.toolbarButton, GUILayout.Width(60)))
             {
-                //error
                 CutsceneEditorHelper.Refresh(cutscene);
             }
             //GUI.color = Color.white;
@@ -47,19 +46,18 @@ namespace Slate
     {
         public static void Refresh(Cutscene cutscene)
         {
-         
             //通过cutscene 对象找到所有的Clips，调用带有ClipRefresh 接口的函数
             foreach (var group in cutscene.groups)
             {
                 foreach (var track in group.tracks)
                 {
                     var clips = track.clips.ToList();
-                    var Test = clips;
-                    for (int i = 0; i < Test.Count; i++)
-                    {  //error 每次都回跳过0号元素
-                        var curClip = Test[i];
-                        curClip.TryGetComponent(out ClipRefresh compontent);
-                        compontent.Refresh();
+
+                    for (int i = 0; i < clips.Count; i++)
+                    {
+                        var curClip = clips[i];
+                        var curPlayAnimClip = curClip as ClipRefresh;
+                        curPlayAnimClip.Refresh();
                     }
                 }
             }
