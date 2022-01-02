@@ -1,4 +1,3 @@
-using Assets.Scripts.Slate.Base;
 using Sirenix.OdinInspector;
 using Slate;
 using System.Collections.Generic;
@@ -58,28 +57,25 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     protected override void OnEnter()
     {
-        if (!Application.isPlaying)
+        ActorComponent.speed = _playSpeed;
+        var playClips = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName);
+        if (playClips.ToList().Count <= 0)
         {
-            ActorComponent.speed = _playSpeed;
-            var playClips = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName);
-            if (playClips.ToList().Count <= 0)
-            {
-                Debug.LogError("没有对应的动画可以播放");
-            }
-            CurClip = playClips.First();
-            ActorComponent.Play(AnimName);
+            Debug.LogError("没有对应的动画可以播放");
         }
+        CurClip = playClips.First();
+        //ActorComponent.Play(AnimName);
     }
 
     protected override void OnUpdate(float time)
     {
-        //编辑模式预览动画
+        
+        //if (!Application.isPlaying)
+        //{//编辑模式预览动画
 
-        //得到当前的动画长度
-        var curClipLength = CurClip.length;
-        float normalizedBefore = time * _playSpeed;
-        if (!Application.isPlaying)
-        {
+            //得到当前的动画长度
+            var curClipLength = CurClip.length;
+            float normalizedBefore = time * _playSpeed;
             if (_loop && time > curClipLength)
             {
                 //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
@@ -88,12 +84,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
             //normalzedTime,0-1 表示开始与 播放结束，
             ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
             ActorComponent.Update(0);
-        }
-        else
-        {
-            //运行模式直接播放
-            ActorComponent.Play(AnimName);
-        }
+        //}
     }
 
     public override void Refresh()

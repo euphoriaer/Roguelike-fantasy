@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using Slate;
 using UnityEngine;
-using UnityEngine.VFX;
 
-public class CutsceneManager : MonoBehaviour
+public class Test : MonoBehaviour
 {
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        Cutscene cutscene = this.gameObject.GetComponent<Cutscene>();
-     
+        CutsceneHelper.Play(this.gameObject, "Dodge");
+      
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }

@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Slate.Base;
-using System.Linq;
+﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
 

@@ -2,8 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Slate.Base
-{
+
     [Serializable]
     public abstract class CutsceneClip<T> : ActorActionClip, ClipRefresh where T : Component
     {
@@ -34,4 +33,3 @@ namespace Assets.Scripts.Slate.Base
     {
         public void Refresh();
     }
-}
