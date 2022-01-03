@@ -1,4 +1,5 @@
 ﻿using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 
 [ActionCategory("Cutscene")]
@@ -15,14 +16,17 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnEnter()
     {
-        Debug.Log("播放Cuescene");
         CutsceneHelper.Play(Fsm.GameObject, CutsceneName);
-        Finish();
     }
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
+        if (Input.GetKey(KeyCode.A))
+        {
+            //error 检测是否切换状态，或者在Cutscene 加入输入轨道
+            Fsm.SendEventToFsmOnGameObject(this.Owner,this.Fsm.Name,"IdleToRun");
+            Finish();
+        }
     }
 
     public override void OnExit()
