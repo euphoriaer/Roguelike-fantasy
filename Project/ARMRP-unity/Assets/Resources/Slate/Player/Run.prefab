@@ -257,12 +257,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dabe5cea33ba7e489e7b31d7eddd25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
+  _startTime: 0.016666668
   _animationData:
     _animatedParameters: []
   AnimName: '@FastRun'
-  _playSpeed: 1
-  _loop: 0
+  PlaySpeed: 1
+  Loop: 1
+  BlendAnim: 1000
   _length: 0.73333335
 --- !u!1 &5231787887329861179
 GameObject:
@@ -373,7 +374,7 @@ MonoBehaviour:
   groups:
   - {fileID: 1156059535256104761}
   - {fileID: 1865346198638077517}
-  _length: 0.73333335
+  _length: 0.75
   _viewTimeMin: -1
   _viewTimeMax: 21
 --- !u!1 &6486601331344491762

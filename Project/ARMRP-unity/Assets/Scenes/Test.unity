@@ -2187,7 +2187,7 @@ MonoBehaviour:
       - fsmEvent:
           name: RunStop
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: Idle
         linkStyle: 0
         linkConstraint: 0

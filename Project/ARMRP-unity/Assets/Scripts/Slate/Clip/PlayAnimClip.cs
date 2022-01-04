@@ -16,11 +16,14 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     [LabelText("播放速度")]
     [SerializeField]
-    public float _playSpeed = 1;
+    public float PlaySpeed = 1;
 
     [LabelText("循环播放")]
     [SerializeField]
-    public bool _loop = false;
+    public bool Loop = false;
+
+    [LabelText("动画融合帧数")]
+    public float BlendAnim = 0;
 
     [HideInInspector]
     [SerializeField] private float _length = 1 / 30f;
@@ -41,7 +44,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
         List<string> ClipsNames = new List<string>();
         ClipsNames.Clear();
         var Animclips = ActorComponent.runtimeAnimatorController.animationClips;
-
+        //todo 如果双击 无人物，可以增加一个默认角色
         foreach (var animatorClipInfo in Animclips)
         {
             ClipsNames.Add(animatorClipInfo.name);
@@ -57,33 +60,33 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     protected override void OnEnter()
     {
-        ActorComponent.speed = _playSpeed;
+        ActorComponent.speed = PlaySpeed;
         var playClips = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName);
         if (playClips.ToList().Count <= 0)
         {
             Debug.LogError("没有对应的动画可以播放");
         }
         CurClip = playClips.First();
-        //ActorComponent.Play(AnimName);
+        //进入时动画动作融合
+
+        ActorComponent.CrossFade(CurClip.name, BlendAnim / 30.0f);
     }
 
     protected override void OnUpdate(float time)
     {
-        
         //if (!Application.isPlaying)
         //{//编辑模式预览动画
-
-            //得到当前的动画长度
-            var curClipLength = CurClip.length;
-            float normalizedBefore = time * _playSpeed;
-            if (_loop && time > curClipLength)
-            {
-                //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
-                normalizedBefore = time * _playSpeed % curClipLength;
-            }
-            //normalzedTime,0-1 表示开始与 播放结束，
-            ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
-            ActorComponent.Update(0);
+        //得到当前的动画长度
+        var curClipLength = CurClip.length;
+        float normalizedBefore = time * PlaySpeed;
+        if (Loop && time > curClipLength)
+        {
+            //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
+            normalizedBefore = time * PlaySpeed % curClipLength;
+        }
+        //normalzedTime,0-1 表示开始与 播放结束，
+        ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
+        ActorComponent.Update(0);
         //}
     }
 
@@ -91,7 +94,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
     {   //设置Length 为对应_animName的长度 与播放速度成比例
         var m = AnimName;
         length = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName).First().length;
-        length = length / _playSpeed;
+        length = length / PlaySpeed;
     }
 
     //Todo OnGui 红色表示动画长度
