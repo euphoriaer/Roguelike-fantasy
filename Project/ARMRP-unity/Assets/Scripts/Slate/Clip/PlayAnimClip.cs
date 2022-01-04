@@ -1,7 +1,10 @@
+using System.Collections;
 using Sirenix.OdinInspector;
 using Slate;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Name("播放动画")]
@@ -23,7 +26,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
     public bool Loop = false;
 
     [LabelText("动画融合帧数")]
-    public float BlendAnim = 0;
+    public int BlendAnim = 0;
 
     [HideInInspector]
     [SerializeField] private float _length = 1 / 30f;
@@ -68,9 +71,11 @@ public class PlayAnimClip : CutsceneClip<Animator>
         }
         CurClip = playClips.First();
         //进入时动画动作融合
-
-        ActorComponent.CrossFade(CurClip.name, BlendAnim / 30.0f);
+        ActorComponent.CrossFade(CurClip.name, BlendAnim);
+        
     }
+
+    
 
     protected override void OnUpdate(float time)
     {
@@ -87,6 +92,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
         //normalzedTime,0-1 表示开始与 播放结束，
         ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
         ActorComponent.Update(0);
+
         //}
     }
 
