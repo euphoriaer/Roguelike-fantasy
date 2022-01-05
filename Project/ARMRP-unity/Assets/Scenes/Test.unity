@@ -2077,7 +2077,7 @@ MonoBehaviour:
       - fsmEvent:
           name: IdleToRun
           isSystemEvent: 0
-          isGlobal: 0
+          isGlobal: 1
         toState: Run
         linkStyle: 0
         linkConstraint: 0
@@ -2087,11 +2087,11 @@ MonoBehaviour:
         actionNames:
         - PlayCutsceneAction
         customNames:
-        - Play Cutscene Action
+        - ~AutoName
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 78c53001
+        actionHashCodes: d4aeb203
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -2115,24 +2115,25 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - Idle
-        byteData: 
+        - '@Idle'
+        byteData: 00000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 03000000
+        paramDataType: 0300000002000000
         paramName:
         - CutsceneName
-        paramDataPos: 00000000
-        paramByteDataSize: 00000000
+        - TransTime
+        paramDataPos: 0000000000000000
+        paramByteDataSize: 0000000004000000
     - name: Run
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 307
-        y: 109
+        x: 310
+        y: 110
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2156,7 +2157,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 78c53001
+        actionHashCodes: d4aeb203
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -2180,17 +2181,18 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - Run
-        byteData: 
+        - '@FastRun'
+        byteData: 00000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 03000000
+        paramDataType: 0300000002000000
         paramName:
         - CutsceneName
-        paramDataPos: 00000000
-        paramByteDataSize: 00000000
+        - TransTime
+        paramDataPos: 0000000000000000
+        paramByteDataSize: 0000000004000000
     - name: Dodge
       description: 
       colorIndex: 0
@@ -2252,7 +2254,7 @@ MonoBehaviour:
       isGlobal: 1
     - name: IdleToRun
       isSystemEvent: 0
-      isGlobal: 0
+      isGlobal: 1
     globalTransitions: []
     variables:
       floatVariables: []
@@ -2292,6 +2294,9 @@ MonoBehaviour:
     preprocessed: 0
     ExposedEvents:
     - name: RunStop
+      isSystemEvent: 0
+      isGlobal: 1
+    - name: IdleToRun
       isSystemEvent: 0
       isGlobal: 1
     OutputEvents: []

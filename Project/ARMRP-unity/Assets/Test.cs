@@ -10,7 +10,6 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CutsceneHelper.Play(this.gameObject, "Dodge");
         //PlayMakerFSM.FsmList.First().Fsm.SendEventToFsmOnGameObject();
         //Fsm.FsmList.First().SendEventToFsmOnGameObject();
     }

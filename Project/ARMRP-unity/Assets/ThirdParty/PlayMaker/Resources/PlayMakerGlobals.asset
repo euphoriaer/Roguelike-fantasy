@@ -34,3 +34,4 @@ MonoBehaviour:
   events:
   - Input
   - RunStop
+  - IdleToRun

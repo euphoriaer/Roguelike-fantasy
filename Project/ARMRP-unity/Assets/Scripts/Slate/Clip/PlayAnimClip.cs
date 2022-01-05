@@ -3,7 +3,6 @@ using Sirenix.OdinInspector;
 using Slate;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +11,7 @@ using UnityEngine;
 public class PlayAnimClip : CutsceneClip<Animator>
 {
     [LabelText("动作名")]
-    [ValueDropdown("GetString")]
+    [ValueDropdown(nameof(GetString))]
     [SerializeField]
     [OnValueChanged("Refresh")]
     public string AnimName;
@@ -25,8 +24,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
     [SerializeField]
     public bool Loop = false;
 
-    [LabelText("动画融合帧数")]
-    public int BlendAnim = 0;
+    private float _usedBlendAnimTime;
 
     [HideInInspector]
     [SerializeField] private float _length = 1 / 30f;
@@ -63,6 +61,9 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     protected override void OnEnter()
     {
+
+        //StartCoroutine(Wait());
+
         ActorComponent.speed = PlaySpeed;
         var playClips = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName);
         if (playClips.ToList().Count <= 0)
@@ -70,18 +71,22 @@ public class PlayAnimClip : CutsceneClip<Animator>
             Debug.LogError("没有对应的动画可以播放");
         }
         CurClip = playClips.First();
-        //进入时动画动作融合
-        ActorComponent.CrossFade(CurClip.name, BlendAnim);
-        
+        //进入时动画动作融合,进行一个等待
     }
 
-    
+    IEnumerator Wait()
+    {
+        Debug.Log("融合等待");
+        yield return new WaitForSeconds(3);
+        Debug.Log("融合等待结束");
+    }
 
     protected override void OnUpdate(float time)
     {
         //if (!Application.isPlaying)
         //{//编辑模式预览动画
         //得到当前的动画长度
+
         var curClipLength = CurClip.length;
         float normalizedBefore = time * PlaySpeed;
         if (Loop && time > curClipLength)
@@ -89,6 +94,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
             //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
             normalizedBefore = time * PlaySpeed % curClipLength;
         }
+
         //normalzedTime,0-1 表示开始与 播放结束，
         ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
         ActorComponent.Update(0);
