@@ -55,7 +55,7 @@ namespace Slate
                     for (int i = 0; i < clips.Count; i++)
                     {
                         var curClip = clips[i];
-                        var curPlayAnimClip = curClip as ClipRefresh;
+                        var curPlayAnimClip = curClip as IClipRefresh;
                         curPlayAnimClip.Refresh();
                     }
                 }

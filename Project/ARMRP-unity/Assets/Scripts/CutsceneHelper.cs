@@ -1,4 +1,5 @@
 ﻿using Slate;
+using System.Linq;
 using UnityEngine;
 
 public static class CutsceneHelper
@@ -63,6 +64,34 @@ public static class CutsceneHelper
         }
 
         return cutscene;
+    }
 
+    public static T GetCutsceneClip<T>(Cutscene cutscene, string CutsceneClipName) where T: CutsceneClipBase
+    {
+        //通过cutscene 对象找到所有的Clips，调用带有ClipRefresh 接口的函数
+        foreach (var group in cutscene.groups)
+        {
+            foreach (var track in group.tracks)
+            {
+                var clips = track.clips.ToList();
+
+                for (int i = 0; i < clips.Count; i++)
+                {
+                    var curClip = clips[i];
+                    var cutsceneClip = curClip as T;
+                    if (string.IsNullOrEmpty(cutsceneClip.CutsceneClipName))
+                    {
+                        continue;
+                    }
+
+                    if (cutsceneClip.CutsceneClipName == CutsceneClipName)
+                    {
+                        return cutsceneClip as T;
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 }

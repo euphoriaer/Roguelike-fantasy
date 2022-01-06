@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &85852099
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357158686618275386, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865346198638077517, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: _actor
+      value: 
+      objectReference: {fileID: 1507583160}
+    - target: {fileID: 5323621023702860267, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: m_Name
+      value: '@FastRun'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
 --- !u!1001 &213115703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2066,8 +2127,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 65
-        y: 113
+        x: 56
+        y: 109
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2091,7 +2152,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4aeb203
+        actionHashCodes: 5f4e0400
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -2116,24 +2177,27 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - '@Idle'
-        byteData: 00000000
+        - IdleAnim
+        byteData: 0000803f01000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0300000002000000
+        paramDataType: 03000000030000000200000000000000
         paramName:
         - CutsceneName
+        - CrossNextClipName
         - TransTime
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000004000000
+        - SetValue
+        paramDataPos: 00000000010000000000000004000000
+        paramByteDataSize: 00000000000000000400000004000000
     - name: Run
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 310
-        y: 110
+        x: 385
+        y: 71
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2157,7 +2221,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: d4aeb203
+        actionHashCodes: 5f4e0400
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -2182,24 +2246,27 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - '@FastRun'
-        byteData: 00000000
+        - FastAnim
+        byteData: 0000803f02000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0300000002000000
+        paramDataType: 03000000030000000200000000000000
         paramName:
         - CutsceneName
+        - CrossNextClipName
         - TransTime
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000004000000
+        - SetValue
+        paramDataPos: 00000000010000000000000004000000
+        paramByteDataSize: 00000000000000000400000004000000
     - name: Dodge
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 165
-        y: 205
+        x: 261
+        y: 157
         width: 100
         height: 16
       isBreakpoint: 0
@@ -2304,7 +2371,7 @@ MonoBehaviour:
     ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 225
+    editorFlags: 97
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0

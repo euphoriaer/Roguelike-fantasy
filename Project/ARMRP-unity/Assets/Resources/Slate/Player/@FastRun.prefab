@@ -260,11 +260,12 @@ MonoBehaviour:
   _startTime: 0
   _animationData:
     _animatedParameters: []
+  CutsceneClipName: FastAnim
   AnimName: '@FastRun'
   PlaySpeed: 1
   Loop: 1
-  BlendAnim: 2000
   _length: 0.73333335
+  CrossAnimTime: 0
 --- !u!1 &5231787887329861179
 GameObject:
   m_ObjectHideFlags: 0

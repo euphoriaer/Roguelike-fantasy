@@ -1,9 +1,7 @@
-using System.Collections;
 using Sirenix.OdinInspector;
 using Slate;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [Name("播放动画")]
@@ -30,6 +28,8 @@ public class PlayAnimClip : CutsceneClip<Animator>
     [SerializeField] private float _length = 1 / 30f;
 
     private AnimationClip CurClip;
+
+    public float CrossAnimTime;//todo 设置CrossAnim这一段为特殊颜色
 
     /// <summary>
     /// 默认长度为整个动画的时长
@@ -61,9 +61,6 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     protected override void OnEnter()
     {
-
-        //StartCoroutine(Wait());
-
         ActorComponent.speed = PlaySpeed;
         var playClips = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName);
         if (playClips.ToList().Count <= 0)
@@ -71,21 +68,18 @@ public class PlayAnimClip : CutsceneClip<Animator>
             Debug.LogError("没有对应的动画可以播放");
         }
         CurClip = playClips.First();
-        //进入时动画动作融合,进行一个等待
-    }
-
-    IEnumerator Wait()
-    {
-        Debug.Log("融合等待");
-        yield return new WaitForSeconds(3);
-        Debug.Log("融合等待结束");
     }
 
     protected override void OnUpdate(float time)
     {
-        //if (!Application.isPlaying)
-        //{//编辑模式预览动画
+        //todo 测试time与真实时间的换算
+
+        //编辑模式预览动画
         //得到当前的动画长度
+        if (CrossAnimTime > time)//无效动画片段,不播放,动作融合用
+        {
+            return;
+        }
 
         var curClipLength = CurClip.length;
         float normalizedBefore = time * PlaySpeed;
@@ -94,12 +88,16 @@ public class PlayAnimClip : CutsceneClip<Animator>
             //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
             normalizedBefore = time * PlaySpeed % curClipLength;
         }
-
         //normalzedTime,0-1 表示开始与 播放结束，
         ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
         ActorComponent.Update(0);
+        CrossAnimTime = 0;
+    }
 
-        //}
+    protected override void OnExit()
+    {
+        Debug.Log("动画结束");
+        base.OnExit();
     }
 
     public override void Refresh()

@@ -9,10 +9,14 @@ public class PlayCutsceneAction : FsmStateAction
     [UnityEngine.Tooltip("Cutscene名字")]
     public string CutsceneName;
 
+    public string CrossNextClipName;
+
     //todo 按比例过渡，按固定时间过渡选项
     //[LabelText("Cutscene动作过渡")]
     [Header("Game Settings")]
     public float TransTime;
+
+    public int  SetValue;
 
     private Cutscene _cutscene;
 
@@ -23,7 +27,8 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnEnter()
     {
-        StartCoroutine(AnimatotBleedCrossFade(CutsceneName, TransTime));
+        StartCoroutine(AnimatotBleedCrossFadeFixed(CutsceneName, TransTime));
+        
     }
 
     private IEnumerator AnimatotBleedCrossFade(string name, float normalizedTime)
@@ -48,6 +53,9 @@ public class PlayCutsceneAction : FsmStateAction
             }));
             Debug.Log("混合完成");
         }
+
+        var playClip= CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
+        playClip.CrossAnimTime = TransTime;
         _cutscene.Play();
     }
 
@@ -60,7 +68,8 @@ public class PlayCutsceneAction : FsmStateAction
         yield return new WaitForSeconds(FixedTime);
         Debug.Log("混合完成");
 
-
+        var playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
+        playClip.CrossAnimTime = TransTime;
         _cutscene.Play();
     }
 

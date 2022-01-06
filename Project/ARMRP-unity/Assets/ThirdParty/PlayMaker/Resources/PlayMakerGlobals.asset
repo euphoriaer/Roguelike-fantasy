@@ -33,5 +33,5 @@ MonoBehaviour:
     variableCategoryIDs: 
   events:
   - Input
-  - RunStop
   - IdleToRun
+  - RunStop
