@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: _actor
       value: 
       objectReference: {fileID: 1507583160}
+    - target: {fileID: 5259628169908482073, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: _viewTimeMax
+      value: 1.5356718
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259628169908482073, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: _viewTimeMin
+      value: -0.3733145
+      objectReference: {fileID: 0}
     - target: {fileID: 5323621023702860267, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
       propertyPath: m_Name
       value: '@FastRun'
@@ -2178,7 +2186,7 @@ MonoBehaviour:
         stringParams:
         - '@Idle'
         - IdleAnim
-        byteData: 0000803f01000000
+        byteData: 9a99993e01000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -2196,8 +2204,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 385
-        y: 71
+        x: 263.71875
+        y: 103.96875
         width: 100
         height: 32
       isBreakpoint: 0
@@ -2247,7 +2255,7 @@ MonoBehaviour:
         stringParams:
         - '@FastRun'
         - FastAnim
-        byteData: 0000803f02000000
+        byteData: 9a99993e02000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
