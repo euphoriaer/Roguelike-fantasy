@@ -78,6 +78,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
         //得到当前的动画长度
         if (CrossAnimTime > time)//无效动画片段,不播放,动作融合用
         {
+            Debug.Log("处于动作融合");
             return;
         }
 
@@ -96,7 +97,6 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     protected override void OnExit()
     {
-        Debug.Log("动画结束");
         base.OnExit();
     }
 

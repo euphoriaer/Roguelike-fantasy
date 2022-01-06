@@ -28,7 +28,9 @@ public class PlayCutsceneAction : FsmStateAction
     public override void OnEnter()
     {
         StartCoroutine(AnimatotBleedCrossFadeFixed(CutsceneName, TransTime));
-        
+        var playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
+        playClip.CrossAnimTime = TransTime;
+        _cutscene.Play();
     }
 
     private IEnumerator AnimatotBleedCrossFade(string name, float normalizedTime)
@@ -45,6 +47,7 @@ public class PlayCutsceneAction : FsmStateAction
         {
             var clipName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 
+
             yield return new WaitWhile((() =>
             {
                 var clipName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
@@ -52,11 +55,10 @@ public class PlayCutsceneAction : FsmStateAction
                 return clipName != name;
             }));
             Debug.Log("混合完成");
+
         }
 
-        var playClip= CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
-        playClip.CrossAnimTime = TransTime;
-        _cutscene.Play();
+       
     }
 
     private IEnumerator AnimatotBleedCrossFadeFixed(string name, float FixedTime)
