@@ -29,7 +29,8 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     private AnimationClip CurClip;
 
-    public float CrossAnimTime;//todo 设置CrossAnim这一段为特殊颜色
+    [HideInInspector]
+    public bool IsCrossing = false;
 
     /// <summary>
     /// 默认长度为整个动画的时长
@@ -75,8 +76,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
         //todo 测试time与真实时间的换算
 
         //编辑模式预览动画
-        //得到当前的动画长度
-        if (CrossAnimTime > time)//无效动画片段,不播放,动作融合用
+        if (IsCrossing)//动作融合中，动画不播放
         {
             Debug.Log("处于动作融合");
             return;
@@ -92,7 +92,6 @@ public class PlayAnimClip : CutsceneClip<Animator>
         //normalzedTime,0-1 表示开始与 播放结束，
         ActorComponent.Play(AnimName, 0, normalizedBefore / curClipLength);
         ActorComponent.Update(0);
-        CrossAnimTime = 0;
     }
 
     protected override void OnExit()

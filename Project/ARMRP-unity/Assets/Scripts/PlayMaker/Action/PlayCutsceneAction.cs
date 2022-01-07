@@ -16,9 +16,11 @@ public class PlayCutsceneAction : FsmStateAction
     [Header("Game Settings")]
     public float TransTime;
 
-    public int  SetValue;
+    public int SetValue;
 
     private Cutscene _cutscene;
+
+    private PlayAnimClip playClip;
 
     public override void Reset()
     {
@@ -27,18 +29,21 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnEnter()
     {
-        StartCoroutine(AnimatotBleedCrossFadeFixed(CutsceneName, TransTime));
-        var playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
-        playClip.CrossAnimTime = TransTime;
+        CutsceneInstate();
+        StartCoroutine(AnimatotBleedCrossFade(CutsceneName, TransTime));
         _cutscene.Play();
+    }
+
+    private void CutsceneInstate()
+    {
+        _cutscene = CutsceneHelper.Instate(this.Owner, CutsceneName);
+        playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
     }
 
     private IEnumerator AnimatotBleedCrossFade(string name, float normalizedTime)
     {
         var Animator = Fsm.GameObject.GetComponent<Animator>();
-
         Animator.CrossFade(name, normalizedTime);
-        _cutscene = CutsceneHelper.Instate(this.Owner, CutsceneName);
         if (Animator.GetCurrentAnimatorClipInfo(0).Length <= 0)
         {
             yield return 0;
@@ -47,7 +52,7 @@ public class PlayCutsceneAction : FsmStateAction
         {
             var clipName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 
-
+            playClip.IsCrossing = true;
             yield return new WaitWhile((() =>
             {
                 var clipName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
@@ -55,23 +60,19 @@ public class PlayCutsceneAction : FsmStateAction
                 return clipName != name;
             }));
             Debug.Log("混合完成");
-
+            playClip.IsCrossing = false;
         }
-
-       
     }
 
     private IEnumerator AnimatotBleedCrossFadeFixed(string name, float FixedTime)
     {
         var Animator = Fsm.GameObject.GetComponent<Animator>();
-        Animator.CrossFadeInFixedTime(name, FixedTime,0,0,0);
-        _cutscene = CutsceneHelper.Instate(this.Owner, CutsceneName);
+        Animator.CrossFadeInFixedTime(name, FixedTime, 0, 0, 0);
         Debug.Log("混合中");
+        playClip.IsCrossing = true;
         yield return new WaitForSeconds(FixedTime);
         Debug.Log("混合完成");
-
-        var playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
-        playClip.CrossAnimTime = TransTime;
+        playClip.IsCrossing = false;
         _cutscene.Play();
     }
 
