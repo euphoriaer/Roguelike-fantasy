@@ -2,6 +2,8 @@
 using Slate;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;
 
 [ActionCategory("Cutscene")]
 public class PlayCutsceneAction : FsmStateAction
@@ -9,14 +11,13 @@ public class PlayCutsceneAction : FsmStateAction
     [UnityEngine.Tooltip("Cutscene名字")]
     public string CutsceneName;
 
-    public string CrossNextClipName;
+    public string CutsceneClipName;
+    public AnimationClip playAnimationClip;
 
     //todo 按比例过渡，按固定时间过渡选项
     //[LabelText("Cutscene动作过渡")]
     [Header("Game Settings")]
     public float TransTime;
-
-    public int SetValue;
 
     private Cutscene _cutscene;
 
@@ -29,15 +30,16 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnEnter()
     {
+        
         CutsceneInstate();
-        StartCoroutine(AnimatotBleedCrossFade(CutsceneName, TransTime));
+        ////StartCoroutine(AnimatotBleedCrossFadeFixed(CutsceneName, TransTime));
         _cutscene.Play();
     }
 
     private void CutsceneInstate()
     {
         _cutscene = CutsceneHelper.Instate(this.Owner, CutsceneName);
-        playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CrossNextClipName);
+        playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CutsceneClipName);
     }
 
     private IEnumerator AnimatotBleedCrossFade(string name, float normalizedTime)

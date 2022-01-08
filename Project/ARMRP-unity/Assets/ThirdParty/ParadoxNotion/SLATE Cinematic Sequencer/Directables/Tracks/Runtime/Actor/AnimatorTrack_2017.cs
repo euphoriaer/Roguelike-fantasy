@@ -7,6 +7,13 @@ using Slate.ActionClips;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
+////[Name("模型动画轨道")]
+//[Icon(typeof(Animator))]
+//[Attachable(typeof(ActorGroup))]
+//public class AnimTrack : CutsceneTrack
+//{
+//}
+
 namespace Slate
 {
 

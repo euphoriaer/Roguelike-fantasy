@@ -213,10 +213,12 @@ MonoBehaviour:
   _startTime: 0
   _animationData:
     _animatedParameters: []
+  CutsceneClipName: Dodge
   AnimName: '@Standing Dodge Backward'
-  _playSpeed: 1
-  _loop: 0
+  PlaySpeed: 1
+  Loop: 0
   _length: 1.6333334
+  IsCrossing: 0
 --- !u!1 &5069474454929480650
 GameObject:
   m_ObjectHideFlags: 0

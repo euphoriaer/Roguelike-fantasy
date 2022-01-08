@@ -96,6 +96,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     protected override void OnExit()
     {
+
         base.OnExit();
     }
 

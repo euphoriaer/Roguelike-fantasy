@@ -47,6 +47,7 @@ public static class CutsceneHelper
         {
             GameObject.Destroy(RoleActionCutscene.transform.GetChild(0).gameObject);
         }
+
         //播放动画
         GameObject slateRes = Resources.Load<GameObject>($"Slate/Player/{CutsceneName}");
         if (slateRes == null)
@@ -79,6 +80,11 @@ public static class CutsceneHelper
                 {
                     var curClip = clips[i];
                     var cutsceneClip = curClip as T;
+                    if (cutsceneClip==null)
+                    {
+                        continue;
+                    }
+
                     if (string.IsNullOrEmpty(cutsceneClip.CutsceneClipName))
                     {
                         continue;
