@@ -10,8 +10,11 @@ using UnityEngine.Playables;
 [Attachable(typeof(AnimTrack))]
 public class PlayAnimPlayable : CutsceneClip<Animator>
 {
-    public AnimationClip animationClip;
+    public AnimationClip animationClip1;
 
+    public AnimationClip animationClip2;
+
+    public float weight;
     //[LabelText("播放速度")]
     //[SerializeField]
     //public float PlaySpeed = 1;
@@ -28,8 +31,10 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
         Refresh();
     }
 
-    private AnimationClipPlayable playableClip;
+    private AnimationClipPlayable playableClip1;
+    private AnimationClipPlayable playableClip2;
     private PlayableGraph playableGraph;
+    private AnimationMixerPlayable mixerPlayable;
     protected override void OnEnter()
     {
         
@@ -38,28 +43,50 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
         var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", ActorComponent);
 
+        mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         // 将剪辑包裹在可播放项中
 
-        playableClip = AnimationClipPlayable.Create(playableGraph, animationClip);
+        playableClip1 = AnimationClipPlayable.Create(playableGraph, animationClip1);
+        playableClip2 = AnimationClipPlayable.Create(playableGraph, animationClip2);
 
         // 将可播放项连接到输出
 
-        playableOutput.SetSourcePlayable(playableClip);
+        playableGraph.Connect(playableClip1, 0, mixerPlayable, 0);
 
-        // 播放该图。
+        playableGraph.Connect(playableClip2, 0, mixerPlayable, 1);
 
-        playableGraph.Play();
+    
+        playableOutput.SetSourcePlayable(mixerPlayable);
 
-        playableClip.SetPlayState(PlayState.Paused);
-        //使时间停止自动前进。
     }
 
-
+    private bool once=true;
+    private float mixerTime;
     protected override void OnUpdate(float time)
     {
+
+        weight= GetClipWeight(time);
+
+        weight = Mathf.Clamp01(weight);
+
+        mixerPlayable.SetInputWeight(0, 1.0f - weight);
+
+        mixerPlayable.SetInputWeight(1, weight);
+
         playableGraph.Evaluate(time);
 
-        playableClip.SetTime(time);
+        if (weight==1)
+        {
+            if (once)
+            {
+                once = false;
+                mixerTime = time;
+            }
+            var playable = mixerPlayable.GetInput(1);
+            playable.SetTime(time- mixerTime);
+        }
+
+       
     }
 
  
@@ -77,7 +104,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     public override string info
     {
-        get { return animationClip != null ? animationClip.name : base.info; }
+        get { return animationClip1 != null ? animationClip1.name : base.info; }
     }
 
     [HideInInspector]
