@@ -59,6 +59,7 @@ namespace Assets.Scripts.PlayMaker.Action
             //播放该图。
 
             playableGraph.Play();
+
         }
         private Cutscene CutsceneInstate()
         {
@@ -77,7 +78,8 @@ namespace Assets.Scripts.PlayMaker.Action
 
             mixerPlayable.SetInputWeight(1, weight);
 
-            
+            //error 需要从特定Pos到特定pos，设置融合播放位置？，播到结束? 抄一遍AnimatorTrack_2017 体会任意时间段融合的可能
+            //mixerPlayable.GetInput(1).SetTime(time) ?;
             if (isOKMix&& Mathf.Abs(weight-1)<0.001)
             {
                 Debug.Log("融合完成");

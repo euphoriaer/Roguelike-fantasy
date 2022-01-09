@@ -98,7 +98,7 @@ namespace Slate
             }
             return true;
         }
-
+        
         //...
         protected override void OnEnter() {
             if ( isMasterTrack ) {

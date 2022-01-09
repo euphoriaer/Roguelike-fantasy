@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
-[Name("播放动画Playable")]
+[Name("动画混合测试")]
 [Attachable(typeof(AnimTrack))]
-public class PlayAnimPlayable : CutsceneClip<Animator>
+public class AnimPlayableMax : CutsceneClip<Animator>
 {
-    public AnimationClip animationClip;
+    public AnimationClip animationClip1;
 
+    public AnimationClip animationClip2;
+
+    public float weight;
     [LabelText("播放速度")]
     [SerializeField]
     public float PlaySpeed = 1;
@@ -21,48 +24,71 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
     [HideInInspector]
     [SerializeField] private float _length = 1 / 30f;
 
-    private AnimationClipPlayable playableClip;
-    private PlayableGraph playableGraph;
     protected override void OnCreate()
     {
         Refresh();
     }
-
-
+    
+    private AnimationClipPlayable playableClip1;
+    private AnimationClipPlayable playableClip2;
+    private PlayableGraph playableGraph;
+    private AnimationMixerPlayable mixerPlayable;
     protected override void OnEnter()
     {
+
+
         playableGraph = PlayableGraph.Create();
 
         var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", ActorComponent);
 
+        mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         // 将剪辑包裹在可播放项中
 
-        playableClip = AnimationClipPlayable.Create(playableGraph, animationClip);
+        playableClip1 = AnimationClipPlayable.Create(playableGraph, animationClip1);
+        
+        playableClip2 = AnimationClipPlayable.Create(playableGraph, animationClip2);
 
         // 将可播放项连接到输出
 
-        playableOutput.SetSourcePlayable(playableClip);
+        playableGraph.Connect(playableClip1, 0, mixerPlayable, 0);
 
-        // 播放该图。
+        playableGraph.Connect(playableClip2, 0, mixerPlayable, 1);
 
-        playableGraph.Play();
 
-        playableClip.SetPlayState(PlayState.Paused);
-        //使时间停止自动前进。
+        playableOutput.SetSourcePlayable(mixerPlayable);
+
+        Debug.Log(10);
+       
+
     }
 
+    private bool once = true;
+    private float mixerTime;
     protected override void OnUpdate(float time)
     {
-        var curClipLength = animationClip.length;
-        float normalizedBefore = time * PlaySpeed;
-        if (Loop && time > curClipLength)
-        {
-            //要跳转到的动画时长 ，根据Update Time 取余 ，需要归一化时间
-            normalizedBefore = time * PlaySpeed % curClipLength;
-        }
-        playableClip.SetTime(normalizedBefore);
+        weight = GetClipWeight(time);
+        playableClip1.SetTime(time);
+        weight = Mathf.Clamp01(weight);
+
+        mixerPlayable.SetInputWeight(0, 1.0f - weight);
+
+        mixerPlayable.SetInputWeight(1, weight);
+
         playableGraph.Evaluate(time);
+
+        if (weight == 1)
+        {
+            if (once)
+            {
+                once = false;
+                mixerTime = time;
+            }
+            var playable = mixerPlayable.GetInput(1);
+            playable.SetTime(time - mixerTime);
+        }
     }
+
+
 
     protected override void OnExit()
     {
@@ -71,14 +97,13 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     public override void Refresh()
     {
-        length = animationClip.length / PlaySpeed;
     }
 
     //Todo OnGui 红色表示动画长度
 
     public override string info
     {
-        get { return animationClip != null ? animationClip.name : base.info; }
+        get { return animationClip1 != null ? animationClip1.name : base.info; }
     }
 
     [HideInInspector]
@@ -110,4 +135,5 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
     {
         get { return true; }
     }
+
 }

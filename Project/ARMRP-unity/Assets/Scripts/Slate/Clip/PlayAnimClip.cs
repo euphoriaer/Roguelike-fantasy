@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[Name("播放动画")]
+[Name("播放动画Animator")]
 [Attachable(typeof(AnimTrack))]
 public class PlayAnimClip : CutsceneClip<Animator>
 {
