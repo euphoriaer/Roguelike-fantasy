@@ -1,6 +1,5 @@
 ﻿using HutongGames.PlayMaker;
 using Slate;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
@@ -8,11 +7,13 @@ using UnityEngine.Playables;
 [ActionCategory("Cutscene")]
 public class PlayCutsceneAction : FsmStateAction
 {
+    private static AnimationClip _beforeAnimationClip;
+    private static AnimationClip _afterAnimationClip;
+
     [UnityEngine.Tooltip("Cutscene名字")]
     public string CutsceneName;
 
     public string CutsceneClipName;
-    public AnimationClip playAnimationClip;
 
     //todo 按比例过渡，按固定时间过渡选项
     //[LabelText("Cutscene动作过渡")]
@@ -21,7 +22,12 @@ public class PlayCutsceneAction : FsmStateAction
 
     private Cutscene _cutscene;
 
-    private PlayAnimClip playClip;
+    private PlayAnimPlayable playClip;
+    private AnimationClipPlayable playableClip1;
+    private AnimationClipPlayable playableClip2;
+    private AnimationMixerPlayable mixerPlayable;
+    private PlayableGraph _playableGraph = PlayableGraph.Create();
+    private float _weight = 0;
 
     public override void Reset()
     {
@@ -30,56 +36,66 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnEnter()
     {
-        
         CutsceneInstate();
-        ////StartCoroutine(AnimatotBleedCrossFadeFixed(CutsceneName, TransTime));
+        if (_beforeAnimationClip == null || _afterAnimationClip == null)
+        {//没有动画需要过度
+        }
+        else
+        {
+            MixAnimationInit(_beforeAnimationClip, _afterAnimationClip);
+        }
         _cutscene.Play();
+    }
+
+    private void GetCutsceneClip()
+    {
     }
 
     private void CutsceneInstate()
     {
         _cutscene = CutsceneHelper.Instate(this.Owner, CutsceneName);
-        playClip = CutsceneHelper.GetCutsceneClip<PlayAnimClip>(_cutscene, CutsceneClipName);
+        playClip = CutsceneHelper.GetCutsceneClip<PlayAnimPlayable>(_cutscene, CutsceneClipName);
+        _afterAnimationClip = playClip.animationClip;
     }
 
-    private IEnumerator AnimatotBleedCrossFade(string name, float normalizedTime)
+    public void MixAnimationInit(AnimationClip before, AnimationClip after)
     {
         var Animator = Fsm.GameObject.GetComponent<Animator>();
-        Animator.CrossFade(name, normalizedTime);
-        if (Animator.GetCurrentAnimatorClipInfo(0).Length <= 0)
-        {
-            yield return 0;
-        }
-        else
-        {
-            var clipName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        var playableOutput = AnimationPlayableOutput.Create(_playableGraph, "Animation", Animator);
 
-            playClip.IsCrossing = true;
-            yield return new WaitWhile((() =>
-            {
-                var clipName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-                Debug.Log("混合中");
-                return clipName != name;
-            }));
-            Debug.Log("混合完成");
-            playClip.IsCrossing = false;
-        }
+        mixerPlayable = AnimationMixerPlayable.Create(_playableGraph, 2);
+        // 将剪辑包裹在可播放项中
+
+        playableClip1 = AnimationClipPlayable.Create(_playableGraph, before);
+        playableClip2 = AnimationClipPlayable.Create(_playableGraph, after);
+
+        // 将可播放项连接到输出
+
+        _playableGraph.Connect(playableClip1, 0, mixerPlayable, 0);
+
+        _playableGraph.Connect(playableClip2, 0, mixerPlayable, 1);
+
+        playableOutput.SetSourcePlayable(mixerPlayable);
     }
 
-    private IEnumerator AnimatotBleedCrossFadeFixed(string name, float FixedTime)
+    public override void OnFixedUpdate()
     {
-        var Animator = Fsm.GameObject.GetComponent<Animator>();
-        Animator.CrossFadeInFixedTime(name, FixedTime, 0, 0, 0);
-        Debug.Log("混合中");
-        playClip.IsCrossing = true;
-        yield return new WaitForSeconds(FixedTime);
-        Debug.Log("混合完成");
-        playClip.IsCrossing = false;
-        _cutscene.Play();
     }
 
     public override void OnUpdate()
     {
+        if (_beforeAnimationClip == null || _afterAnimationClip == null)
+        {//没有动画需要过度
+        }
+        else
+        {
+            var weight = Mathf.Lerp(0, 1, Time.deltaTime / TransTime);//t 是0,1的平滑过度，按时间从0到1
+            mixerPlayable.SetInputWeight(0, 1.0f - weight);
+
+            mixerPlayable.SetInputWeight(1, weight);
+            _playableGraph.Evaluate(Time.deltaTime);
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
             //error 检测是否切换状态，或者在Cutscene 加入输入轨道
@@ -90,6 +106,7 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnExit()
     {
+        _beforeAnimationClip = _afterAnimationClip;
         _cutscene.Stop();
         base.OnExit();
     }
