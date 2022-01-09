@@ -1,4 +1,5 @@
-﻿using HutongGames.PlayMaker;
+﻿using System.Collections;
+using HutongGames.PlayMaker;
 using Slate;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -29,6 +30,19 @@ public class PlayCutsceneAction : FsmStateAction
     private PlayableGraph _playableGraph = PlayableGraph.Create();
     private float _weight = 0;
 
+    private float time;
+    public IEnumerator FinishMix()
+    {
+        Debug.Log("开始融合");
+        yield return new WaitUntil((() =>
+        {
+            Debug.Log("融合进度"+ Mathf.Abs(_weight - 1));
+            return Mathf.Abs(_weight - 1) < 0.01f;
+        }));
+        Debug.Log("完成融合");
+        _cutscene.Play();
+    }
+
     public override void Reset()
     {
         base.Reset();
@@ -36,15 +50,19 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnEnter()
     {
+        time = 0;
         CutsceneInstate();
         if (_beforeAnimationClip == null || _afterAnimationClip == null)
         {//没有动画需要过度
+            Debug.Log("直接播放");
+            _cutscene.Play();
         }
         else
         {
             MixAnimationInit(_beforeAnimationClip, _afterAnimationClip);
+            StartCoroutine(FinishMix());
         }
-        _cutscene.Play();
+       
     }
 
     private void GetCutsceneClip()
@@ -80,21 +98,24 @@ public class PlayCutsceneAction : FsmStateAction
 
     public override void OnFixedUpdate()
     {
+        if (_beforeAnimationClip == null || _afterAnimationClip == null)
+        {//没有动画需要过度
+        }
+        else if (Mathf.Abs(_weight - 1) > 0.01f)
+        {
+            time += Time.fixedDeltaTime;
+            _weight = Mathf.Lerp(0, 1, time / TransTime);//t 是0,1的平滑过度，按时间从0到1
+            mixerPlayable.SetInputWeight(0, 1.0f - _weight);
+
+            mixerPlayable.SetInputWeight(1, _weight);
+            _playableGraph.Evaluate(time);
+        }
     }
 
     public override void OnUpdate()
     {
-        if (_beforeAnimationClip == null || _afterAnimationClip == null)
-        {//没有动画需要过度
-        }
-        else
-        {
-            var weight = Mathf.Lerp(0, 1, Time.deltaTime / TransTime);//t 是0,1的平滑过度，按时间从0到1
-            mixerPlayable.SetInputWeight(0, 1.0f - weight);
-
-            mixerPlayable.SetInputWeight(1, weight);
-            _playableGraph.Evaluate(Time.deltaTime);
-        }
+        
+        
 
         if (Input.GetKey(KeyCode.A))
         {

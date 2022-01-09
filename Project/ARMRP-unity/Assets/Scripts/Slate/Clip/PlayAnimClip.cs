@@ -102,7 +102,6 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     public override void Refresh()
     {   //设置Length 为对应_animName的长度 与播放速度成比例
-        var m = AnimName;
         length = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName).First().length;
         length = length / PlaySpeed;
     }
