@@ -17,7 +17,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public float TransTime;
 
-        public float offsetTime;
+        public FsmFloat offsetTime;
         public float weight;
 
         private PlayableGraph playableGraph;
@@ -87,14 +87,13 @@ namespace Assets.Scripts.PlayMaker.Action
 
             mixerPlayable.SetInputWeight(1, weight);
 
-            mixerPlayable.GetInput(0).SetTime(time + offsetTime);
+            mixerPlayable.GetInput(0).SetTime(time + offsetTime.Value);
            
-            //mixerPlayable.GetInput(1).SetTime(time+ offectTime);
+            mixerPlayable.GetInput(1).SetTime(time+ offsetTime.Value);
 
             if (isOKMix && Mathf.Abs(weight - 1) < 0.001)
             {
-                Debug.Log("融合完成");
-                playableGraph.Destroy();
+                Debug.Log("融合完成"+ offsetTime.Value);
                 isOKMix = false;
                 if (_cutscene != null)
                 {
@@ -105,24 +104,11 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void OnExit()
         {
+            offsetTime.Value = _cutscene.currentTime;
             if (_cutscene != null)
             {
                 _cutscene.Stop();
             }
-
-            
-            //向下一个状态传递值？
-            for (int i = 0; i < Fsm.ActiveState.ActiveActions.Count; i++)
-            {
-                var action = Fsm.ActiveState.ActiveActions[i];
-                if (action is PlayCutscene)
-                {
-                    var playCutscene = action as PlayCutscene;
-                    playCutscene.offsetTime = _cutscene.currentTime;
-                    Debug.Log("状态切换，获取当前cutscene播放到的Time"+ _cutscene.currentTime);
-                }
-            }
-
             base.OnExit();
         }
     }

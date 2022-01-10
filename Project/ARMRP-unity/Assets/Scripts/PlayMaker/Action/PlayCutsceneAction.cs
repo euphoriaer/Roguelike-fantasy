@@ -81,8 +81,6 @@ public class PlayCutsceneAction : FsmStateAction
         {
             //error 检测是否切换状态，或者在Cutscene 加入输入轨道
             Fsm.SendEventToFsmOnGameObject(this.Owner, this.Fsm.Name, "IdleToRun");
-            
-
             Finish();
         }
     }
