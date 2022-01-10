@@ -1,4 +1,5 @@
-﻿using HutongGames.PlayMaker;
+﻿using System.Linq;
+using HutongGames.PlayMaker;
 using Slate;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -33,6 +34,9 @@ namespace Assets.Scripts.PlayMaker.Action
             base.Awake();
         }
 
+        private AnimationClipPlayable clipPlayable0;
+        private AnimationClipPlayable clipPlayable1;
+
         public override void OnEnter()
         {
             time = 0;
@@ -51,16 +55,17 @@ namespace Assets.Scripts.PlayMaker.Action
 
             // 创建 AnimationClipPlayable 并将它们连接到混合器。
 
-            var clipPlayable0 = AnimationClipPlayable.Create(playableGraph, clip0);
+             clipPlayable0 = AnimationClipPlayable.Create(playableGraph, clip0);
 
-            var clipPlayable1 = AnimationClipPlayable.Create(playableGraph, clip1);
+             clipPlayable1 = AnimationClipPlayable.Create(playableGraph, clip1);
 
             playableGraph.Connect(clipPlayable0, 0, mixerPlayable, 0);
 
             playableGraph.Connect(clipPlayable1, 0, mixerPlayable, 1);
 
-            //播放该图。
+            clipPlayable1.Pause();//动画过渡融合的关键，停掉第二个，保证动画过渡到第二个动画第一帧
 
+            //播放该图。
             playableGraph.Play();
         }
 
@@ -83,17 +88,16 @@ namespace Assets.Scripts.PlayMaker.Action
             weight = Mathf.Lerp(0, 1, time / TransTime);
             weight = Mathf.Clamp01(weight);
 
+            clipPlayable0.SetTime(time + offsetTime.Value);
+
             mixerPlayable.SetInputWeight(0, 1.0f - weight);
 
             mixerPlayable.SetInputWeight(1, weight);
 
-            mixerPlayable.GetInput(0).SetTime(time + offsetTime.Value);
-           
-            mixerPlayable.GetInput(1).SetTime(time+ offsetTime.Value);
-
-            if (isOKMix && Mathf.Abs(weight - 1) < 0.001)
+            if (isOKMix && Mathf.Abs(weight - 1) < 0.0001)
             {
                 Debug.Log("融合完成"+ offsetTime.Value);
+                playableGraph.Stop();
                 isOKMix = false;
                 if (_cutscene != null)
                 {
