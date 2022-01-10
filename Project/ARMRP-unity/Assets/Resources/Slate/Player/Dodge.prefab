@@ -145,8 +145,8 @@ MonoBehaviour:
   - {fileID: 1748927344489288922}
   - {fileID: 7865301131297409856}
   _length: 1.6333334
-  _viewTimeMin: -0.6105227
-  _viewTimeMax: 3.0350878
+  _viewTimeMin: -6.1892304
+  _viewTimeMax: 9.573062
 --- !u!1 &3130912072670392760
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3130912072670392761}
   - component: {fileID: 3130912072670392763}
-  - component: {fileID: 3080372425192520830}
+  - component: {fileID: 7254851506919899676}
   m_Layer: 0
   m_Name: "\u6A21\u578B\u52A8\u753B\u8F68\u9053"
   m_TagString: Untagged
@@ -196,9 +196,9 @@ MonoBehaviour:
   _active: 1
   _isLocked: 0
   _actionClips:
-  - {fileID: 3080372425192520830}
+  - {fileID: 7254851506919899676}
   _customHeight: 300
---- !u!114 &3080372425192520830
+--- !u!114 &7254851506919899676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,18 +207,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3130912072670392760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c300c03cd67094eaa68f7a83f08695, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dabe5cea33ba7e489e7b31d7eddd25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startTime: 0
   _animationData:
     _animatedParameters: []
-  CutsceneClipName: 
-  animationClip: {fileID: 7400000, guid: 8508935e10458294885e95eb2288ffb4, type: 2}
+  CutsceneClipName: Dodge
+  AnimName: '@Standing Dodge Backward'
   PlaySpeed: 1
   Loop: 0
   _length: 1.6333334
-  _blendOut: 0
+  IsCrossing: 0
 --- !u!1 &5069474454929480650
 GameObject:
   m_ObjectHideFlags: 0
