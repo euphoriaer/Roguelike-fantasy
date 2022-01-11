@@ -109,6 +109,7 @@ namespace Assets.Scripts.PlayMaker.Action
         public override void OnExit()
         {
             offsetTime.Value = _cutscene.currentTime;
+            //error 需要向下一个状态state 传递当前cutscene动画
             if (_cutscene != null)
             {
                 _cutscene.Stop();
