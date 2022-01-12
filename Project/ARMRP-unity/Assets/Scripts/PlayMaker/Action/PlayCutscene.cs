@@ -1,13 +1,14 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using HutongGames.PlayMaker;
 using Slate;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
 namespace Assets.Scripts.PlayMaker.Action
 {
-    public class PlayCutscene : FsmStateAction
+    public class PlayCutscene : FsmStateActionBase
     {
         [UnityEngine.Tooltip("Cutscene名字")]
         public string CutsceneName;
@@ -29,6 +30,18 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private Cutscene _cutscene;
 
+        public FsmState LastFsmState
+        {
+            get
+            {
+                return this.GetLastFsmState();
+            }
+            set
+            {
+                this.SetLastFsmState();
+            }
+        }
+
         public override void Awake()
         {
             base.Awake();
@@ -37,36 +50,64 @@ namespace Assets.Scripts.PlayMaker.Action
         private AnimationClipPlayable clipPlayable0;
         private AnimationClipPlayable clipPlayable1;
 
+        private FsmState _lastFsmState;
+
         public override void OnEnter()
         {
             time = 0;
             isOKMix = true;
-            // 创建该图和混合器，然后将它们绑定到 Animator。
             _cutscene = CutsceneInstate();
-            var Animator = Fsm.GameObject.GetComponent<Animator>();
+            clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
+            //方式1 ，从记录的上一个状态获取clip
+            // 创建该图和混合器，然后将它们绑定到 Animator。
+            var lastplayCutscene = LastFsmState?.Actions.Where(p =>
+            {
+                if (p is PlayCutscene)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            })?.First() as PlayCutscene;
+            if (lastplayCutscene == null)
+            {
+                //不需要融合
+                _cutscene.Play();
+               
+            }
+            else
+            {
+                clip0 = lastplayCutscene.clip1;
+                
+                //todo 方式2，从状态传递获取clip
 
-            playableGraph = PlayableGraph.Create();
+                var Animator = Fsm.GameObject.GetComponent<Animator>();
 
-            var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", Animator);
+                playableGraph = PlayableGraph.Create();
 
-            mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
+                var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", Animator);
 
-            playableOutput.SetSourcePlayable(mixerPlayable);
+                mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
 
-            // 创建 AnimationClipPlayable 并将它们连接到混合器。
+                playableOutput.SetSourcePlayable(mixerPlayable);
 
-             clipPlayable0 = AnimationClipPlayable.Create(playableGraph, clip0);
+                // 创建 AnimationClipPlayable 并将它们连接到混合器。
 
-             clipPlayable1 = AnimationClipPlayable.Create(playableGraph, clip1);
+                clipPlayable0 = AnimationClipPlayable.Create(playableGraph, clip0);
 
-            playableGraph.Connect(clipPlayable0, 0, mixerPlayable, 0);
+                clipPlayable1 = AnimationClipPlayable.Create(playableGraph, clip1);
 
-            playableGraph.Connect(clipPlayable1, 0, mixerPlayable, 1);
+                playableGraph.Connect(clipPlayable0, 0, mixerPlayable, 0);
 
-            clipPlayable1.Pause();//动画过渡融合的关键，停掉第二个，保证动画过渡到第二个动画第一帧
+                playableGraph.Connect(clipPlayable1, 0, mixerPlayable, 1);
 
-            //播放该图。
-            playableGraph.Play();
+                clipPlayable1.Pause();//动画过渡融合的关键，停掉第二个，保证动画过渡到第二个动画第一帧
+
+                //播放该图。
+                playableGraph.Play();
+            }
         }
 
         private Cutscene CutsceneInstate()
@@ -77,6 +118,8 @@ namespace Assets.Scripts.PlayMaker.Action
                 return _cutscene;
             }
 
+            var state = Fsm.ActiveState;
+
             return null;
         }
 
@@ -84,37 +127,48 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void OnUpdate()
         {
-            time += Time.deltaTime;
-            weight = Mathf.Lerp(0, 1, time / TransTime);
-            weight = Mathf.Clamp01(weight);
-
-            clipPlayable0.SetTime(time + offsetTime.Value);
-
-            mixerPlayable.SetInputWeight(0, 1.0f - weight);
-
-            mixerPlayable.SetInputWeight(1, weight);
-
-            if (isOKMix && Mathf.Abs(weight - 1) < 0.0001)
+            if (clip0 == null)
             {
-                Debug.Log("融合完成"+ offsetTime.Value);
-                playableGraph.Stop();
-                isOKMix = false;
-                if (_cutscene != null)
+                //不需要融合
+            }
+            else
+            {
+                time += Time.deltaTime;
+                weight = Mathf.Lerp(0, 1, time / TransTime);
+                weight = Mathf.Clamp01(weight);
+
+                clipPlayable0.SetTime(time + offsetTime.Value);
+
+                mixerPlayable.SetInputWeight(0, 1.0f - weight);
+
+                mixerPlayable.SetInputWeight(1, weight);
+
+                if (isOKMix && Mathf.Abs(weight - 1) < 0.0001)
                 {
-                    _cutscene.Play();
+                    Debug.Log("融合完成" + offsetTime.Value);
+                    playableGraph.Stop();
+                    isOKMix = false;
+                    if (_cutscene != null)
+                    {
+                        _cutscene.Play();
+                    }
                 }
             }
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
+            var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
             offsetTime.Value = _cutscene.currentTime;
-            //error 需要向下一个状态state 传递当前cutscene动画
+
+            this.SetTransValues(animClip);
+
             if (_cutscene != null)
             {
                 _cutscene.Stop();
             }
-            base.OnExit();
+            base.Exit();
         }
     }
+
 }
