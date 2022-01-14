@@ -19,7 +19,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public float TransTime;
 
-        private FsmFloat offsetTime;
+        public FsmFloat offsetTime;
         private float weight;
 
         private PlayableGraph playableGraph;

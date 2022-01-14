@@ -85,14 +85,14 @@ public static class CutsceneHelper
         Cutscene slate = GameObject.Instantiate(inCutscene);
         slate.transform.position = RoleActionCutscene.transform.position;
         slate.transform.SetParent(RoleActionCutscene.transform, false);
-        var cutscene = slate.GetComponent<Cutscene>();
-        foreach (var cutsceneGroup in cutscene.groups)
+        foreach (var cutsceneGroup in slate.groups)
         {
             cutsceneGroup.actor = player;
         }
 
-        return cutscene;
+        return slate;
     }
+
     public static T GetCutsceneClip<T>(this Cutscene cutscene, string CutsceneClipName) where T : CutsceneClipBase
     {
         //通过cutscene 对象找到所有的Clips，调用带有ClipRefresh 接口的函数
