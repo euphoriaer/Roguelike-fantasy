@@ -11,7 +11,7 @@ namespace Assets.Scripts.PlayMaker.Action
     public class PlayCutscene : FsmStateActionBase
     {
         [UnityEngine.Tooltip("Cutscene名字")]
-        public string CutsceneName;
+        public Cutscene cutscene;
 
         public AnimationClip clip0;
 
@@ -19,8 +19,8 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public float TransTime;
 
-        public FsmFloat offsetTime;
-        public float weight;
+        private FsmFloat offsetTime;
+        private float weight;
 
         private PlayableGraph playableGraph;
 
@@ -30,17 +30,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private Cutscene _cutscene;
 
-        public FsmState LastFsmState
-        {
-            get
-            {
-                return this.GetLastFsmState();
-            }
-            set
-            {
-                this.SetLastFsmState();
-            }
-        }
+       
 
         public override void Awake()
         {
@@ -49,7 +39,6 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private AnimationClipPlayable clipPlayable0;
         private AnimationClipPlayable clipPlayable1;
-
         private FsmState _lastFsmState;
 
         public override void OnEnter()
@@ -59,7 +48,11 @@ namespace Assets.Scripts.PlayMaker.Action
             _cutscene = CutsceneInstate();
             clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
             //方式1 ，从记录的上一个状态获取clip
-            // 创建该图和混合器，然后将它们绑定到 Animator。
+            if (Fsm.LastTransition==null)
+            {
+                _cutscene.Play();
+                return;
+            }
             var lastplayCutscene = LastFsmState?.Actions.Where(p =>
             {
                 if (p is PlayCutscene)
@@ -79,10 +72,9 @@ namespace Assets.Scripts.PlayMaker.Action
             }
             else
             {
+                // 创建该图和混合器，然后将它们绑定到 Animator
                 clip0 = lastplayCutscene.clip1;
-                
-                //todo 方式2，从状态传递获取clip
-
+         
                 var Animator = Fsm.GameObject.GetComponent<Animator>();
 
                 playableGraph = PlayableGraph.Create();
@@ -104,7 +96,7 @@ namespace Assets.Scripts.PlayMaker.Action
                 playableGraph.Connect(clipPlayable1, 0, mixerPlayable, 1);
 
                 clipPlayable1.Pause();//动画过渡融合的关键，停掉第二个，保证动画过渡到第二个动画第一帧
-
+               
                 //播放该图。
                 playableGraph.Play();
             }
@@ -112,9 +104,9 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private Cutscene CutsceneInstate()
         {
-            if (!string.IsNullOrEmpty(CutsceneName))
+            if (cutscene!=null)
             {
-                var _cutscene = CutsceneHelper.Instate(this.Owner, CutsceneName);
+                var _cutscene = CutsceneHelper.Instate(this.Owner, cutscene);
                 return _cutscene;
             }
 
@@ -160,9 +152,6 @@ namespace Assets.Scripts.PlayMaker.Action
         {
             var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
             offsetTime.Value = _cutscene.currentTime;
-
-            this.SetTransValues(animClip);
-
             if (_cutscene != null)
             {
                 _cutscene.Stop();

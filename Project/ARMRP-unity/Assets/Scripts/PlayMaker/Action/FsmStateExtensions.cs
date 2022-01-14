@@ -1,11 +1,9 @@
 ﻿using HutongGames.PlayMaker;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class FsmStateExtensions
 {
-    private static Dictionary<string, ActionObj> _stateDic = new Dictionary<string, ActionObj>();
-    private static FsmState lastFsmState;
-
     /// <summary>
     /// 以当前FsmState和当前Action为名，传递数据
     /// </summary>
@@ -15,6 +13,11 @@ public static class FsmStateExtensions
     {
         string fsmName = fsmStateAction.State.Name;
         string actionName = fsmStateAction.Name;
+
+        var fsmListen = FsmListen.GetGameObjectFsmListen(fsmStateAction);
+
+        var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
+        var _stateDic = fsmCache.stateDic;
 
         bool isOk = _stateDic.TryGetValue(fsmName, out var value);
         if (!isOk)
@@ -38,6 +41,11 @@ public static class FsmStateExtensions
     /// <returns></returns>
     public static object[] GetTransValues(this FsmStateAction fsmStateAction, string fsmStateName, string actionName)
     {
+        var fsmListen = FsmListen.GetGameObjectFsmListen(fsmStateAction);
+
+        var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
+        var _stateDic = fsmCache.stateDic;
+
         var values = _stateDic[fsmStateName]?.valuesDic[actionName].ToArray();
         if (values == null || values.Length <= 0)
         {
@@ -56,6 +64,12 @@ public static class FsmStateExtensions
     /// <returns></returns>
     public static ActionObj GetTransValues(this FsmStateAction fsmStateAction)
     {
+        var fsmListen = FsmListen.GetGameObjectFsmListen(fsmStateAction);
+
+        var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
+        var _stateDic = fsmCache.stateDic;
+        var lastFsmState = fsmCache.lastFsmState;
+
         if (lastFsmState == null)
         {
             return null;
@@ -67,21 +81,78 @@ public static class FsmStateExtensions
 
     public static FsmState GetLastFsmState(this FsmStateAction fsmStateAction)
     {
+        var fsmListen = FsmListen.GetGameObjectFsmListen(fsmStateAction);
+
+        var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
+        var lastFsmState = fsmCache.lastFsmState;
+
+        if (lastFsmState == null)
+        {
+            return null;
+        }
         return lastFsmState;
     }
 
     public static void SetLastFsmState(this FsmStateAction fsmStateAction)
     {
-        lastFsmState = fsmStateAction.State;
+        var fsmListen = FsmListen.GetGameObjectFsmListen(fsmStateAction);
+
+        var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
+        fsmCache.lastFsmState = fsmStateAction.State;
     }
 
     public class ActionObj
-    {  
+    {
         public Dictionary<string, List<object>> valuesDic = new Dictionary<string, List<object>>();
 
         public ActionObj(string actionName, params object[] values)
         {
             valuesDic.Add(actionName, new List<object>(values));
+        }
+    }
+
+    public class FsmListen : MonoBehaviour
+    {
+        public FsmCache GetFsmCache(Fsm fsm)
+        {
+            fsmCacheDic.TryGetValue(fsm, out var cache);
+            return cache;
+        }
+
+        public Dictionary<Fsm, FsmCache> fsmCacheDic = new Dictionary<Fsm, FsmCache>();
+
+        public class FsmCache
+        {
+            /// <summary>
+            /// state name
+            /// </summary>
+            public Dictionary<string, ActionObj> stateDic = new Dictionary<string, ActionObj>();
+
+            public FsmState lastFsmState;
+        }
+
+        public static FsmListen GetGameObjectFsmListen(FsmStateAction fsmStateAction)
+        {
+            var fsmListen = fsmStateAction.Fsm.GameObject.GetComponent<FsmListen>();
+            if (fsmListen != null)
+            {
+                return fsmListen;
+            }
+            else
+            {
+                //没有对应的FsmListen，创建，一个Fsm监听Gameobject上的所有Fsm
+                fsmListen = fsmStateAction.Fsm.GameObject.AddComponent<FsmListen>();
+            }
+            //没有对应的fsm，加入fsm且把当前状态，当前Action Name缓存
+            fsmListen.fsmCacheDic.TryGetValue(fsmStateAction.Fsm, out var fsmCache);
+            if (fsmCache == null)
+            {
+                var fsmCacheValue = new FsmCache();
+                fsmCacheValue.stateDic.Add(fsmStateAction.Name, null);
+                fsmListen.fsmCacheDic.Add(fsmStateAction.Fsm, fsmCacheValue);
+            }
+
+            return fsmListen;
         }
     }
 }
