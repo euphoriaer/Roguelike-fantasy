@@ -5,20 +5,24 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
+using Sirenix.OdinInspector;
 
 namespace Assets.Scripts.PlayMaker.Action
 {
     public class PlayCutscene : FsmStateActionBase
     {
-        [UnityEngine.Tooltip("Cutscene名字")]
+        [LabelText("Cutscene名字")]
         public Cutscene cutscene;
 
-        public AnimationClip clip0;
+        private AnimationClip clip0;
 
-        public AnimationClip clip1;
+        private AnimationClip clip1;
 
         public float TransTime;
 
+        /// <summary>
+        /// error 随Fsm的offsetTime 自动
+        /// </summary>
         public FsmFloat offsetTime;
         private float weight;
 
