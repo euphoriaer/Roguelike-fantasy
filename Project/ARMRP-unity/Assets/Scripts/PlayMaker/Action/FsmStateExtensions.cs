@@ -19,10 +19,10 @@ public static class FsmStateExtensions
         var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
         var _stateDic = fsmCache.stateDic;
 
-        bool isOk = _stateDic.TryGetValue(fsmName, out var value);
+        bool isOk = _stateDic.TryGetValue(fsmStateAction, out var value);
         if (!isOk)
         {
-            _stateDic.Add(fsmName, new ActionObj(actionName, values));
+            _stateDic.Add(fsmStateAction, new ActionObj(actionName, values));
         }
         else
         {
@@ -46,12 +46,12 @@ public static class FsmStateExtensions
         var fsmCache = fsmListen.GetFsmCache(fsmStateAction.Fsm);
         var _stateDic = fsmCache.stateDic;
 
-        var values = _stateDic[fsmStateName]?.valuesDic[actionName].ToArray();
+        var values = _stateDic[fsmStateAction]?.valuesDic[actionName].ToArray();
         if (values == null || values.Length <= 0)
         {
             return null;
         }
-        _stateDic.Remove(fsmStateName);
+        _stateDic.Remove(fsmStateAction);
         return values;
     }
 
@@ -75,7 +75,7 @@ public static class FsmStateExtensions
             return null;
         }
 
-        _stateDic.TryGetValue(lastFsmState.Name, out var actionObj);
+        _stateDic.TryGetValue(fsmStateAction, out var actionObj);
         return actionObj;
     }
 
@@ -126,7 +126,7 @@ public static class FsmStateExtensions
             /// <summary>
             /// state name
             /// </summary>
-            public Dictionary<string, ActionObj> stateDic = new Dictionary<string, ActionObj>();
+            public Dictionary<FsmStateAction, ActionObj> stateDic = new Dictionary<FsmStateAction, ActionObj>();
 
             public FsmState lastFsmState;
         }
@@ -148,7 +148,7 @@ public static class FsmStateExtensions
             if (fsmCache == null)
             {
                 var fsmCacheValue = new FsmCache();
-                fsmCacheValue.stateDic.Add(fsmStateAction.Name, null);
+                fsmCacheValue.stateDic.Add(fsmStateAction, null);
                 fsmListen.fsmCacheDic.Add(fsmStateAction.Fsm, fsmCacheValue);
             }
 
