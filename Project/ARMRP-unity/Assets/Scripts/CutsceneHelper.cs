@@ -92,10 +92,16 @@ public static class CutsceneHelper
 
         return slate;
     }
-
+    /// <summary>
+    /// 得到指定类型，指定名字的Cutscene Clip
+    /// </summary>
+    /// <typeparam name="T">Clip 类型</typeparam>
+    /// <param name="cutscene"></param>
+    /// <param name="CutsceneClipName">Clip名字，Cutscene中填写</param>
+    /// <returns></returns>
     public static T GetCutsceneClip<T>(this Cutscene cutscene, string CutsceneClipName) where T : CutsceneClipBase
     {
-        //通过cutscene 对象找到所有的Clips，调用带有ClipRefresh 接口的函数
+        //通过cutscene 对象找到所有的Clips，
         foreach (var group in cutscene.groups)
         {
             foreach (var track in group.tracks)
@@ -126,11 +132,16 @@ public static class CutsceneHelper
 
         return null;
     }
-
+    /// <summary>
+    /// 得到Cutscene 所有对应的Clip
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="cutscene"></param>
+    /// <returns></returns>
     public static List<T> GetCutsceneClip<T>(this Cutscene cutscene) where T : CutsceneClipBase
     {
         List<T> cutsceneClips = new List<T>();
-        //通过cutscene 对象找到所有的Clips，调用带有ClipRefresh 接口的函数
+        //通过cutscene 对象找到所有的Clips
         foreach (var group in cutscene.groups)
         {
             foreach (var track in group.tracks)

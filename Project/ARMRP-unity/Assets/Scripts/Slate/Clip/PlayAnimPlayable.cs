@@ -81,33 +81,14 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
         get { return animationClip != null ? animationClip.name : base.info; }
     }
 
-    [HideInInspector]
-    private float _blendIn = 0f;
-
-    [SerializeField]
-    [HideInInspector]
-    private float _blendOut = 0f;
-
     public override float length
     {
         get { return _length; }
         set { _length = value; }
     }
 
-    public override float blendIn
-    {
-        get { return _blendIn; }
-        set { _blendIn = value; }
-    }
-
-    public override float blendOut
-    {
-        get { return _blendOut; }
-        set { _blendOut = value; }
-    }
-
     public override bool canCrossBlend
     {
-        get { return true; }
+        get { return false; }
     }
 }
