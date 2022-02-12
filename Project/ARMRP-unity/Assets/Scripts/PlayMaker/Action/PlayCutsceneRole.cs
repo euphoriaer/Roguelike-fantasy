@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using HutongGames.PlayMaker;
+﻿using HutongGames.PlayMaker;
 using Slate;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
-using Sirenix.OdinInspector;
 
 namespace Assets.Scripts.PlayMaker.Action
 {
@@ -13,7 +11,6 @@ namespace Assets.Scripts.PlayMaker.Action
     [HutongGames.PlayMaker.Tooltip("用于带有角色动作融合的Cutscene")]
     public class PlayCutsceneRole : FsmStateActionBase
     {
-       
         public Cutscene Cutscene;
 
         private AnimationClip clip0;
@@ -25,7 +22,8 @@ namespace Assets.Scripts.PlayMaker.Action
         /// <summary>
         /// 随Fsm的offsetTime 自动设置融合动画偏移
         /// </summary>
-        private float offsetTime=0;
+        private float offsetTime = 0;
+
         private float weight;
 
         private PlayableGraph playableGraph;
@@ -35,6 +33,8 @@ namespace Assets.Scripts.PlayMaker.Action
         private float time;
 
         private Cutscene _cutscene;
+
+        private bool isCross = false;
 
         public override void Awake()
         {
@@ -52,7 +52,7 @@ namespace Assets.Scripts.PlayMaker.Action
             _cutscene = CutsceneInstate();
             clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
-            if (Fsm.LastTransition==null)
+            if (Fsm.LastTransition == null)
             {
                 _cutscene.Play();
                 return;
@@ -68,17 +68,21 @@ namespace Assets.Scripts.PlayMaker.Action
                     return false;
                 }
             })?.First() as PlayCutsceneRole;
-            if (lastplayCutscene == null)
+
+            if (lastplayCutscene == null|| lastplayCutscene.Enabled==false)
             {
                 //不需要融合
+                isCross = false;
                 _cutscene.Play();
-               
             }
             else
             {
+                //获取上一个状态的 播放时间，为融合动作做准备
+                offsetTime = lastplayCutscene.offsetTime;
+
                 // 创建该图和混合器，然后将它们绑定到 Animator
                 clip0 = lastplayCutscene.clip1;
-         
+
                 var Animator = Fsm.GameObject.GetComponent<Animator>();
 
                 playableGraph = PlayableGraph.Create();
@@ -100,17 +104,18 @@ namespace Assets.Scripts.PlayMaker.Action
                 playableGraph.Connect(clipPlayable1, 0, mixerPlayable, 1);
 
                 clipPlayable1.Pause();//动画过渡融合的关键，停掉第二个，保证动画过渡到第二个动画第一帧
-               
+
                 //播放该图。
                 playableGraph.Play();
             }
-            //获取上一个状态的 播放时间，为融合动作做准备
-            offsetTime = lastplayCutscene.offsetTime;
+            
+            //检测播放完成 Finish
+            _cutscene.OnStop += _cutscene_OnStop;
         }
 
         private Cutscene CutsceneInstate()
         {
-            if (Cutscene!=null)
+            if (Cutscene != null)
             {
                 var _cutscene = CutsceneHelper.Instate(this.Owner, Cutscene);
                 return _cutscene;
@@ -122,12 +127,9 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void OnUpdate()
         {
-            if (clip0 == null)
+            if (isCross)
             {
-                //不需要融合
-            }
-            else
-            {
+                //需要融合
                 time += Time.deltaTime;
                 weight = Mathf.Lerp(0, 1, time / TransTime);
                 weight = Mathf.Clamp01(weight);
@@ -143,20 +145,15 @@ namespace Assets.Scripts.PlayMaker.Action
                     Debug.Log("融合完成" + offsetTime);
                     playableGraph.Stop();
                     isOKMix = false;
-                    if (_cutscene != null)
-                    {
-                        _cutscene.Play();
-                    }
+                    _cutscene.Play();
                 }
             }
-
-            //检测播放完成 Finish
-            _cutscene.OnStop += _cutscene_OnStop;
+            
         }
 
         private void _cutscene_OnStop()
         {
-           Finish();
+            Finish();
         }
 
         public override void Exit()
@@ -170,5 +167,4 @@ namespace Assets.Scripts.PlayMaker.Action
             base.Exit();
         }
     }
-
 }
