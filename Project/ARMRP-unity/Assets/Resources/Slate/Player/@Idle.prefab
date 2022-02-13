@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3650864133881708129}
   - component: {fileID: 3541147379273155097}
+  - component: {fileID: 7242475259977668177}
   m_Layer: 0
   m_Name: "\u6A21\u578B\u52A8\u753B\u8F68\u9053"
   m_TagString: Untagged
@@ -47,8 +48,29 @@ MonoBehaviour:
   _color: {r: 1, g: 1, b: 1, a: 1}
   _active: 1
   _isLocked: 0
-  _actionClips: []
+  _actionClips:
+  - {fileID: 7242475259977668177}
   _customHeight: 300
+--- !u!114 &7242475259977668177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280274677428230386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c300c03cd67094eaa68f7a83f08695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTime: 0
+  _animationData:
+    _animatedParameters: []
+  CutsceneClipName: 
+  animationClip: {fileID: 7400000, guid: 8fca83d0c1aabd44e932d1b03a4a215d, type: 2}
+  PlaySpeed: 1
+  Loop: 0
+  _length: 1.95
 --- !u!1 &525572788276487078
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +204,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3650864133881708129}
-  - {fileID: 1059631534723206966}
   m_Father: {fileID: 3200020170811837871}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -199,7 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tracks:
-  - {fileID: 8039119466058452381}
   - {fileID: 3541147379273155097}
   _sections: []
   _isCollapsed: 0
@@ -325,107 +345,6 @@ MonoBehaviour:
   _length: 1.95
   _viewTimeMin: -2.707082
   _viewTimeMax: 6.4446907
---- !u!1 &8217883734579831241
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1059631534723206966}
-  - component: {fileID: 8039119466058452381}
-  - component: {fileID: 1101575123762078850}
-  m_Layer: 0
-  m_Name: Animator Track
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1059631534723206966
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8217883734579831241}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2100802169459602527}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8039119466058452381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8217883734579831241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3ae2da6236cfb41a2650f4042e33d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: 
-  _color: {r: 1, g: 1, b: 1, a: 1}
-  _active: 1
-  _isLocked: 0
-  _actionClips:
-  - {fileID: 1101575123762078850}
-  _customHeight: 300
-  mask: {fileID: 0}
-  blendMode: 0
-  weight: 1
-  useRootMotion: 1
-  applyFootIK: 0
-  isRootMotionPreBaked: 0
-  rmPositions: []
-  rmRotations: []
---- !u!114 &1101575123762078850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8217883734579831241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4792578f693c06841a5b299345830d63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startTime: 0
-  _animationData:
-    _animatedParameters:
-    - _serializedData: '{"parameterName":"steerLocalRotation","declaringTypeName":"Slate.ActionClips.PlayAnimatorClip","transformHierarchyPath":"","parameterType":2}'
-      _isDisabled: 0
-      _curves:
-      - serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      - serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      _scriptExpression: 
-  _length: 1.95
-  _blendIn: 0
-  _blendOut: 0
-  animationClip: {fileID: -203655887218126122, guid: 499a96c5feeca9e48bfb48a63bb74f57, type: 3}
-  clipOffset: 0
-  clipWrapMode: 0
-  clipWeight: 1
-  playbackSpeed: 1
-  startingTransformsMode: 0
-  transformSpace: 3
-  startingPosition: {x: 0, y: 0, z: 0}
-  startingRotation: {x: 0, y: 0, z: 0}
-  steerLocalRotation: {x: 0, y: 0}
 --- !u!1 &8366372032475158080
 GameObject:
   m_ObjectHideFlags: 0

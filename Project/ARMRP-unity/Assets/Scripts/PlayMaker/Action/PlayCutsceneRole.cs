@@ -34,12 +34,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private Cutscene _cutscene;
 
-        private bool isCross = false;
-
-        public override void Awake()
-        {
-            base.Awake();
-        }
+        private bool isCross = true;
 
         private AnimationClipPlayable clipPlayable0;
         private AnimationClipPlayable clipPlayable1;
@@ -54,6 +49,8 @@ namespace Assets.Scripts.PlayMaker.Action
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
             if (Fsm.LastTransition == null)
             {
+                //不需要融合
+                isCross = false;
                 _cutscene.Play();
                 return;
             }
@@ -69,7 +66,7 @@ namespace Assets.Scripts.PlayMaker.Action
                 }
             })?.First() as PlayCutsceneRole;
 
-            if (lastplayCutscene == null|| lastplayCutscene.Enabled==false)
+            if (lastplayCutscene == null || lastplayCutscene.Enabled == false)
             {
                 //不需要融合
                 isCross = false;
@@ -107,10 +104,12 @@ namespace Assets.Scripts.PlayMaker.Action
 
                 //播放该图。
                 playableGraph.Play();
+
+                isCross = true;
             }
-            
             //检测播放完成 Finish
             _cutscene.OnStop += _cutscene_OnStop;
+
         }
 
         private Cutscene CutsceneInstate()
@@ -148,7 +147,6 @@ namespace Assets.Scripts.PlayMaker.Action
                     _cutscene.Play();
                 }
             }
-            
         }
 
         private void _cutscene_OnStop()
@@ -164,6 +162,7 @@ namespace Assets.Scripts.PlayMaker.Action
             {
                 _cutscene.Stop();
             }
+            _cutscene.OnStop -= _cutscene_OnStop;
             base.Exit();
         }
     }

@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Assets.Scripts;
+using Sirenix.OdinInspector;
 using Slate;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -23,14 +24,30 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     private AnimationClipPlayable playableClip;
     private PlayableGraph playableGraph;
+    private Vector3 rolePosition = Vector3.zero;
     protected override void OnCreate()
     {
         Refresh();
     }
 
+    protected override bool OnInitialize()
+    {
+        EventManager.OnNewMessage += GetMessage;
+        return base.OnInitialize();
+    }
+
+    private void GetMessage(object sender, EventMessage e)
+    {
+        var message = e as EventMessage;
+        rolePosition=message.RolePosition;
+    }
 
     protected override void OnEnter()
     {
+
+        //Error  适合entity 获取位置
+        actor.transform.position = rolePosition;
+        //actor.transform.position = actor.transform.GetComponent<Property>().m_Position;
         playableGraph = PlayableGraph.Create();
 
         var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", ActorComponent);
@@ -66,6 +83,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     protected override void OnExit()
     {
+        var pos = actor.transform.position;
         base.OnExit();
     }
 

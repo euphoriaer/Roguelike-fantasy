@@ -2151,7 +2151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507583160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.41}
+  m_LocalPosition: {x: -13.16, y: 0, z: 3.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1476582580}
@@ -2219,7 +2219,6 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
-        - Assets.Scripts.PlayMaker.Action.PlayCutscene
         - Assets.Scripts.PlayMaker.Action.PlayCutsceneRole
         - HutongGames.PlayMaker.Actions.GetAxisVector
         - Assets.Scripts.PlayMaker.Action.MoveAction
@@ -2227,13 +2226,11 @@ MonoBehaviour:
         - 
         - 
         - 
-        - 
-        actionEnabled: 01000101
-        actionIsOpen: 01010101
-        actionStartIndex: 0000000001000000030000000a000000
-        actionHashCodes: 6f47230247f48302b691f703fd407700
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 000000000200000009000000
+        actionHashCodes: 47f48302b691f703fd407700
         unityObjectParams:
-        - {fileID: 6445269874376991220, guid: 7b7c3f3d65143264a97453cd90973f15, type: 3}
         - {fileID: 6445269874376991220, guid: 7b7c3f3d65143264a97453cd90973f15, type: 3}
         fsmGameObjectParams:
         - useVariable: 0
@@ -2292,7 +2289,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 1
+          value: 10
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -2318,9 +2315,8 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 05000000050000000200000012000000120000000f00000007000000130000001c0000000f0000001c0000000f0000000700000014000000
+        paramDataType: 050000000200000012000000120000000f00000007000000130000001c0000000f0000001c0000000f0000000700000014000000
         paramName:
-        - Cutscene
         - Cutscene
         - TransTime
         - horizontalAxis
@@ -2334,8 +2330,8 @@ MonoBehaviour:
         - Speed
         - Space
         - GameObject
-        paramDataPos: 0000000001000000000000000000000001000000000000000400000000000000000000000100000001000000020000000800000000000000
-        paramByteDataSize: 0000000000000000040000000000000000000000000000000400000000000000000000000000000000000000000000000400000000000000
+        paramDataPos: 00000000000000000000000001000000000000000400000000000000000000000100000001000000020000000800000000000000
+        paramByteDataSize: 00000000040000000000000000000000000000000400000000000000000000000000000000000000000000000400000000000000
     - name: Run
       description: 
       colorIndex: 0
@@ -2430,7 +2426,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 1
+          value: 10
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
