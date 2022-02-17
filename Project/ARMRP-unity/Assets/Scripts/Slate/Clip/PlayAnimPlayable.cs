@@ -25,6 +25,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
     private AnimationClipPlayable playableClip;
     private PlayableGraph playableGraph;
     private Vector3 rolePosition = Vector3.zero;
+
     protected override void OnCreate()
     {
         Refresh();
@@ -32,21 +33,19 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     protected override bool OnInitialize()
     {
-        EventManager.OnNewMessage += GetMessage;
+        //EventManager.OnNewMessage += GetMessage;
         return base.OnInitialize();
     }
 
     private void GetMessage(object sender, EventMessage e)
     {
-        var message = e as EventMessage;
-        rolePosition=message.RolePosition;
+        rolePosition = e.RolePosition;
     }
 
     protected override void OnEnter()
     {
-
         //Error  适合entity 获取位置
-        actor.transform.position = rolePosition;
+        //actor.transform.position = FsmStateExtensions.RolePosition;
         //actor.transform.position = actor.transform.GetComponent<Property>().m_Position;
         playableGraph = PlayableGraph.Create();
 
@@ -68,7 +67,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
         //使时间停止自动前进。
     }
 
-    protected override void OnUpdate(float time)
+     protected override void OnUpdate(float time)
     {
         var curClipLength = animationClip.length;
         float normalizedBefore = time * PlaySpeed;

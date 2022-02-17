@@ -1,4 +1,5 @@
 ﻿using HutongGames.PlayMaker;
+using Sirenix.OdinInspector;
 using Slate;
 using System.Linq;
 using UnityEngine;
@@ -9,15 +10,18 @@ namespace Assets.Scripts.PlayMaker.Action
 {
     [ActionCategory("Cutscene")]
     [HutongGames.PlayMaker.Tooltip("用于带有角色动作融合的Cutscene")]
-    public class PlayCutsceneRole : FsmStateActionBase
+    public class PlayCutsceneRoleAction : FsmStateActionBase
     {
         public Cutscene Cutscene;
 
+        public float TransTime;
+
+        public FsmOwnerDefault GameObject;
+        [LabelText("距离最后一刻的偏移")]
+        public float OffsetFinalTime = 0.03f;
         private AnimationClip clip0;
 
         private AnimationClip clip1;
-
-        public float TransTime;
 
         /// <summary>
         /// 随Fsm的offsetTime 自动设置融合动画偏移
@@ -39,9 +43,13 @@ namespace Assets.Scripts.PlayMaker.Action
         private AnimationClipPlayable clipPlayable0;
         private AnimationClipPlayable clipPlayable1;
         private FsmState _lastFsmState;
+        private GameObject Owner;
+        private bool isLoopCutscene;
 
         public override void OnEnter()
         {
+            Owner = Fsm.GetOwnerDefaultTarget(GameObject);
+
             time = 0;
             isOKMix = true;
             _cutscene = CutsceneInstate();
@@ -56,7 +64,7 @@ namespace Assets.Scripts.PlayMaker.Action
             }
             var lastplayCutscene = LastFsmState?.Actions.Where(p =>
             {
-                if (p is PlayCutsceneRole)
+                if (p is PlayCutsceneRoleAction)
                 {
                     return true;
                 }
@@ -64,7 +72,7 @@ namespace Assets.Scripts.PlayMaker.Action
                 {
                     return false;
                 }
-            })?.First() as PlayCutsceneRole;
+            })?.First() as PlayCutsceneRoleAction;
 
             if (lastplayCutscene == null || lastplayCutscene.Enabled == false)
             {
@@ -80,7 +88,7 @@ namespace Assets.Scripts.PlayMaker.Action
                 // 创建该图和混合器，然后将它们绑定到 Animator
                 clip0 = lastplayCutscene.clip1;
 
-                var Animator = Fsm.GameObject.GetComponent<Animator>();
+                var Animator = Owner.GetComponent<Animator>();
 
                 playableGraph = PlayableGraph.Create();
 
@@ -109,14 +117,38 @@ namespace Assets.Scripts.PlayMaker.Action
             }
             //检测播放完成 Finish
             _cutscene.OnStop += _cutscene_OnStop;
-
         }
 
         private Cutscene CutsceneInstate()
         {
             if (Cutscene != null)
             {
-                var _cutscene = CutsceneHelper.Instate(this.Owner, Cutscene);
+                var _cutscene = CutsceneHelper.Instate(Owner, Cutscene);
+
+                GameObject RoleActionCutscene = Owner.transform.Find("RoleActionCutscene")?.gameObject;
+                if (RoleActionCutscene == null)
+                {
+                    RoleActionCutscene = new GameObject("RoleActionCutscene");
+                    RoleActionCutscene.transform.SetParent(Owner.transform, false);
+                }
+                else
+                {
+                    //销毁原本播放的Cutscene
+                    UnityEngine.GameObject.Destroy(RoleActionCutscene.transform.GetChild(0).gameObject);
+                }
+
+                _cutscene.transform.SetParent(RoleActionCutscene.transform, false);
+
+                //修改Loop 防止拉回原点
+                if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
+                {
+                    isLoopCutscene = true;
+                }
+                else
+                {
+                    isLoopCutscene = false;
+                }
+
                 return _cutscene;
             }
             return null;
@@ -147,6 +179,15 @@ namespace Assets.Scripts.PlayMaker.Action
                     _cutscene.Play();
                 }
             }
+
+            if (isLoopCutscene &&
+                _cutscene.length - _cutscene.currentTime < OffsetFinalTime)
+            {
+                //防止循环Cutscene 拉回原点
+                _cutscene.currentTime = 0;
+            }
+
+            base.OnUpdate();
         }
 
         private void _cutscene_OnStop()

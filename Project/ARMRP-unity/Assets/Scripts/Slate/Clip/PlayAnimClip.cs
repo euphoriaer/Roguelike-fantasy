@@ -71,7 +71,7 @@ public class PlayAnimClip : CutsceneClip<Animator>
         CurClip = playClips.First();
     }
 
-    protected override void OnUpdate(float time)
+     protected override void OnUpdate(float time)
     {
         //todo 测试time与真实时间的换算
 

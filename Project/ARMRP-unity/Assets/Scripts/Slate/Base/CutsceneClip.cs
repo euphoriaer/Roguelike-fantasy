@@ -1,8 +1,6 @@
-﻿using Slate;
+﻿using Sirenix.OdinInspector;
 using Slate.ActionClips;
 using System;
-using System.Linq;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
@@ -29,10 +27,9 @@ public abstract class CutsceneClip<T> : CutsceneClipBase, IRefresh, IClipRefresh
     {
         get { return actor != null && base.isValid; }
     }
-
 }
 
-public class CutsceneClipBase:ActorActionClip
+public class CutsceneClipBase : ActorActionClip
 {
     [LabelText("Clip片段名")]
     public string CutsceneClipName;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class FsmStateExtensions
 {
+    public static Vector3 RolePosition;
+
     /// <summary>
     /// 以当前FsmState和当前Action为名，传递数据
     /// </summary>

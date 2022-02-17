@@ -3,7 +3,7 @@ using HutongGames.PlayMaker;
 using HutongGames.PlayMakerEditor;
 using Sirenix.OdinInspector.Editor;
 
-[CustomActionEditor(typeof(PlayCutsceneRole))]
+//[CustomActionEditor(typeof(PlayCutsceneRoleAction))] Odin 绘制支持
 public class PlayMakerEditor : CustomActionEditor
 {
     PropertyTree tree;

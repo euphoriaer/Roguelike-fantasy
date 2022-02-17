@@ -70,21 +70,9 @@ public static class CutsceneHelper
 
     public static Cutscene Instate(GameObject player, Cutscene inCutscene)
     {
-        GameObject RoleActionCutscene = player.transform.Find("RoleActionCutscene")?.gameObject;
-        if (RoleActionCutscene == null)
-        {
-            RoleActionCutscene = new GameObject("RoleActionCutscene");
-            RoleActionCutscene.transform.SetParent(player.transform, false);
-        }
-        else
-        {
-            GameObject.Destroy(RoleActionCutscene.transform.GetChild(0).gameObject);
-        }
-
-        //播放动画
+      
         Cutscene slate = GameObject.Instantiate(inCutscene);
-        slate.transform.position = RoleActionCutscene.transform.position;
-        slate.transform.SetParent(RoleActionCutscene.transform, false);
+        slate.transform.position = player.transform.position;
         foreach (var cutsceneGroup in slate.groups)
         {
             cutsceneGroup.actor = player;

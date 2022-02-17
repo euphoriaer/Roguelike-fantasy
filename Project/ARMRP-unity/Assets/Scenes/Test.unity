@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: _actor
       value: 
       objectReference: {fileID: 1507583160}
+    - target: {fileID: 2472269629337413644, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+      propertyPath: _actionClips.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4311730690515314149, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -741,8 +745,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614817944}
-  m_LocalRotation: {x: -0.2675933, y: 0.6231935, z: -0.2401773, w: -0.694506}
-  m_LocalPosition: {x: 8.4584255, y: 12.086895, z: 0.039888777}
+  m_LocalRotation: {x: -0.46470168, y: -0.0061123082, z: 0.0032062796, w: -0.88544047}
+  m_LocalPosition: {x: -17.351547, y: 16.283447, z: -11.356274}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2157,7 +2161,7 @@ Transform:
   m_Children:
   - {fileID: 1476582580}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1507583162
 Animator:
@@ -2236,17 +2240,17 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
-        - Assets.Scripts.PlayMaker.Action.PlayCutsceneRole
+        - Assets.Scripts.PlayMaker.Action.PlayCutsceneRoleAction
         - HutongGames.PlayMaker.Actions.GetAxisVector
-        - Assets.Scripts.PlayMaker.Action.MoveAction
+        - HutongGames.PlayMaker.Actions.AxisEvent
         customNames:
         - 
         - 
         - 
-        actionEnabled: 010101
+        actionEnabled: 010000
         actionIsOpen: 010101
-        actionStartIndex: 000000000200000009000000
-        actionHashCodes: 47f48302b691f703fd407700
+        actionStartIndex: 00000000040000000b000000
+        actionHashCodes: 4dcc0b04b691f7034f9a0803
         unityObjectParams:
         - {fileID: 6445269874376991220, guid: 7b7c3f3d65143264a97453cd90973f15, type: 3}
         fsmGameObjectParams:
@@ -2284,6 +2288,18 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: Vertical
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Horizontal
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Vertical
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -2301,12 +2317,6 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 10
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -2317,25 +2327,27 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: {x: 0, y: 0, z: 0}
-        - useVariable: 1
-          name: MoveDirection
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0, z: 0}
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams: []
-        byteData: 9a99993e0000000000000000
+        stringParams:
+        - 
+        - 
+        - 
+        - 
+        - Run
+        - 
+        byteData: 8fc2f53ccdcccc3d00000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000000200000012000000120000000f00000007000000130000001c0000000f0000001c0000000f0000000700000014000000
+        paramDataType: 0500000002000000140000000200000012000000120000000f00000007000000130000001c0000000f0000001200000012000000170000001700000017000000170000001700000017000000
         paramName:
         - Cutscene
         - TransTime
+        - GameObject
+        - OffsetFinalTime
         - horizontalAxis
         - verticalAxis
         - multiplier
@@ -2343,12 +2355,16 @@ MonoBehaviour:
         - relativeTo
         - storeVector
         - storeMagnitude
-        - Direction
-        - Speed
-        - Space
-        - GameObject
-        paramDataPos: 00000000000000000000000001000000000000000400000000000000000000000100000001000000020000000800000000000000
-        paramByteDataSize: 00000000040000000000000000000000000000000400000000000000000000000000000000000000000000000400000000000000
+        - horizontalAxis
+        - verticalAxis
+        - leftEvent
+        - rightEvent
+        - upEvent
+        - downEvent
+        - anyDirection
+        - noDirection
+        paramDataPos: 00000000000000000000000004000000000000000100000000000000080000000000000000000000010000000200000003000000000000000100000002000000030000000400000005000000
+        paramByteDataSize: 00000000040000000000000004000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     - name: Run
       description: 
       colorIndex: 0
@@ -2373,17 +2389,21 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
-        - Assets.Scripts.PlayMaker.Action.PlayCutsceneRole
+        - Assets.Scripts.PlayMaker.Action.PlayCutsceneRoleAction
         - HutongGames.PlayMaker.Actions.GetAxisVector
         - Assets.Scripts.PlayMaker.Action.MoveAction
+        - HutongGames.PlayMaker.Actions.LookAtDirection
+        - HutongGames.PlayMaker.Actions.AxisEvent
         customNames:
         - 
+        - Get Axis Vector
         - 
         - 
-        actionEnabled: 010101
-        actionIsOpen: 010101
-        actionStartIndex: 000000000200000009000000
-        actionHashCodes: 47f48302b691f703fd407700
+        - 
+        actionEnabled: 0100000000
+        actionIsOpen: 0101010101
+        actionStartIndex: 00000000040000000b0000000f00000014000000
+        actionHashCodes: 4dcc0b04b691f703fd40770016fa31044f9a0803
         unityObjectParams:
         - {fileID: 4311730690515314150, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
         fsmGameObjectParams:
@@ -2402,6 +2422,22 @@ MonoBehaviour:
             showInInspector: 0
             networkSync: 0
             value: {fileID: 0}
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -2409,6 +2445,18 @@ MonoBehaviour:
         fsmPropertyParams: []
         layoutOptionParams: []
         fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Horizontal
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Vertical
         - useVariable: 0
           name: 
           tooltip: 
@@ -2460,19 +2508,39 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: {x: 0, y: 0, z: 0}
+        - useVariable: 1
+          name: MoveDirection
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {x: 0, y: 0, z: 0}
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {x: 0, y: 0, z: 0}
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams: []
-        byteData: 9a99993e0000000000000000
+        stringParams:
+        - 
+        - 
+        - 
+        - 
+        - 
+        - Idle
+        byteData: 8fc2f53ccdcccc3d00000000000000000101
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000000200000012000000120000000f00000007000000130000001c0000000f0000001c0000000f0000000700000014000000
+        paramDataType: 0500000002000000140000000200000012000000120000000f00000007000000130000001c0000000f0000001c0000000f0000000700000014000000140000001c0000001c00000001000000010000001200000012000000170000001700000017000000170000001700000017000000
         paramName:
         - Cutscene
         - TransTime
+        - GameObject
+        - OffsetFinalTime
         - horizontalAxis
         - verticalAxis
         - multiplier
@@ -2484,8 +2552,21 @@ MonoBehaviour:
         - Speed
         - Space
         - GameObject
-        paramDataPos: 00000000000000000000000001000000000000000400000000000000000000000100000001000000020000000800000000000000
-        paramByteDataSize: 00000000040000000000000000000000000000000400000000000000000000000000000000000000000000000400000000000000
+        - gameObject
+        - targetDirection
+        - upVector
+        - everyFrame
+        - lateUpdate
+        - horizontalAxis
+        - verticalAxis
+        - leftEvent
+        - rightEvent
+        - upEvent
+        - downEvent
+        - anyDirection
+        - noDirection
+        paramDataPos: 000000000000000000000000040000000000000001000000000000000800000000000000000000000100000001000000020000000c0000000100000002000000020000000300000010000000110000000200000003000000000000000100000002000000030000000400000005000000
+        paramByteDataSize: 00000000040000000000000004000000000000000000000000000000040000000000000000000000000000000000000000000000040000000000000000000000000000000000000001000000010000000000000000000000000000000000000000000000000000000000000000000000
     - name: Dodge
       description: 
       colorIndex: 0
@@ -2510,17 +2591,25 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
-        - Assets.Scripts.PlayMaker.Action.PlayCutsceneRole
+        - Assets.Scripts.PlayMaker.Action.PlayCutsceneRoleAction
         customNames:
         - 
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 47f48302
+        actionHashCodes: 4dcc0b04
         unityObjectParams:
         - {fileID: 6445269874376991220, guid: 586ed1be40164554ab81da67bdabbe9c, type: 3}
         fsmGameObjectParams: []
-        fsmOwnerDefaultParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -2541,17 +2630,19 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 00000000
+        byteData: 000000007b14ae3e
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000002000000
+        paramDataType: 05000000020000001400000002000000
         paramName:
         - Cutscene
         - TransTime
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000004000000
+        - GameObject
+        - OffsetFinalTime
+        paramDataPos: 00000000000000000000000004000000
+        paramByteDataSize: 00000000040000000000000004000000
     events:
     - name: Run
       isSystemEvent: 0
@@ -2951,7 +3042,7 @@ Transform:
   m_Children:
   - {fileID: 1057843133}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1669783858
 MonoBehaviour:
