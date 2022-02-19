@@ -43,7 +43,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void Exit()
         {
-            var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
+            var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             offsetTime = _cutscene.currentTime;
             if (_cutscene != null)
             {
@@ -60,7 +60,7 @@ namespace Assets.Scripts.PlayMaker.Action
             time = 0;
 
             _cutscene = CutsceneInstate();
-            clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
+            clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
             if (Fsm.LastTransition == null)
             {

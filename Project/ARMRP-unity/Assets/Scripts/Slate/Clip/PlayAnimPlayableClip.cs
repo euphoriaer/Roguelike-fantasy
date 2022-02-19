@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 
 [Name("播放动画Playable")]
 [Attachable(typeof(AnimTrack))]
-public class PlayAnimPlayable : CutsceneClip<Animator>
+public class PlayAnimPlayableClip : CutsceneClip<Animator>
 {
     public AnimationClip animationClip;
 
@@ -15,7 +15,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
     [SerializeField]
     public float PlaySpeed = 1;
 
-    [LabelText("循环播放")]
+    [LabelText("循环播放(动画长度超过原动作片段时，循环动作)")]
     [SerializeField]
     public bool Loop = false;
 
@@ -24,7 +24,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     private AnimationClipPlayable playableClip;
     private PlayableGraph playableGraph;
-    private Vector3 rolePosition = Vector3.zero;
+   
 
     protected override void OnCreate()
     {
@@ -37,16 +37,10 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
         return base.OnInitialize();
     }
 
-    private void GetMessage(object sender, EventMessage e)
-    {
-        rolePosition = e.RolePosition;
-    }
 
     protected override void OnEnter()
     {
-        //Error  适合entity 获取位置
-        //actor.transform.position = FsmStateExtensions.RolePosition;
-        //actor.transform.position = actor.transform.GetComponent<Property>().m_Position;
+        
         playableGraph = PlayableGraph.Create();
 
         var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", ActorComponent);
@@ -82,7 +76,7 @@ public class PlayAnimPlayable : CutsceneClip<Animator>
 
     protected override void OnExit()
     {
-        var pos = actor.transform.position;
+        
         base.OnExit();
     }
 
