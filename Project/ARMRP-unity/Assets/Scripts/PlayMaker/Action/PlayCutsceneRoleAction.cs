@@ -1,5 +1,4 @@
 ﻿using HutongGames.PlayMaker;
-using Sirenix.OdinInspector;
 using Slate;
 using System.Linq;
 using UnityEngine;
@@ -14,44 +13,52 @@ namespace Assets.Scripts.PlayMaker.Action
     {
         public Cutscene Cutscene;
 
-        public float TransTime;
-
         public FsmOwnerDefault GameObject;
-        [LabelText("距离最后一刻的偏移")]
-        public float OffsetFinalTime = 0.03f;
+        public float TransTime;
+        private Cutscene _cutscene;
+        private FsmState _lastFsmState;
         private AnimationClip clip0;
 
         private AnimationClip clip1;
+
+        private AnimationClipPlayable clipPlayable0;
+
+        private AnimationClipPlayable clipPlayable1;
+
+        private bool isCross = true;
+
+        private bool isLoopCutscene;
+
+        private AnimationMixerPlayable mixerPlayable;
 
         /// <summary>
         /// 随Fsm的offsetTime 自动设置融合动画偏移
         /// </summary>
         private float offsetTime = 0;
 
+        private GameObject Owner;
+        private PlayableGraph playableGraph;
+        private float time;
         private float weight;
 
-        private PlayableGraph playableGraph;
-
-        private AnimationMixerPlayable mixerPlayable;
-
-        private float time;
-
-        private Cutscene _cutscene;
-
-        private bool isCross = true;
-
-        private AnimationClipPlayable clipPlayable0;
-        private AnimationClipPlayable clipPlayable1;
-        private FsmState _lastFsmState;
-        private GameObject Owner;
-        private bool isLoopCutscene;
+        public override void Exit()
+        {
+            var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
+            offsetTime = _cutscene.currentTime;
+            if (_cutscene != null)
+            {
+                _cutscene.Stop();
+            }
+            _cutscene.OnStop -= _cutscene_OnStop;
+            base.Exit();
+        }
 
         public override void OnEnter()
         {
             Owner = Fsm.GetOwnerDefaultTarget(GameObject);
 
             time = 0;
-            isOKMix = true;
+
             _cutscene = CutsceneInstate();
             clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
@@ -119,6 +126,55 @@ namespace Assets.Scripts.PlayMaker.Action
             _cutscene.OnStop += _cutscene_OnStop;
         }
 
+        public override void OnUpdate()
+        {
+            if (isCross)
+            {
+                time += Time.deltaTime;
+                //需要融合
+                weight = Mathf.Lerp(0, 1, time / TransTime);
+                weight = Mathf.Clamp01(weight);
+
+                clipPlayable0.SetTime(time + offsetTime);
+
+                mixerPlayable.SetInputWeight(0, 1.0f - weight);
+
+                mixerPlayable.SetInputWeight(1, weight);
+
+                if (Mathf.Abs(weight - 1) < 0.0001)
+                {
+                    Debug.Log("融合完成" + offsetTime);
+                    playableGraph.Stop();
+                    isCross = false;
+                    //使cutscene 从0开始播放，计时重置
+                    time = 0;
+                    _cutscene.Play();
+                }
+            }
+
+            if (!isCross)
+            {
+                time += Time.deltaTime;
+                //防止循环Cutscene 拉回原点
+                //_cutscene.currentTime = time % _cutscene.length;
+                if (isLoopCutscene)
+                {
+                    _cutscene.Sample(time % _cutscene.length);
+                }
+                else
+                {
+                    _cutscene.Sample(time);
+                }
+            }
+
+            base.OnUpdate();
+        }
+
+        private void _cutscene_OnStop()
+        {
+            Finish();
+        }
+
         private Cutscene CutsceneInstate()
         {
             if (Cutscene != null)
@@ -148,63 +204,10 @@ namespace Assets.Scripts.PlayMaker.Action
                 {
                     isLoopCutscene = false;
                 }
-
+                _cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 return _cutscene;
             }
             return null;
-        }
-
-        private bool isOKMix = true;
-
-        public override void OnUpdate()
-        {
-            if (isCross)
-            {
-                //需要融合
-                time += Time.deltaTime;
-                weight = Mathf.Lerp(0, 1, time / TransTime);
-                weight = Mathf.Clamp01(weight);
-
-                clipPlayable0.SetTime(time + offsetTime);
-
-                mixerPlayable.SetInputWeight(0, 1.0f - weight);
-
-                mixerPlayable.SetInputWeight(1, weight);
-
-                if (isOKMix && Mathf.Abs(weight - 1) < 0.0001)
-                {
-                    Debug.Log("融合完成" + offsetTime);
-                    playableGraph.Stop();
-                    isOKMix = false;
-                    _cutscene.Play();
-                }
-            }
-
-            if (isLoopCutscene &&
-                _cutscene.length - _cutscene.currentTime < OffsetFinalTime)
-            {
-                //防止循环Cutscene 拉回原点
-                _cutscene.currentTime = 0;
-            }
-
-            base.OnUpdate();
-        }
-
-        private void _cutscene_OnStop()
-        {
-            Finish();
-        }
-
-        public override void Exit()
-        {
-            var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayable>().First().animationClip;
-            offsetTime = _cutscene.currentTime;
-            if (_cutscene != null)
-            {
-                _cutscene.Stop();
-            }
-            _cutscene.OnStop -= _cutscene_OnStop;
-            base.Exit();
         }
     }
 }
