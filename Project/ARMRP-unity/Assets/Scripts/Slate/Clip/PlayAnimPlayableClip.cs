@@ -169,7 +169,6 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
         
         if (useRootMotion && useBakedRootMotion)
         {
-            playableGraph.Evaluate(time);
             ApplyBakedRootMotion(time);
         }
     }
