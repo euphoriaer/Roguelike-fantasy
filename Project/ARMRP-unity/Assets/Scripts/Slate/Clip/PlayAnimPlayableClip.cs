@@ -9,7 +9,7 @@ using UnityEngine.Playables;
 [Attachable(typeof(AnimTrack))]
 public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
 {
-    private const int ROOTMOTION_FRAMERATE = 30;
+    private const int ROOTMOTION_FRAMERATE = 60;
 
     public AnimationClip animationClip;
 
@@ -166,9 +166,10 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
             normalizedBefore = time * PlaySpeed % curClipLength;
         }
         playableClip.SetTime(normalizedBefore);
-        playableGraph.Evaluate(time);
+        
         if (useRootMotion && useBakedRootMotion)
         {
+            playableGraph.Evaluate(time);
             ApplyBakedRootMotion(time);
         }
     }
