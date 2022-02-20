@@ -79,7 +79,7 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>
         
         base.OnExit();
     }
-
+    [Button("刷新",40)]
     public override void Refresh()
     {
         length = animationClip.length / PlaySpeed;

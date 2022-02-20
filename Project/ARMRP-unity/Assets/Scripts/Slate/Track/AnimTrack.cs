@@ -10,7 +10,7 @@ using UnityEngine.Playables;
 public class AnimTrack : CutsceneTrack
 {
     private PlayableGraph graph;
-
+    public bool Root=true;
     protected override void OnCreate()
     {
         base.OnCreate();
