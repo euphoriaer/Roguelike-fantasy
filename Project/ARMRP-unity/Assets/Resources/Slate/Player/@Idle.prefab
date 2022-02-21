@@ -71,6 +71,10 @@ MonoBehaviour:
   PlaySpeed: 1
   Loop: 0
   _length: 1.95
+  useRootMotion: 0
+  isRootMotionPreBaked: 0
+  rmPositions: []
+  rmRotations: []
 --- !u!1 &525572788276487078
 GameObject:
   m_ObjectHideFlags: 0

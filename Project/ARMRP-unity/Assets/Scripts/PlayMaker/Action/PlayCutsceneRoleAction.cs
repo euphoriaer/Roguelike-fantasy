@@ -163,6 +163,11 @@ namespace Assets.Scripts.PlayMaker.Action
                 }
                 else
                 {
+                    //cutscene 需要手动Stop
+                    if (_cutscene.length < time)
+                    {
+                        _cutscene.Stop();
+                    }
                     _cutscene.Sample(time);
                 }
             }
