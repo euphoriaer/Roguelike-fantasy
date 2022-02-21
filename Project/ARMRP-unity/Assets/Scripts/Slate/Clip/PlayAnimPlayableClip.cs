@@ -195,15 +195,6 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
 
     protected override void OnExit()
     {
-        //if (useRootMotion)
-        //{
-        //    ApplyBakedRootMotion(endTime - startTime);
-        //}
-        //if (playableGraph.IsValid())
-        //{
-        //    playableGraph.Evaluate();
-        //    playableGraph.Destroy();
-        //}
         base.OnExit();
     }
 
