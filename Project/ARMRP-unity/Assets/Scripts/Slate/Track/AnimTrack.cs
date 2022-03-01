@@ -1,8 +1,8 @@
 using Slate;
 using UnityEngine;
 
-[Name("Ä£ÐÍ¶¯»­¹ìµÀ")]
-[Icon(typeof(Animator))]
+[Name("Ä£ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+// [Icon(typeof(Animator))]
 [Attachable(typeof(ActorGroup))]
 public class AnimTrack : CutsceneTrack
 {
@@ -10,7 +10,7 @@ public class AnimTrack : CutsceneTrack
     {
         base.OnCreate();
 
-        this.name = "Ä£ÐÍ¶¯»­¹ìµÀ";
+        this.name = "Ä£ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
     }
 
     protected override void OnEnter()
