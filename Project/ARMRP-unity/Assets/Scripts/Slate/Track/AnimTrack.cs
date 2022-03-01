@@ -1,7 +1,7 @@
 using Slate;
 using UnityEngine;
 
-[Name("ģ�Ͷ������")]
+[Name("动画轨道")]
 // [Icon(typeof(Animator))]
 [Attachable(typeof(ActorGroup))]
 public class AnimTrack : CutsceneTrack
@@ -10,7 +10,7 @@ public class AnimTrack : CutsceneTrack
     {
         base.OnCreate();
 
-        this.name = "ģ�Ͷ������";
+        this.name = "动画轨道";
     }
 
     protected override void OnEnter()
