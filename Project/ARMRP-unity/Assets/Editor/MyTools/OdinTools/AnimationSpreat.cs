@@ -27,6 +27,8 @@ public class AnimationSpreat : AssetPostprocessor
         {
             if (assetPath.Contains(ToolsSettings.Instance.Mark))
             {
+                //处理过的资源不带标记
+              
                 //copy 动画
                 var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(assetPath);
 
@@ -56,6 +58,7 @@ public class AnimationSpreat : AssetPostprocessor
                 if (assetPath != ToolsSettings.Instance.FBXfolder)
                 {
                     Debug.Log("移动资源" + assetPath);
+                    //去除标记，防止对资源多次操作
                     string path = Path.GetFileName(assetPath);
                     AssetDatabase.MoveAsset(assetPath, ToolsSettings.Instance.FBXfolder + "/" + path);
                 }
