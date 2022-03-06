@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 82761ce013d341a4688b3a5a20df6d0a
+guid: 200bf2a4203e3dc46b3fa8465b0fed3f
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 6639205238635089029
+    second: Icosphere|IcosphereAction
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: -876546973899608171, guid: 20c69ac3c9450184186a09729d8bbb94, type: 3}
+      name: Material.001
+    second: {fileID: 2100000, guid: 1ab83fbb5e2f4ef47a8ae00c41c8b9b7, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -19,7 +22,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -49,7 +52,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 0
+    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
