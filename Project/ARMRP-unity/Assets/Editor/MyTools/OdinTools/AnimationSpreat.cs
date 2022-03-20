@@ -27,11 +27,12 @@ public class AnimationSpreat : AssetPostprocessor
         {
             if (assetPath.Contains(ToolsSettings.Instance.Mark))
             {
-                //处理过的资源不带标记
+                
               
                 //copy 动画
                 var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(assetPath);
-
+                //处理过的资源不带标记
+                name = name.Split(ToolsSettings.Instance.Mark)[1];
                 //copy Avata
                 foreach (var obj in assets)
                 {
@@ -55,11 +56,12 @@ public class AnimationSpreat : AssetPostprocessor
                 }
 
                 //move fbx
+                //error 检测目标目录是否有同名资源  如果有终止操作并报错
                 if (assetPath != ToolsSettings.Instance.FBXfolder)
                 {
                     Debug.Log("移动资源" + assetPath);
                     //去除标记，防止对资源多次操作
-                    string path = Path.GetFileName(assetPath);
+                    string path = Path.GetFileName(assetPath).Replace(ToolsSettings.Instance.Mark,"");
                     AssetDatabase.MoveAsset(assetPath, ToolsSettings.Instance.FBXfolder + "/" + path);
                 }
             }
