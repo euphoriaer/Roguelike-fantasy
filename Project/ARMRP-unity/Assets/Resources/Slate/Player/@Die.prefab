@@ -754,7 +754,7 @@ MonoBehaviour:
   - {fileID: 2028954790285674849}
   _sections: []
   _isCollapsed: 1
-  _active: 1
+  _active: 0
   _isLocked: 0
 --- !u!1 &2340609124060879813
 GameObject:

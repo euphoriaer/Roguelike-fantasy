@@ -15,6 +15,8 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public FsmOwnerDefault GameObject;
         public float TransTime;
+        public float Speed = 1;
+
         private Cutscene _cutscene;
         private FsmState _lastFsmState;
         private AnimationClip clip0;
@@ -154,7 +156,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             if (!isCross)
             {
-                time += Time.deltaTime;
+                time += Time.deltaTime*Speed;
                 //防止循环Cutscene 拉回原点
                 //_cutscene.currentTime = time % _cutscene.length;
                 if (isLoopCutscene)
