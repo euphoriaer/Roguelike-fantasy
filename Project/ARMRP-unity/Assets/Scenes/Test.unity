@@ -1743,7 +1743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614817944}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: -55.5, y: 29.6, z: 4.5}
+  m_LocalPosition: {x: 14.9, y: 29.6, z: 3.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1808,8 +1808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowTarget: {fileID: 1507583161}
-  xGroundRange: {x: -78.19058, y: 188.99985}
-  zGroundRange: {x: -48.213516, y: 68.34354}
+  xGroundRange: {x: -20.900002, y: 89.9}
+  zGroundRange: {x: 4.4000015, y: 53.24}
 --- !u!1 &620806978
 GameObject:
   m_ObjectHideFlags: 0
@@ -7420,7 +7420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829004731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.989212, y: 1.9160703, z: 0.3133325}
+  m_LocalPosition: {x: -24.989212, y: 29.01, z: 0.3133325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
