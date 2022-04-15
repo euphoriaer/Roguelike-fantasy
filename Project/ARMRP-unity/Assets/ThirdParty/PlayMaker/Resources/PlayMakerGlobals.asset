@@ -34,3 +34,5 @@ MonoBehaviour:
   events:
   - Run
   - Idle
+  - attack
+  - run

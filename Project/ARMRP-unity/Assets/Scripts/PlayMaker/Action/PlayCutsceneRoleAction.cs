@@ -17,7 +17,7 @@ namespace Assets.Scripts.PlayMaker.Action
         public float TransTime;
         public float Speed = 1;
 
-        private Cutscene _cutscene;
+        private Cutscene cutscene;
         private FsmState _lastFsmState;
         private AnimationClip clip0;
 
@@ -45,13 +45,13 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void Exit()
         {
-            var animClip = _cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
-            offsetTime = _cutscene.currentTime;
-            if (_cutscene != null)
+            var animClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
+            offsetTime = cutscene.currentTime;
+            if (cutscene != null)
             {
-                _cutscene.Stop();
+                cutscene.Stop();
             }
-            _cutscene.OnStop -= _cutscene_OnStop;
+            cutscene.OnStop -= _cutscene_OnStop;
             base.Exit();
         }
 
@@ -61,14 +61,14 @@ namespace Assets.Scripts.PlayMaker.Action
 
             time = 0;
 
-            _cutscene = CutsceneInstate();
-            clip1 = _cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
+            cutscene = CutsceneInstate();
+            clip1 = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
             if (Fsm.LastTransition == null)
             {
                 //不需要融合
                 isCross = false;
-                _cutscene.Play();
+                cutscene.Play();
                 return;
             }
             var lastplayCutscene = LastFsmState?.Actions.Where(p =>
@@ -87,7 +87,7 @@ namespace Assets.Scripts.PlayMaker.Action
             {
                 //不需要融合
                 isCross = false;
-                _cutscene.Play();
+                cutscene.Play();
             }
             else
             {
@@ -125,7 +125,7 @@ namespace Assets.Scripts.PlayMaker.Action
                 isCross = true;
             }
             //检测播放完成 Finish
-            _cutscene.OnStop += _cutscene_OnStop;
+            cutscene.OnStop += _cutscene_OnStop;
         }
 
         public override void OnUpdate()
@@ -150,7 +150,7 @@ namespace Assets.Scripts.PlayMaker.Action
                     isCross = false;
                     //使cutscene 从0开始播放，计时重置
                     time = 0;
-                    _cutscene.Play();
+                    cutscene.Play();
                 }
             }
 
@@ -161,16 +161,16 @@ namespace Assets.Scripts.PlayMaker.Action
                 //_cutscene.currentTime = time % _cutscene.length;
                 if (isLoopCutscene)
                 {
-                    _cutscene.Sample(time % _cutscene.length);
+                    cutscene.Sample(time % cutscene.length);
                 }
                 else
                 {
                     //cutscene 需要手动Stop
-                    if (_cutscene.length < time)
+                    if (cutscene.length < time)
                     {
-                        _cutscene.Stop();
+                        cutscene.Stop();
                     }
-                    _cutscene.Sample(time);
+                    cutscene.Sample(time);
                 }
             }
 

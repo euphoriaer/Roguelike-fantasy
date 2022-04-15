@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Battle
 {
-    internal class Property:MonoBehaviour
+    public class Property:MonoBehaviour
     {
         public string Name;
 
@@ -11,5 +11,8 @@ namespace Assets.Scripts
         public int Attack;
 
         public Vector3 m_Position;
+
+        public AnimationClip LastPlayClip;
+        public float curPlayClipOffset;
     }
 }
