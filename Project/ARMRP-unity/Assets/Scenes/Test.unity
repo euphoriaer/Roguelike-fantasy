@@ -1842,6 +1842,67 @@ Transform:
   m_Father: {fileID: 1362121800}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &623862330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 860781093597905491, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: _actor
+      value: 
+      objectReference: {fileID: 1589067743}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933616, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860781094552933630, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+      propertyPath: m_Name
+      value: '@Attack (1)'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8904506e05564fd408665b75998cd65b, type: 3}
 --- !u!1 &628882189
 GameObject:
   m_ObjectHideFlags: 0
@@ -10086,16 +10147,27 @@ MonoBehaviour:
       actionData:
         actionNames:
         - Assets.Scripts.PlayMaker.Action.PlayCutsceneRoleAction
+        - Assets.Scripts.PlayMaker.Action.PlayCutsceneAction
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: b3b5a705
+        - 
+        actionEnabled: 0001
+        actionIsOpen: 0101
+        actionStartIndex: 0000000004000000
+        actionHashCodes: b3b5a705b6395d03
         unityObjectParams:
+        - {fileID: 860781094552933617, guid: 8904506e05564fd408665b75998cd65b, type: 3}
         - {fileID: 860781094552933617, guid: 8904506e05564fd408665b75998cd65b, type: 3}
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
+        - ownerOption: 0
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         - ownerOption: 0
           gameObject:
             useVariable: 0
@@ -10124,19 +10196,23 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: cdcc4c3e00000040
+        byteData: cdcc4c3e00000040008fc2f53c
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 05000000140000000200000002000000
+        paramDataType: 0500000014000000020000000200000005000000140000000100000002000000
         paramName:
         - Cutscene
         - GameObject
         - TransTime
         - Speed
-        paramDataPos: 00000000000000000000000004000000
-        paramByteDataSize: 00000000000000000400000004000000
+        - Cutscene
+        - FsmGameObject
+        - isFollow
+        - OffsetFinalTime
+        paramDataPos: 0000000000000000000000000400000001000000010000000800000009000000
+        paramByteDataSize: 0000000000000000040000000400000000000000000000000100000004000000
     events:
     - name: Run
       isSystemEvent: 0
@@ -11074,8 +11150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":896.0329,"y":-50.66851},"$type":"NodeCanvas.BehaviourTrees.StepIterator","$id":"0"},{"_position":{"x":593.0,"y":91.0},"$type":"NodeCanvas.BehaviourTrees.Parallel","$id":"1"},{"_action":{"Cutscene":1,"CutscenePlayer":2,"$type":"NodeCanvas.Tasks.Actions.PlayCutsceneNode"},"_tag":"Run","_position":{"x":356.0,"y":252.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"lookTarget":{"_value":3},"repeat":true,"$type":"NodeCanvas.Tasks.Actions.LookAt"},"_tag":"Attack","_position":{"x":557.0,"y":255.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"_action":{"log":{"_value":"Hello
-    World"},"finishStatus":0,"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":670.6664,"y":255.3337},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"},{"_position":{"x":1073.665,"y":68.67335},"$type":"NodeCanvas.BehaviourTrees.Parallel","$id":"5"},{"_action":{"Cutscene":4,"CutscenePlayer":2,"CutsceneFinish":0,"$type":"NodeCanvas.Tasks.Actions.PlayCutsceneNode"},"_tag":"Run","_position":{"x":961.3357,"y":272.334},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"6"},{"_action":{"lookTarget":{"_value":3},"repeat":true,"$type":"NodeCanvas.Tasks.Actions.LookAt"},"_tag":"Attack","_position":{"x":1143.003,"y":275.0011},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"playerPos":{"_value":3,"_name":"playerPos","_id":"bbbaf23a-35bf-44d2-8289-701a67780cc1","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+  _boundGraphSerialization: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":944.0346,"y":-82.66969},"$type":"NodeCanvas.BehaviourTrees.StepIterator","$id":"0"},{"_position":{"x":593.0,"y":91.0},"$type":"NodeCanvas.BehaviourTrees.Parallel","$id":"1"},{"_action":{"Cutscene":1,"CutscenePlayer":2,"$type":"NodeCanvas.Tasks.Actions.PlayCutsceneNode"},"_tag":"Run","_position":{"x":356.0,"y":252.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"lookTarget":{"_value":3},"repeat":true,"$type":"NodeCanvas.Tasks.Actions.LookAt"},"_tag":"Attack","_position":{"x":557.0,"y":255.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"_action":{"log":{"_value":"Hello
+    World"},"finishStatus":0,"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":670.6664,"y":255.3337},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"},{"_position":{"x":1132.042,"y":144.0053},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"5"},{"_action":{"lookTarget":{"_value":3},"$type":"NodeCanvas.Tasks.Actions.LookAt"},"_position":{"x":1016.037,"y":246.6758},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"6"},{"_action":{"Cutscene":4,"CutscenePlayer":2,"CutsceneFinish":0,"$type":"NodeCanvas.Tasks.Actions.PlayCutsceneNode"},"_tag":"Run","_position":{"x":1205.345,"y":249.6665},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"playerPos":{"_value":3,"_name":"playerPos","_id":"bbbaf23a-35bf-44d2-8289-701a67780cc1","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"position":{"_propertyPath":"UnityEngine.Transform.position","_name":"position","_id":"a2a298a8-c290-402b-99d6-b37523b64ee4","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _boundGraphObjectReferences:

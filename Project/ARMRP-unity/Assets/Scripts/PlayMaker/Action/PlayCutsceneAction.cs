@@ -12,17 +12,15 @@ namespace Assets.Scripts.PlayMaker.Action
         public Cutscene Cutscene;
 
         public FsmOwnerDefault FsmGameObject;
-        public bool isFollow;
-        [LabelText("距离最后一刻的偏移")]
-        public float OffsetFinalTime = 0.03f;
 
-        private Cutscene _cutscene;
+        private Cutscene m_cutscene;
         private bool isLoopCutscene;
         private float time;
         public override void Exit()
         {
-            _cutscene.OnStop -= _cutscene_OnStop;
-            _cutscene.Stop();
+            m_cutscene.OnStop -= _cutscene_OnStop;
+            GameObject.Destroy(m_cutscene.gameObject);
+
             base.Exit();
         }
 
@@ -30,21 +28,23 @@ namespace Assets.Scripts.PlayMaker.Action
         {
             if (Cutscene != null)
             {
+                time = 0;
                 var go = Fsm.GetOwnerDefaultTarget(FsmGameObject);
-                var _cutscene = CutsceneHelper.Instate(go, Cutscene);
-                _cutscene.updateMode = Cutscene.UpdateMode.Manual;
+                m_cutscene = CutsceneHelper.Instate(go, Cutscene);
+                m_cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 //修改Loop 防止拉回原点
-                if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
+                if (m_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
                 {
                     isLoopCutscene = true;
                 }
                 else
                 {
                     isLoopCutscene = false;
+                    //检测播放完成 Finish
+                    m_cutscene.OnStop += _cutscene_OnStop;
                 }
-                _cutscene.Play();
-                //检测播放完成 Finish
-                _cutscene.OnStop += _cutscene_OnStop;
+                m_cutscene.Play();
+                
             }
             else
             {
@@ -57,11 +57,15 @@ namespace Assets.Scripts.PlayMaker.Action
             time += Time.deltaTime;
             if (isLoopCutscene)
             {
-                _cutscene.Sample(time % _cutscene.length);
+                m_cutscene.Sample(time % m_cutscene.length);
             }
             else
             {
-                _cutscene.Sample(time);
+                m_cutscene.Sample(time);
+                if (time >= m_cutscene.length)
+                {
+                    m_cutscene.Stop();
+                }
             }
         }
 
