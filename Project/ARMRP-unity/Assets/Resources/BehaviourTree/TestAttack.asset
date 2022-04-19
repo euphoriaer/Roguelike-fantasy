@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: BehaviourTree
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":846.1885,"y":-47.65067},"$type":"NodeCanvas.BehaviourTrees.StepIterator","$id":"0"},{"dynamic":true,"_position":{"x":595.3141,"y":38.10833},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"1"},{"_condition":{"checkTarget":{"_value":1},"checkType":1,"distance":{"_value":2.27},"floatingPoint":0.0303,"$type":"NodeCanvas.Tasks.Conditions.CheckDistanceToGameObject"},"_position":{"x":301.7772,"y":257.4889},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"2"},{"_position":{"x":591.9702,"y":183.696},"$type":"NodeCanvas.BehaviourTrees.Parallel","$id":"3"},{"_action":{"Cutscene":2,"CutscenePlayer":3,"$type":"NodeCanvas.Tasks.Actions.PlayCutsceneNode"},"_tag":"Run","_position":{"x":528.4557,"y":299.3781},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"},{"_action":{"lookTarget":{"_value":1},"repeat":true,"$type":"NodeCanvas.Tasks.Actions.LookAt"},"_tag":"Attack","_position":{"x":714.0069,"y":297.2282},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"5"},{"MoveObj":3,"Speed":{"_value":1.0},"ArriveRange":{"_value":1.0},"Target":1,"_position":{"x":869.0164,"y":315.8752},"$type":"NodeCanvas.BehaviourTrees.SimpleMove","$id":"6"},{"_position":{"x":1037.286,"y":151.2155},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"7"},{"_action":{"lookTarget":{"_value":1},"$type":"NodeCanvas.Tasks.Actions.LookAt"},"_position":{"x":1052.116,"y":264.1556},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"8"},{"_action":{"Cutscene":4,"CutscenePlayer":3,"$type":"NodeCanvas.Tasks.Actions.PlayCutsceneNode"},"_tag":"Run","_position":{"x":1192.366,"y":259.3296},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"9"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"playerPos":{"_value":1,"_name":"playerPos","_id":"bbbaf23a-35bf-44d2-8289-701a67780cc1","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"position":{"_propertyPath":"UnityEngine.Transform.position","_name":"position","_id":"a2a298a8-c290-402b-99d6-b37523b64ee4","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 4311730690515314150, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
+  - {fileID: 0}
+  - {fileID: 860781094552933617, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+  _graphSource:
+    _version: 3.25
+    _category: 
+    _comments: 
+    _translation: {x: -340, y: 84}
+    _zoomFactor: 0.9709161
+  _haltSerialization: 0
