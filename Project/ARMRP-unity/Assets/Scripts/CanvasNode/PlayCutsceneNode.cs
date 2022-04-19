@@ -76,7 +76,6 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnStop(bool interrupted)
         {
             cutscene.OnStop -= _cutscene_OnStop;
-            GameObject.Destroy(cutscene.gameObject);
             base.OnStop();
         }
 

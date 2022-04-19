@@ -10,26 +10,26 @@ namespace NodeCanvas.BehaviourTrees
 	[Description("MoveGameobject")]
 	public class SimpleMove : BTNode
 	{
-		public BBParameter<GameObject> MoveObj;
+		public GameObject MoveObj;
 		public BBParameter<float> Speed=1;
 		public BBParameter<float> ArriveRange=1;
-		public BBParameter<GameObject> Target;
+		public GameObject Target;
 
 
 
 		protected override Status OnExecute(Component agent, IBlackboard blackboard)
 		{
-			var direction = Target.value.transform.position - MoveObj.value.transform.position;
+			var direction = Target.transform.position - MoveObj.transform.position;
 
 			var distance = direction.magnitude;
 
-			if (distance>= ArriveRange.value)
+			if (distance<= ArriveRange.value)
             {
-				return Status.Success;
+				return Status.Failure;
 			}
 			
 			
-			MoveObj.value.transform.position = MoveObj.value.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
+			MoveObj.transform.position = MoveObj.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
 			return Status.Running;
 		}
 
