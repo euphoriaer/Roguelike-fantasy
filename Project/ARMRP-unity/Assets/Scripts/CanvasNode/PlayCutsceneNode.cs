@@ -14,7 +14,7 @@ namespace NodeCanvas.Tasks.Actions
     public class PlayCutsceneNode : ActionTask<Transform>
     {
         public Cutscene Cutscene;
-        public GameObject CutscenePlayer;
+        public BBParameter<GameObject> CutscenePlayer;
         public CompactStatus CutsceneFinish = CompactStatus.Success;
 
         private Cutscene cutscene;
@@ -32,7 +32,7 @@ namespace NodeCanvas.Tasks.Actions
             if (Cutscene != null)
             {
                 time = 0;
-                cutscene = CutsceneHelper.Instate(CutscenePlayer, Cutscene);
+                cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
                 cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 //修改Loop 防止拉回原点
                 if (cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
