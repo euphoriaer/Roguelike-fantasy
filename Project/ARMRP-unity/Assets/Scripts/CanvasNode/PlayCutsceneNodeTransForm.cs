@@ -1,6 +1,4 @@
 ﻿using NodeCanvas.Framework;
-using ParadoxNotion.Design;
-using Sirenix.OdinInspector;
 using Slate;
 using System.Linq;
 using UnityEngine;
@@ -9,20 +7,20 @@ using UnityEngine.Playables;
 
 namespace NodeCanvas.Tasks.Actions
 {
-
     [ParadoxNotion.Design.Name("Play PlayCutscene Node TransForm")]
     [ParadoxNotion.Design.Category("Animator")]
     public class PlayCutsceneNodeTransForm : ActionTask<Transform>
     {
         public Cutscene Cutscene;
+
         //public BBParameter<GameObject> Player;
         public float TransTime;
-        public float Speed = 1;
 
+        public float Speed = 1;
 
         private GameObject CutscenePlayer;
         private Cutscene cutscene;
-        
+
         private bool isLoopCutscene;
         private float time;
 
@@ -41,7 +39,6 @@ namespace NodeCanvas.Tasks.Actions
         /// </summary>
         private float offsetTime = 0;
 
-        
         private PlayableGraph playableGraph;
         private float weight;
 
@@ -58,19 +55,17 @@ namespace NodeCanvas.Tasks.Actions
         private void _cutscene_OnStop()
         {
             EndAction();
-
         }
 
         protected override void OnExecute()
         {
-            var LastClip= CutscenePlayer.GetComponent<Battle.Property>().LastPlayClip;
+            var LastClip = CutscenePlayer.GetComponent<Battle.Property>().LastPlayClip;
             if (Cutscene != null)
             {
                 time = 0;
-                cutscene = CutsceneInstate();
-             
-            
-               if (LastClip == null)
+                cutscene = cutscene = CutsceneHelper.InstateInChildren(CutscenePlayer, Cutscene, out isLoopCutscene);
+
+                if (LastClip == null)
                 {
                     //不需要融合
                     isCross = false;
@@ -82,7 +77,7 @@ namespace NodeCanvas.Tasks.Actions
                     // 创建该图和混合器，然后将它们绑定到 Animator
                     CurClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
 
-                    offsetTime= CutscenePlayer.GetComponent<Battle.Property>().curPlayClipOffset;
+                    offsetTime = CutscenePlayer.GetComponent<Battle.Property>().curPlayClipOffset;
 
                     var Animator = CutscenePlayer.GetComponent<Animator>();
 
@@ -116,46 +111,12 @@ namespace NodeCanvas.Tasks.Actions
             }
             else
             {
-               EndAction();
+                EndAction();
             }
         }
-        private Cutscene CutsceneInstate()
-        {
-            if (Cutscene != null)
-            {
-                var _cutscene = CutsceneHelper.Instate(CutscenePlayer, Cutscene);
 
-                GameObject RoleActionCutscene = CutscenePlayer.transform.Find("RoleActionCutscene")?.gameObject;
-                if (RoleActionCutscene == null)
-                {
-                    RoleActionCutscene = new GameObject("RoleActionCutscene");
-                    RoleActionCutscene.transform.SetParent(CutscenePlayer.transform, false);
-                }
-                else
-                {
-                    //销毁原本播放的Cutscene
-                    UnityEngine.GameObject.Destroy(RoleActionCutscene.transform.GetChild(0).gameObject);
-                }
-
-                _cutscene.transform.SetParent(RoleActionCutscene.transform, false);
-
-                //修改Loop 防止拉回原点
-                if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
-                {
-                    isLoopCutscene = true;
-                }
-                else
-                {
-                    isLoopCutscene = false;
-                }
-                _cutscene.updateMode = Cutscene.UpdateMode.Manual;
-                return _cutscene;
-            }
-            return null;
-        }
         protected override void OnUpdate()
         {
-           
             if (isCross)
             {
                 time += Time.deltaTime;
@@ -199,18 +160,14 @@ namespace NodeCanvas.Tasks.Actions
                     cutscene.Sample(time);
                 }
             }
-
-
         }
 
         protected override void OnStop(bool interrupted)
         {
-           
         }
 
         protected override void OnResume()
         {
-           
         }
     }
 }

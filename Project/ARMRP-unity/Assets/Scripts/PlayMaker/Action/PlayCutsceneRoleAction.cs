@@ -61,7 +61,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             time = 0;
 
-            cutscene = CutsceneInstate();
+            cutscene = CutsceneHelper.InstateInChildren(Owner, Cutscene,out isLoopCutscene);
             clip1 = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
             if (Fsm.LastTransition == null)
@@ -182,39 +182,5 @@ namespace Assets.Scripts.PlayMaker.Action
             Finish();
         }
 
-        private Cutscene CutsceneInstate()
-        {
-            if (Cutscene != null)
-            {
-                var _cutscene = CutsceneHelper.Instate(Owner, Cutscene);
-
-                GameObject RoleActionCutscene = Owner.transform.Find("RoleActionCutscene")?.gameObject;
-                if (RoleActionCutscene == null)
-                {
-                    RoleActionCutscene = new GameObject("RoleActionCutscene");
-                    RoleActionCutscene.transform.SetParent(Owner.transform, false);
-                }
-                else
-                {
-                    //销毁原本播放的Cutscene
-                    UnityEngine.GameObject.Destroy(RoleActionCutscene.transform.GetChild(0).gameObject);
-                }
-
-                _cutscene.transform.SetParent(RoleActionCutscene.transform, false);
-
-                //修改Loop 防止拉回原点
-                if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
-                {
-                    isLoopCutscene = true;
-                }
-                else
-                {
-                    isLoopCutscene = false;
-                }
-                _cutscene.updateMode = Cutscene.UpdateMode.Manual;
-                return _cutscene;
-            }
-            return null;
-        }
     }
 }

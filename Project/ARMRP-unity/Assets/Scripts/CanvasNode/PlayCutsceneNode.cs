@@ -1,14 +1,10 @@
 ﻿using NodeCanvas.Framework;
 using ParadoxNotion;
-using ParadoxNotion.Design;
-using Sirenix.OdinInspector;
 using Slate;
 using UnityEngine;
 
-
 namespace NodeCanvas.Tasks.Actions
 {
-
     [ParadoxNotion.Design.Name("Play PlayCutscene Node")]
     [ParadoxNotion.Design.Category("Animator")]
     public class PlayCutsceneNode : ActionTask<Transform>
@@ -24,7 +20,6 @@ namespace NodeCanvas.Tasks.Actions
         private void _cutscene_OnStop()
         {
             EndAction(CutsceneFinish == CompactStatus.Success ? true : false);
-
         }
 
         protected override void OnExecute()
@@ -32,7 +27,9 @@ namespace NodeCanvas.Tasks.Actions
             if (Cutscene != null)
             {
                 time = 0;
-                cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
+                //cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
+                cutscene = CutsceneHelper.InstateInChildren(CutscenePlayer.value, Cutscene, out isLoopCutscene);
+
                 cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 //修改Loop 防止拉回原点
                 if (cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
@@ -47,11 +44,10 @@ namespace NodeCanvas.Tasks.Actions
                 }
                 cutscene.Play();
                 //检测播放完成 Finish
-                
             }
             else
             {
-               EndAction(CutsceneFinish == CompactStatus.Success ? true : false);
+                EndAction(CutsceneFinish == CompactStatus.Success ? true : false);
             }
         }
 
@@ -65,12 +61,11 @@ namespace NodeCanvas.Tasks.Actions
             else
             {
                 cutscene.Sample(time);
-                if (time>=cutscene.length)
+                if (time >= cutscene.length)
                 {
                     cutscene.Stop();
                 }
             }
-
         }
 
         protected override void OnStop(bool interrupted)
@@ -81,7 +76,6 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnResume()
         {
-           
         }
     }
 }

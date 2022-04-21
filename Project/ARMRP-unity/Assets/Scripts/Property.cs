@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Battle
 {
@@ -14,5 +15,14 @@ namespace Battle
 
         public AnimationClip LastPlayClip;
         public float curPlayClipOffset;
+
+        public Action<Collision> CollisionAction;
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            CollisionAction(collision);
+        }
+
+
     }
 }

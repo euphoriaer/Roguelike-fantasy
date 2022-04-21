@@ -68,6 +68,48 @@ public static class CutsceneHelper
         return cutscene;
     }
 
+    /// <summary>
+    /// 用于动作，唯一
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="cutscene"></param>
+    /// <param name="isLoop"></param>
+    /// <returns></returns>
+    public static Cutscene InstateInChildren(GameObject player, Cutscene cutscene,out bool isLoop)
+    {
+        if (cutscene != null)
+        {
+            var _cutscene = CutsceneHelper.Instate(player, cutscene);
+
+            GameObject RoleActionCutscene = player.transform.Find("RoleActionCutscene")?.gameObject;
+            if (RoleActionCutscene == null)
+            {
+                RoleActionCutscene = new GameObject("RoleActionCutscene");
+                RoleActionCutscene.transform.SetParent(player.transform, false);
+            }
+            else
+            {
+                //销毁原本播放的Cutscene
+                UnityEngine.GameObject.Destroy(RoleActionCutscene.transform.GetChild(0).gameObject);
+            }
+
+            _cutscene.transform.SetParent(RoleActionCutscene.transform, false);
+
+            //修改Loop 防止拉回原点
+            if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
+            {
+                isLoop = true;
+            }
+            else
+            {
+                isLoop = false;
+            }
+            _cutscene.updateMode = Cutscene.UpdateMode.Manual;
+            return _cutscene;
+        }
+        isLoop = false;
+        return null;
+    }
     public static Cutscene Instate(GameObject player, Cutscene inCutscene)
     {
       
