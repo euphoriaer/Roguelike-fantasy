@@ -63,7 +63,7 @@ namespace NodeCanvas.Tasks.Actions
             if (Cutscene != null)
             {
                 time = 0;
-                cutscene = cutscene = CutsceneHelper.InstateInChildren(CutscenePlayer, Cutscene, out isLoopCutscene);
+                cutscene = cutscene = CutsceneHelper.InstateAction(CutscenePlayer, Cutscene, out isLoopCutscene);
 
                 if (LastClip == null)
                 {

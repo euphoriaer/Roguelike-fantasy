@@ -337,6 +337,7 @@ namespace Slate
 
         ///Start or resume playing the cutscene at optional start time and optional provided callback for when it stops
         public void Play() { Play(0); }
+
         public void Play(System.Action callback) { Play(0, callback); }
         public void Play(float startTime) { Play(startTime, length, defaultWrapMode); }
         public void Play(float startTime, System.Action callback) { Play(startTime, length, defaultWrapMode, callback); }

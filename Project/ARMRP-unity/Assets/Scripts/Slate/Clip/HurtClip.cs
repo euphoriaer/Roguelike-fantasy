@@ -32,42 +32,41 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
 
     protected override void OnEnter()
     {
-        if (!Application.isPlaying)
-        {
-            return;
-        }
-        foreach (var collider in colliders)
-        {
-            BoxCollider boxCollider = actor.AddComponent<BoxCollider>();
-            boxCollider.center = collider.size;
-            boxCollider.size = collider.size;
-            boxCollider.isTrigger = true;
-            m_colliders.Add(boxCollider);
-        }
-        //需要设置碰撞事件
-        triggerAction = (Collision collider) =>
-         {
-             Debug.Log("碰撞到了" + collider.gameObject.name);
-         };
-        actor.GetComponent<Property>().CollisionAction += triggerAction;
+        //error 等待物理系统重构
+        //if (!Application.isPlaying)
+        //{
+        //    return;
+        //}
+        //foreach (var collider in colliders)
+        //{
+        //    BoxCollider boxCollider = actor.AddComponent<BoxCollider>();
+        //    boxCollider.center = collider.size;
+        //    boxCollider.size = collider.size;
+        //    boxCollider.isTrigger = true;
+        //    m_colliders.Add(boxCollider);
+        //}
+        ////需要设置碰撞事件
+        //triggerAction = (Collision collider) =>
+        // {
+        //     Debug.Log("碰撞到了" + collider.gameObject.name);
+        // };
+        //actor.GetComponent<Property>().CollisionAction += triggerAction;
     }
 
     protected override void OnExit()
     {
-        if (!Application.isPlayer)
-        {
-            return;
-        }
-        actor.GetComponent<Property>().CollisionAction -= triggerAction;
-        foreach (var item in m_colliders)
-        {
-            Destroy(item);
-        }
+        //if (!Application.isPlayer)
+        //{
+        //    return;
+        //}
+        //actor.GetComponent<Property>().CollisionAction -= triggerAction;
+        //foreach (var item in m_colliders)
+        //{
+        //    Destroy(item);
+        //}
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-    }
+
 
 #if UNITY_EDITOR  //逻辑绘制
 

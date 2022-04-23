@@ -61,7 +61,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             time = 0;
 
-            cutscene = CutsceneHelper.InstateInChildren(Owner, Cutscene,out isLoopCutscene);
+            cutscene = CutsceneHelper.InstateAction(Owner, Cutscene,out isLoopCutscene);
             clip1 = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
             if (Fsm.LastTransition == null)

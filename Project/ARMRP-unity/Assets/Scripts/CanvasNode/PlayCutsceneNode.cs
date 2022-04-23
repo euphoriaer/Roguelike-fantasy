@@ -27,8 +27,9 @@ namespace NodeCanvas.Tasks.Actions
             if (Cutscene != null)
             {
                 time = 0;
+                //播放Action
                 //cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
-                cutscene = CutsceneHelper.InstateInChildren(CutscenePlayer.value, Cutscene, out isLoopCutscene);
+                cutscene = CutsceneHelper.InstateAction(CutscenePlayer.value, Cutscene, out isLoopCutscene);
 
                 cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 //修改Loop 防止拉回原点
@@ -71,6 +72,7 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnStop(bool interrupted)
         {
             cutscene.OnStop -= _cutscene_OnStop;
+            cutscene.Stop();
             base.OnStop();
         }
 
