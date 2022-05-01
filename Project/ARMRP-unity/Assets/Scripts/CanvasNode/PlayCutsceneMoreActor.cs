@@ -1,16 +1,19 @@
 ﻿using NodeCanvas.Framework;
 using ParadoxNotion;
 using Slate;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NodeCanvas.Tasks.Actions
 {
-    [ParadoxNotion.Design.Name("Play PlayCutscene Node")]
+    [ParadoxNotion.Design.Name("Play Cutscene MoreActor")]
     [ParadoxNotion.Design.Category("Animator")]
-    public class PlayCutsceneNode : ActionTask<Transform>
+    public class PlayCutsceneMoreActor : ActionTask<Transform>
     {
         public Cutscene Cutscene;
-        public BBParameter<GameObject> CutscenePlayer;
+
+        public BBParameter<List<GameObject>> CutscenePlayers;
+
         public CompactStatus CutsceneFinish = CompactStatus.Success;
 
         private Cutscene cutscene;
@@ -29,7 +32,8 @@ namespace NodeCanvas.Tasks.Actions
                 time = 0;
                 //播放Action
                 //cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
-                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, CutscenePlayer.value);
+
+                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, CutscenePlayers.value.ToArray());
 
                 cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 // 防止拉回原点
@@ -70,10 +74,6 @@ namespace NodeCanvas.Tasks.Actions
             cutscene.OnStop -= _cutscene_OnStop;
             cutscene.Stop();
             base.OnStop();
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }

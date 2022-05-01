@@ -79,7 +79,7 @@ public static class CutsceneHelper
     {
         if (cutscene != null)
         {
-            var _cutscene = CutsceneHelper.Instate(player, cutscene);
+            var _cutscene = CutsceneHelper.Instate(cutscene, player);
 
             GameObject RoleActionCutscene = player.transform.Find("Cutscene")?.gameObject;
             if (RoleActionCutscene == null)
@@ -91,7 +91,7 @@ public static class CutsceneHelper
             {
                 //查找同名Cutscene ,you
                 var lastCutscene = RoleActionCutscene.transform.FindInChildren(_cutscene.gameObject.name, true);
-               
+
                 if (lastCutscene != null)
                 {
                     GameObject.Destroy(lastCutscene.gameObject);
@@ -120,17 +120,17 @@ public static class CutsceneHelper
     ///
     /// </summary>
     /// <returns></returns>
-    public static Cutscene InstateAction(GameObject player, Cutscene cutscene, out bool isLoop)
+    public static Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
     {
         if (cutscene != null)
         {
-            var _cutscene = CutsceneHelper.Instate(player, cutscene);
+            var _cutscene = CutsceneHelper.Instate(cutscene, actors);
 
-            GameObject RoleActionCutscene = player.transform.Find("ActionCutscene")?.gameObject;
+            GameObject RoleActionCutscene = actors[0].transform.Find("ActionCutscene")?.gameObject;
             if (RoleActionCutscene == null)
             {
                 RoleActionCutscene = new GameObject("ActionCutscene");
-                RoleActionCutscene.transform.SetParent(player.transform, false);
+                RoleActionCutscene.transform.SetParent(actors[0].transform, false);
             }
             else
             {
@@ -142,7 +142,7 @@ public static class CutsceneHelper
 
             _cutscene.transform.SetParent(RoleActionCutscene.transform, false);
 
-            //修改Loop 防止拉回原点
+            
             if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
             {
                 isLoop = true;
@@ -158,15 +158,15 @@ public static class CutsceneHelper
         return null;
     }
 
-    public static Cutscene Instate(GameObject player, Cutscene inCutscene)
+    public static Cutscene Instate(Cutscene inCutscene, params GameObject[] player)
     {
         Cutscene slate = GameObject.Instantiate(inCutscene);
-        slate.transform.position = player.transform.position;
-        foreach (var cutsceneGroup in slate.groups)
-        {
-            cutsceneGroup.actor = player;
-        }
 
+        for (int i = 1; i < slate.groups.Count; i++)
+        {
+            var cutsceneGroup = slate.groups[i];
+            cutsceneGroup.actor = player[i-1];
+        }
         return slate;
     }
 

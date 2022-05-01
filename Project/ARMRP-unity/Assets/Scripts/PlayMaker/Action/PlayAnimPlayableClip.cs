@@ -135,27 +135,28 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
         animator.applyRootMotion = false;
         useBakedRootMotion = true;
     }
-    void EvaluateTrackClips(float time, float previousTime, ref int tempActiveClips)
+
+    private void EvaluateTrackClips(float time, float previousTime, ref int tempActiveClips)
     {
-            IDirectable clip = this;
-            if (time >= clip.startTime && previousTime < clip.startTime)
-            {
-                tempActiveClips++;
-                //clip.Enter();
-            }
+        IDirectable clip = this;
+        if (time >= clip.startTime && previousTime < clip.startTime)
+        {
+            tempActiveClips++;
+            //clip.Enter();
+        }
 
-            if (time >= clip.startTime && time <= clip.endTime)
-            {
-                clip.Update(time - clip.startTime, previousTime - clip.startTime);
-            }
+        if (time >= clip.startTime && time <= clip.endTime)
+        {
+            clip.Update(time - clip.startTime, previousTime - clip.startTime);
+        }
 
-            if ((time > clip.endTime || time >= this.endTime) && previousTime <= clip.endTime)
-            {
-                tempActiveClips--;
-                //clip.Exit();
-            }
-        
+        if ((time > clip.endTime || time >= this.endTime) && previousTime <= clip.endTime)
+        {
+            tempActiveClips--;
+            //clip.Exit();
+        }
     }
+
     protected override void OnUpdate(float time)
     {
         var curClipLength = animationClip.length;
@@ -166,7 +167,7 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
             normalizedBefore = time * PlaySpeed % curClipLength;
         }
         playableClip.SetTime(normalizedBefore);
-        
+
         if (useRootMotion && useBakedRootMotion)
         {
             ApplyBakedRootMotion(time);

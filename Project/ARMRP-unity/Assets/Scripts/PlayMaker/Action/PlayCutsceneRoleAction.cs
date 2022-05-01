@@ -61,7 +61,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             time = 0;
 
-            cutscene = CutsceneHelper.InstateAction(Owner, Cutscene,out isLoopCutscene);
+            cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, Owner);
             clip1 = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             //从记录的上一个状态获取clip  //todo 只有动作需要融合，所以需要区分播放动作的Cutscene和非播放动作的Cutscene
             if (Fsm.LastTransition == null)
@@ -156,7 +156,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             if (!isCross)
             {
-                time += Time.deltaTime*Speed;
+                time += Time.deltaTime * Speed;
                 //防止循环Cutscene 拉回原点
                 //_cutscene.currentTime = time % _cutscene.length;
                 if (isLoopCutscene)
@@ -181,6 +181,5 @@ namespace Assets.Scripts.PlayMaker.Action
         {
             Finish();
         }
-
     }
 }

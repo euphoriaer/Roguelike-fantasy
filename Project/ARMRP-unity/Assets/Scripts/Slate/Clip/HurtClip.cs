@@ -1,5 +1,4 @@
-﻿using Battle;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using Slate;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
         set => m_length = value;
     }
 
-    private float m_length=1;//todo 长度显示有Bug
+    private float m_length = 1;//todo 长度显示有Bug
 
     private List<BoxCollider> m_colliders = new List<BoxCollider>();
     private Action<Collision> triggerAction;
@@ -65,8 +64,6 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
         //    Destroy(item);
         //}
     }
-
-
 
 #if UNITY_EDITOR  //逻辑绘制
 

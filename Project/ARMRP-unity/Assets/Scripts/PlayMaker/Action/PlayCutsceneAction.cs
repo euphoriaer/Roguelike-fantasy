@@ -1,5 +1,4 @@
 ﻿using HutongGames.PlayMaker;
-using Sirenix.OdinInspector;
 using Slate;
 using UnityEngine;
 
@@ -16,6 +15,7 @@ namespace Assets.Scripts.PlayMaker.Action
         private Cutscene m_cutscene;
         private bool isLoopCutscene;
         private float time;
+
         public override void Exit()
         {
             m_cutscene.OnStop -= _cutscene_OnStop;
@@ -30,21 +30,17 @@ namespace Assets.Scripts.PlayMaker.Action
             {
                 time = 0;
                 var go = Fsm.GetOwnerDefaultTarget(FsmGameObject);
-                m_cutscene = CutsceneHelper.Instate(go, Cutscene);
+                m_cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, go);
                 m_cutscene.updateMode = Cutscene.UpdateMode.Manual;
-                //修改Loop 防止拉回原点
-                if (m_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
+                //防止拉回原点
+
+                if (!isLoopCutscene)
                 {
-                    isLoopCutscene = true;
-                }
-                else
-                {
-                    isLoopCutscene = false;
-                    //检测播放完成 Finish
+                    //非循环，加入播放完成事件
                     m_cutscene.OnStop += _cutscene_OnStop;
                 }
+
                 m_cutscene.Play();
-                
             }
             else
             {
