@@ -266,7 +266,7 @@ namespace Slate
 
         //UNITY CALLBACK
         protected void OnDestroy() {
-            if ( isActive ) { Stop(StopMode.Rewind); }
+            if ( isActive ) { Stop(StopMode.SkipRewindNoUndo); }
             StopAllCoroutines();
             isActive = false;
             allSceneCutscenes.Remove(this.name);
