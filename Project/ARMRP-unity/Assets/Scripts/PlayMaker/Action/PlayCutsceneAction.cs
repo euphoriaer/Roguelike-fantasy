@@ -12,14 +12,14 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public FsmOwnerDefault FsmGameObject;
 
-        private Cutscene m_cutscene;
+        private Cutscene cutscene;
         private bool isLoopCutscene;
         private float time;
 
         public override void Exit()
         {
-            m_cutscene.OnStop -= _cutscene_OnStop;
-            GameObject.Destroy(m_cutscene.gameObject);
+            cutscene.OnStop -= _cutscene_OnStop;
+            GameObject.Destroy(cutscene.gameObject);
 
             base.Exit();
         }
@@ -30,17 +30,17 @@ namespace Assets.Scripts.PlayMaker.Action
             {
                 time = 0;
                 var go = Fsm.GetOwnerDefaultTarget(FsmGameObject);
-                m_cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, go);
-                m_cutscene.updateMode = Cutscene.UpdateMode.Manual;
+                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, go);
+                cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 //防止拉回原点
 
                 if (!isLoopCutscene)
                 {
                     //非循环，加入播放完成事件
-                    m_cutscene.OnStop += _cutscene_OnStop;
+                    cutscene.OnStop += _cutscene_OnStop;
                 }
 
-                m_cutscene.Play();
+                cutscene.Play();
             }
             else
             {
@@ -53,14 +53,14 @@ namespace Assets.Scripts.PlayMaker.Action
             time += Time.deltaTime;
             if (isLoopCutscene)
             {
-                m_cutscene.Sample(time % m_cutscene.length);
+                cutscene.Sample(time % cutscene.length);
             }
             else
             {
-                m_cutscene.Sample(time);
-                if (time >= m_cutscene.length)
+                cutscene.Sample(time);
+                if (time >= cutscene.length)
                 {
-                    m_cutscene.Stop();
+                    cutscene.Stop();
                 }
             }
         }

@@ -89,7 +89,7 @@ public static class CutsceneHelper
             }
             else
             {
-                //查找同名Cutscene ,you
+                //查找同名Cutscene ,
                 var lastCutscene = RoleActionCutscene.transform.FindInChildren(_cutscene.gameObject.name, true);
 
                 if (lastCutscene != null)
@@ -117,7 +117,7 @@ public static class CutsceneHelper
     }
 
     /// <summary>
-    ///
+    /// 唯一Cutscene
     /// </summary>
     /// <returns></returns>
     public static Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
