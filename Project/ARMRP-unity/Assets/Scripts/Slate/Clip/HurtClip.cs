@@ -17,11 +17,12 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
 
     public override float length
     {
-        get => m_length;
-        set => m_length = value;
+        get { return _length; }
+        set { _length = value; }
     }
 
-    private float m_length = 1; //todo 长度显示有Bug
+    [HideInInspector]
+    [SerializeField] private float _length = 1 / 30f;
 
     private List<BoxCollider> _colliders = new List<BoxCollider>();
     private Action<Collider> triggerAction;

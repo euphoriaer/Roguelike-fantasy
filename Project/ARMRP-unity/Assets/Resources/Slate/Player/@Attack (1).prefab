@@ -230,8 +230,8 @@ MonoBehaviour:
   - {fileID: 860781093343596924}
   - {fileID: 860781093597905491}
   _length: 2.266667
-  _viewTimeMin: 0
-  _viewTimeMax: 3.5216837
+  _viewTimeMin: -0.47004148
+  _viewTimeMax: 3.9877965
 --- !u!1 &860781094684500747
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,12 +790,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77e926b208531049bc7e02e61309d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0.86666673
+  _startTime: 0.8000001
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
   hurt: 10
   Colliders:
   - Type: 0
-    offset: {x: 0.52, y: 0, z: 1.21}
+    offset: {x: 0.17, y: 0.5, z: 0.62}
     size: {x: 1, y: 1, z: 1}
+  _length: 0.5333333
