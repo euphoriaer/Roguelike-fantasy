@@ -2,17 +2,18 @@
 using Slate;
 using System;
 using System.Collections.Generic;
+using Battle;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Name("伤害盒子")]
 [Attachable(typeof(HurtTrack))]
 public class HurtClip : CutsceneClip<Transform>, IDirectable
 {
-    [LabelText("伤害")]
-    public int hurt;
+    [LabelText("伤害")] public int hurt;
 
-    [LabelText("碰撞框")]
-    public List<Shape> colliders; //todo 绘制时需要 根据当前Time 显示/隐藏
+    [FormerlySerializedAs("colliders")] [LabelText("碰撞框")]
+    public List<Shape> Colliders; //todo 绘制时需要 根据当前Time 显示/隐藏
 
     public override float length
     {
@@ -20,59 +21,68 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
         set => m_length = value;
     }
 
-    private float m_length = 1;//todo 长度显示有Bug
+    private float m_length = 1; //todo 长度显示有Bug
 
-    private List<BoxCollider> m_colliders = new List<BoxCollider>();
-    private Action<Collision> triggerAction;
+    private List<BoxCollider> _colliders = new List<BoxCollider>();
+    private Action<Collider> triggerAction;
+    private float time;
 
     public override void Refresh()
     {
     }
 
+
     protected override void OnEnter()
     {
-        //error 等待物理系统重构
-        //if (!Application.isPlaying)
-        //{
-        //    return;
-        //}
-        //foreach (var collider in colliders)
-        //{
-        //    BoxCollider boxCollider = actor.AddComponent<BoxCollider>();
-        //    boxCollider.center = collider.size;
-        //    boxCollider.size = collider.size;
-        //    boxCollider.isTrigger = true;
-        //    m_colliders.Add(boxCollider);
-        //}
-        ////需要设置碰撞事件
-        //triggerAction = (Collision collider) =>
-        // {
-        //     Debug.Log("碰撞到了" + collider.gameObject.name);
-        // };
-        //actor.GetComponent<Property>().CollisionAction += triggerAction;
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+
+        foreach (var collider in Colliders)
+        {
+            BoxCollider boxCollider = actor.AddComponent<BoxCollider>();
+            boxCollider.center = new Vector3(collider.offset.x, collider.offset.y + 0.5f, collider.offset.z);
+            boxCollider.size = collider.size;
+            boxCollider.isTrigger = true;
+            _colliders.Add(boxCollider);
+        }
+
+        //需要设置碰撞事件
+        triggerAction = (Collider collider) => { Debug.Log("碰撞到了" + collider.gameObject.name); };
+        actor.GetComponent<Property>().CollisionEnterAction += triggerAction;
     }
 
     protected override void OnExit()
     {
-        //if (!Application.isPlayer)
-        //{
-        //    return;
-        //}
-        //actor.GetComponent<Property>().CollisionAction -= triggerAction;
-        //foreach (var item in m_colliders)
-        //{
-        //    Destroy(item);
-        //}
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+
+        actor.GetComponent<Property>().CollisionEnterAction -= triggerAction;
+        foreach (var item in _colliders)
+        {
+            Destroy(item);
+        }
     }
 
-#if UNITY_EDITOR  //逻辑绘制
+#if UNITY_EDITOR //逻辑绘制
 
+
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.black;    
+    //     Gizmos.matrix = transform.localToWorldMatrix;    
+    //     Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+    // }
+    
     protected override void OnDrawGizmosSelected()
     {
-        if (Application.isPlaying) return;
         Gizmos.color = Color.red;
-
-        foreach (var collider in colliders)
+        
+        Gizmos.matrix = actor.transform.localToWorldMatrix;//Gizmos 配合Collider 旋转
+        foreach (var collider in Colliders)
         {
             //绘制collider 到屏幕上
 
@@ -82,9 +92,11 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
 
                 case Shape.ShapeType.Box:
                     //绘制在 演员所在位置
-                    var boxCenter = actor.transform.position + new Vector3(collider.offset.x, collider.offset.y, collider.offset.z) +
-                                           new Vector3(0, collider.size.y * 0.5f, 0);
+                    var boxCenter = actor.transform.position +
+                                    new Vector3(collider.offset.x-actor.transform.position.x, collider.offset.y-actor.transform.position.y, collider.offset.z-actor.transform.position.z) +
+                                    new Vector3(0, collider.size.y * 0.5f, 0);
                     Gizmos.DrawWireCube(boxCenter, new Vector3(collider.size.x, collider.size.y, collider.size.z));
+                    
                     break;
 
                 //case Shape.ShapeType.Circle:
@@ -140,16 +152,14 @@ public class HurtClip : CutsceneClip<Transform>, IDirectable
     {
         public enum ShapeType
         {
-            Box//, Circle
+            Box //, Circle
         }
 
-        [LabelText("碰撞盒类型")]
-        public ShapeType Type;
-
-        [LabelText("尺寸/角度,半径,高度")]
-        public Vector3 size = new Vector3();
-
-        [LabelText("偏移")]
-        public Vector3 offset = new Vector3();
+        
+        [LabelText("碰撞盒类型")] public ShapeType Type;
+        
+        [LabelText("偏移")] public Vector3 offset = new Vector3();
+        
+        [LabelText("尺寸/角度,半径,高度")] public Vector3 size = new Vector3();
     }
 }
