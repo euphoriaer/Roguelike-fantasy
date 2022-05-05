@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9acdf334-efb4-4055-bb2b-b23e2e60c3bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Physics/UnityPhysic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Physics/UnityPhysic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Slate/Player/@Attack (1).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Slate/Player/@Attack (1).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/HurtClip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/HurtClip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Physics/TestPhysics.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Physics/TestPhysics.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +76,7 @@
       <workItem from="1651575090851" duration="104000" />
       <workItem from="1651652071032" duration="12824000" />
       <workItem from="1651676543327" duration="1167000" />
+      <workItem from="1651761202209" duration="3003000" />
     </task>
     <servers />
   </component>
