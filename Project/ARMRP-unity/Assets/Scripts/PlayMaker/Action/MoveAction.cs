@@ -17,6 +17,9 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void Exit()
         {
+            //var go = Fsm.GetOwnerDefaultTarget(GameObject);
+            //go.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+           
             base.Exit();
         }
 
@@ -32,13 +35,13 @@ namespace Assets.Scripts.PlayMaker.Action
 
             //go.transform.Translate(Direction.Value * Speed.Value, Space);
             go.transform.position = go.transform.position + Direction.Value * Speed.Value * Time.deltaTime;//相对
-            
+            //go.transform.GetComponent<Rigidbody>().velocity = Direction.Value * Speed.Value;
             //1.适合entity机制 √√√
             //2.通过role对象传递pos √√
             //3.通过事件委托 广播pos √
             //go.transform.GetComponent<Property>().m_Position = go.transform.position;
             //EventManager.NewMessage(new EventMessage { RolePosition = go.transform.position });
-        
+
         }
     }
 }

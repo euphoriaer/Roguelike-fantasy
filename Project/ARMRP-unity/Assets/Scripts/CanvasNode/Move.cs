@@ -32,7 +32,8 @@ namespace NodeCanvas.BehaviourTrees
 
         protected override void OnStop()
         {
-            base.OnStop();
+			
+			base.OnStop();
         }
 
         protected override void OnUpdate()
@@ -45,7 +46,7 @@ namespace NodeCanvas.BehaviourTrees
 			{
 				EndAction(ArriveTarget == CompactStatus.Success ? true : false);
 			}
-
+			
 			MoveObj.value.transform.position = MoveObj.value.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
 
 		}

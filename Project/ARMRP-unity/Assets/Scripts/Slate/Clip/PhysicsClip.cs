@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Battle;
+using Sirenix.OdinInspector;
 using Slate;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,12 @@ using UnityPhysics;
 [Attachable(typeof(HurtTrack))]
 public class PhysicsClip : CutsceneClip<Transform>, IDirectable
 {
-    [LabelText("伤害")] public int hurt;
+
+    public bool IsNormalAttack=false;
+
+    [Sirenix.OdinInspector.HideIf("IsNormalAttack")]
+    [LabelText("伤害")] 
+    public int hurt;
 
     [FormerlySerializedAs("colliders")]
     [LabelText("碰撞框")]
@@ -50,7 +56,18 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
         }
 
         //需要设置碰撞事件
-        _triggerAction = (Collider collider) => { Debug.Log("碰撞到了" + collider.gameObject.name); };
+        _triggerAction = (Collider collider) => 
+        {
+            if (IsNormalAttack)
+            {
+                collider?.GetComponent<Property>()?.Injured(actor, collider.GetComponent<Property>().Attack);
+            }
+            else
+            {
+                collider?.GetComponent<Property>()?.Injured(actor, hurt);
+            }
+            
+        };
 
         _unityPhysic.TriggerEnterAction += _triggerAction;
     }

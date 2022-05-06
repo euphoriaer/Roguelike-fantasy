@@ -737,7 +737,6 @@ GameObject:
   - component: {fileID: 2905758618095102729}
   - component: {fileID: 6717427392222021316}
   - component: {fileID: 73703645782746918}
-  - component: {fileID: 2960780538280052540}
   m_Layer: 0
   m_Name: "\u4F24\u5BB3\u8F68\u9053"
   m_TagString: Untagged
@@ -778,7 +777,6 @@ MonoBehaviour:
   _isLocked: 0
   _actionClips:
   - {fileID: 73703645782746918}
-  - {fileID: 2960780538280052540}
   _customHeight: 300
 --- !u!114 &73703645782746918
 MonoBehaviour:
@@ -796,6 +794,7 @@ MonoBehaviour:
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
+  IsNormalAttack: 1
   hurt: 0
   Shapes:
   - Type: 0
@@ -803,26 +802,3 @@ MonoBehaviour:
     size: {x: 1, y: 1, z: 1}
   IsFollow: 1
   _length: 0.26666665
---- !u!114 &2960780538280052540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8227707995359640447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09fa5d80b9d4a1fbab82b515366f91f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startTime: 1.2166667
-  _animationData:
-    _animatedParameters: []
-  CutsceneClipName: 
-  hurt: 0
-  Shapes:
-  - Type: 0
-    offset: {x: 0, y: 0, z: 0}
-    size: {x: 3, y: 3, z: 3}
-  IsFollow: 0
-  _length: 0.5666667
