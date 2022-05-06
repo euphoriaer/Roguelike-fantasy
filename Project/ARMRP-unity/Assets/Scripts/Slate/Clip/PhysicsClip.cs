@@ -48,11 +48,12 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
             return;
         }
 
+       
         _unityPhysic = new UnityPhysic(true, Shapes.ToArray(), actor.transform.position);
-
+        _unityPhysic.PhysicObj.transform.SetParent(actor.transform, true);
         if (IsFollow)
         {
-            _unityPhysic.PhysicObj.transform.parent = actor.transform;
+            _unityPhysic.PhysicObj.transform.ResetLocalCoords(false);
         }
 
         //需要设置碰撞事件
