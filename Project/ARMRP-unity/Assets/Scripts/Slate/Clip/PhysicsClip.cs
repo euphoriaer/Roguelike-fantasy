@@ -16,7 +16,7 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
 
     [Sirenix.OdinInspector.HideIf("IsNormalAttack")]
     [LabelText("伤害")] 
-    public int hurt;
+    public int hurt=10;
 
     [FormerlySerializedAs("colliders")]
     [LabelText("碰撞框")]

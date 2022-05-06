@@ -33,6 +33,16 @@ namespace Assets.Scripts.PlayMaker.Action
             var go = Fsm.GetOwnerDefaultTarget(GameObject);
             if (go == null) return;
 
+            //error 考虑所有系统只设定数据，类似与ECS
+            //数据全部由Gameobject 中的脚本执行，Gameobject=Entity,
+            //Component 视为 compDef 视为其上的数据为视为Entity 的数据
+            //
+            //,System 有三个选择
+            //1.Gameobject 中是所有System在一个脚本进行 排序，在一个脚本获取当前所有Component数据,进行处理，System会成为方法，排序即方法的调用顺序
+            //2.在每个Component,自行处理，System 是一个脚本，Component 当前类型 与对应的System 绑定，
+            //system 排序通过 Project->Scripts Execute Order，或者与添加顺序相反的顺序执行，先添加的后执行
+            //3.折中，Component 还是写各种System,只是更新与排序放到一个脚本进行
+
             //go.transform.Translate(Direction.Value * Speed.Value, Space);
             go.transform.position = go.transform.position + Direction.Value * Speed.Value * Time.deltaTime;//相对
             //go.transform.GetComponent<Rigidbody>().velocity = Direction.Value * Speed.Value;
@@ -43,5 +53,8 @@ namespace Assets.Scripts.PlayMaker.Action
             //EventManager.NewMessage(new EventMessage { RolePosition = go.transform.position });
 
         }
+
+
+      
     }
 }

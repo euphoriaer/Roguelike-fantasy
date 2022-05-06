@@ -50,5 +50,7 @@ namespace NodeCanvas.BehaviourTrees
 			MoveObj.value.transform.position = MoveObj.value.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
 
 		}
+		
+		
 	}
 }

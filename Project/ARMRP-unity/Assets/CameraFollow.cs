@@ -23,6 +23,11 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        
+    }
+    private void LateUpdate()
+    {
+        //使用LateUpdate 方式碰撞时相机抖动
         if (FollowTarget == null)
         {
             return;
@@ -69,5 +74,9 @@ public class CameraFollow : MonoBehaviour
         }
 
         this.transform.position = new Vector3(xTransform, this.transform.position.y, zTransform);
+    }
+    private void FixedUpdate()
+    {
+        
     }
 }

@@ -230,8 +230,8 @@ MonoBehaviour:
   - {fileID: 860781093343596924}
   - {fileID: 860781093597905491}
   _length: 2.266667
-  _viewTimeMin: -0.47004148
-  _viewTimeMax: 3.9877965
+  _viewTimeMin: 0
+  _viewTimeMax: 4.457838
 --- !u!1 &860781094684500747
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,10 +795,10 @@ MonoBehaviour:
     _animatedParameters: []
   CutsceneClipName: 
   IsNormalAttack: 1
-  hurt: 0
+  hurt: 5
   Shapes:
   - Type: 0
-    offset: {x: -1, y: 0.02, z: 0.22}
+    offset: {x: 0, y: 0.45, z: 1}
     size: {x: 1, y: 1, z: 1}
   IsFollow: 1
   _length: 0.26666665
