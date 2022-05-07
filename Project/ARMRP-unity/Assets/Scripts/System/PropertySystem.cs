@@ -2,32 +2,40 @@
 
 namespace Battle
 {
+    [UnityEngine.DisallowMultipleComponent]
+    [UnityEngine.DefaultExecutionOrder(SystemOrder.PhysicsSystem)]
+    [UnityEngine.AddComponentMenu("System/PropertySystem")]
     public class PropertySystem : MonoBehaviour
     {
-        public static int PlayerLayer = 6;
-        public static int EnemyLayer = 8;
-
-        public string Name;
-
-        public int Blood;
-        public int MaxBlood;
-
-        public int Blue;
-        public int MaxBlue;
+       
 
         public int Attack;
 
-        public AnimationClip LastPlayClip;
+        public int Blood;
+
+        public int Blue;
 
         public float curPlayClipOffset;
 
-        
+        public AnimationClip LastPlayClip;
 
+        public int MaxBlood;
+
+        public int MaxBlue;
+
+        public string Name;
+
+        private void OnValidate()
+        {
+            //移动脚本到末尾
+            while (UnityEditorInternal.ComponentUtility.MoveComponentDown(this))
+            {
+
+            }
+
+        }
         //public void OnCollisionEnter(Collision collision)
         //{
-
         //}
-
-       
     }
 }

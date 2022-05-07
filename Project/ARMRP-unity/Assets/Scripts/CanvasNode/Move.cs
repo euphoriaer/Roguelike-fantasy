@@ -2,6 +2,7 @@
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using ParadoxNotion;
+using Battle;
 
 namespace NodeCanvas.BehaviourTrees
 {
