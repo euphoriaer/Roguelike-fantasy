@@ -61,11 +61,11 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
         {
             if (IsNormalAttack)
             {
-                collider?.GetComponent<Property>()?.Injured(actor, collider.GetComponent<Property>().Attack);
+                collider?.GetComponent<BehitSystem>()?.Injured(actor, collider.GetComponent<PropertySystem>().Attack);
             }
             else
             {
-                collider?.GetComponent<Property>()?.Injured(actor, hurt);
+                collider?.GetComponent<BehitSystem>()?.Injured(actor, hurt);
             }
             
         };

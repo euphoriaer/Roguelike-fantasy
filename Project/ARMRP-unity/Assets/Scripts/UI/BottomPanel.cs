@@ -11,14 +11,14 @@ namespace UI
         private Slider BlueSlider;
 
         private GameObject player;
-        private Property property;
+        private PropertySystem property;
 
         public void Start()
         {
             BloodSlider = this.transform.Find("BloodSlider").GetComponent<Slider>();
             BlueSlider = this.transform.Find("BlueSlider").GetComponent<Slider>();
             player = GameObject.Find("Player");
-            property = player.GetComponent<Property>();
+            property = player.GetComponent<PropertySystem>();
         }
 
         private void Update()

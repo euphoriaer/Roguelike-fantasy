@@ -47,8 +47,8 @@ namespace NodeCanvas.Tasks.Actions
             CutscenePlayer = this.agent.gameObject;
             cutscene.OnStop -= _cutscene_OnStop;
             cutscene.Stop();
-            CutscenePlayer.GetComponent<Battle.Property>().curPlayClipOffset = cutscene.currentTime;
-            CutscenePlayer.GetComponent<Battle.Property>().LastPlayClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
+            CutscenePlayer.GetComponent<Battle.PropertySystem>().curPlayClipOffset = cutscene.currentTime;
+            CutscenePlayer.GetComponent<Battle.PropertySystem>().LastPlayClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
             base.OnStop();
         }
 
@@ -59,7 +59,7 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnExecute()
         {
-            var LastClip = CutscenePlayer.GetComponent<Battle.Property>().LastPlayClip;
+            var LastClip = CutscenePlayer.GetComponent<Battle.PropertySystem>().LastPlayClip;
             if (Cutscene != null)
             {
                 time = 0;
@@ -77,7 +77,7 @@ namespace NodeCanvas.Tasks.Actions
                     // 创建该图和混合器，然后将它们绑定到 Animator
                     CurClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
 
-                    offsetTime = CutscenePlayer.GetComponent<Battle.Property>().curPlayClipOffset;
+                    offsetTime = CutscenePlayer.GetComponent<Battle.PropertySystem>().curPlayClipOffset;
 
                     var Animator = CutscenePlayer.GetComponent<Animator>();
 
