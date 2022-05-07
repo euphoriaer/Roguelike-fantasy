@@ -21,7 +21,7 @@ namespace Battle
 
         public float curPlayClipOffset;
 
-       
+        
 
         //public void OnCollisionEnter(Collision collision)
         //{

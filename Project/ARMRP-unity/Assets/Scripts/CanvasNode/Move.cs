@@ -46,9 +46,10 @@ namespace NodeCanvas.BehaviourTrees
 			{
 				EndAction(ArriveTarget == CompactStatus.Success ? true : false);
 			}
-			
-			MoveObj.value.transform.position = MoveObj.value.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
 
+			//MoveObj.value.transform.position = MoveObj.value.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
+			MoveObj.value.GetComponent<MoveSystem>().Speed = Speed.value;
+			MoveObj.value.GetComponent<MoveSystem>().Direction = direction;
 		}
 		
 		

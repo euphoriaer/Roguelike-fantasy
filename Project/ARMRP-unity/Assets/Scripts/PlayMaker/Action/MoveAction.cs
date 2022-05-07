@@ -44,7 +44,10 @@ namespace Assets.Scripts.PlayMaker.Action
             //3.折中，Component 还是写各种System,只是更新与排序放到一个脚本进行
 
             //go.transform.Translate(Direction.Value * Speed.Value, Space);
-            go.transform.position = go.transform.position + Direction.Value * Speed.Value * Time.deltaTime;//相对
+            //go.transform.position = go.transform.position + Direction.Value * Speed.Value * Time.deltaTime;//相对
+            //
+            go.GetComponent<MoveSystem>().Speed = Speed.Value;
+            go.GetComponent<MoveSystem>().Direction = Direction.Value;
             //go.transform.GetComponent<Rigidbody>().velocity = Direction.Value * Speed.Value;
             //1.适合entity机制 √√√
             //2.通过role对象传递pos √√

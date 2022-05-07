@@ -1,6 +1,9 @@
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Slate;
+using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEngine;
 
 [LabelWidth(100)]
 public class ToolsSettings : GlobalConfig<ToolsSettings>
@@ -28,4 +31,16 @@ public class ToolsSettings : GlobalConfig<ToolsSettings>
     [BoxGroup("Fbx")]
     [LabelText("FBXPath")]
     public string FBXfolder;
+
+    //[Space(50)] todo 如有必要
+    //[OnValueChanged("MonoBehaviourExecuteChange")]
+    //[LabelText("脚本执行顺序")]
+    //public List<Component> MonoBehaviourExecute;
+
+    //private void MonoBehaviourExecuteChange()
+    //{
+    //    Debug.Log("脚本执行顺序修改");
+    //    //UnityEditor.
+    //}
+
 }
