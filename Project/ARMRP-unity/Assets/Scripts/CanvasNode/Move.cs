@@ -33,7 +33,7 @@ namespace NodeCanvas.BehaviourTrees
 
         protected override void OnStop()
         {
-			
+			MoveObj.value.GetComponent<MoveSystem>().Speed = 0;
 			base.OnStop();
         }
 

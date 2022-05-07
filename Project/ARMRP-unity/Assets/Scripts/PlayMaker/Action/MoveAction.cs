@@ -18,9 +18,9 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void Exit()
         {
-            //var go = Fsm.GetOwnerDefaultTarget(GameObject);
+            var go = Fsm.GetOwnerDefaultTarget(GameObject);
             //go.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-           
+            go.GetComponent<MoveSystem>().Speed = 0;
             base.Exit();
         }
 
