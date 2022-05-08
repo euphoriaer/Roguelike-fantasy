@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using Battle;
+using UnityEngine;
 
-namespace UI
+namespace Battle.UI
 {
-    public abstract class UIPanel : MonoBehaviour
+
+    public abstract class UIPanel : UISystem
     {
+        //UI 内部不需要时序，只要保证UISystem的顺序即可
+
         public abstract string Name { get; }
 
         public abstract UIPanel ShowPanel();
@@ -11,9 +15,5 @@ namespace UI
         public abstract void HidePanel();
 
         public abstract void DestoryPanel();
-
-        internal abstract void UpdatePanel();
-
-        internal abstract void StarPanel();
     }
 }

@@ -1,10 +1,9 @@
-﻿using Battle;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Battle.UI
 {
-    public class BottomPanel : UIPanel
+    internal class BottomPanel : UIPanel
     {
         private Slider BloodSlider;
         private Slider BlueSlider;
@@ -20,22 +19,15 @@ namespace UI
             }
         }
 
-        public override void DestoryPanel()
+        public void Update()
         {
+            BloodSlider.maxValue = property.MaxBlood;
+            BloodSlider.value = property.Blood;
+            BlueSlider.maxValue = property.MaxBlue;
+            BlueSlider.value = property.Blue;
         }
 
-        public override void HidePanel()
-        {
-            
-        }
-
-        public override UIPanel ShowPanel()
-        {
-            //todo ，路径加载,需要资源管理，人/物/ui/场景/地图
-            return null;
-        }
-
-        internal override void StarPanel()
+        public void Start()
         {
             BloodSlider = this.transform.Find("BloodSlider").GetComponent<Slider>();
             BlueSlider = this.transform.Find("BlueSlider").GetComponent<Slider>();
@@ -43,12 +35,18 @@ namespace UI
             property = player.GetComponent<PropertySystem>();
         }
 
-        internal override void UpdatePanel()
+        public override void DestoryPanel()
         {
-            BloodSlider.maxValue = property.MaxBlood;
-            BloodSlider.value = property.Blood;
-            BlueSlider.maxValue = property.MaxBlue;
-            BlueSlider.value = property.Blue;
+        }
+
+        public override void HidePanel()
+        {
+        }
+
+        public override UIPanel ShowPanel()
+        {
+            //todo ，路径加载,需要资源管理，人/物/ui/场景/地图
+            return null;
         }
     }
 }

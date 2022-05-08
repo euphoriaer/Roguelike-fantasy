@@ -1,18 +1,20 @@
-﻿using System;
+﻿using Battle;
+using Battle.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UI;
+//using UI;
 
-namespace Resource
+namespace Battle.Resource
 {
     public class ResourceUI
     {
         public static UIPanel LoadPanel(string name)
         {
             //
-           return ResourceManager.Load<UIPanel>(name);
+            return ResourceManager.Load<UIPanel>(name);
         }
     }
 }

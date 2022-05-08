@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Resource
+namespace Battle.Resource
 {
     public class ResourceManager
     {

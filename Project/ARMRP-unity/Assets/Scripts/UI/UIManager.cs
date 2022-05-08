@@ -1,12 +1,42 @@
-﻿using System;
+﻿using Battle.Resource;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace UI
+namespace Battle.UI
 {
-    internal class UIManager
+    public class UIManager //error 需要单例支持各类Manager
     {
+        private Dictionary<string, UIPanel> uiPanelDic = new Dictionary<string, UIPanel>();
+
+        public UIPanel CreatePanel(string panelName)
+        {
+            //先找缓存  面板是否隐藏，没有面板再创建
+            if (uiPanelDic.ContainsKey(panelName))
+            {
+                return uiPanelDic[panelName];
+            }
+
+            //todo 通过资源管理器加载Panel,同时 Star 然后添加到Update 中
+            UIPanel panel = ResourceUI.LoadPanel(panelName);
+            //资源加载是更底层的东西，根据分层理念，外接调用panel panel 再处理加载
+
+            uiPanelDic.Add(panelName, panel);
+            return panel;
+        }
+
+        public T CreatePanel<T>(string panelName) where T : UIPanel
+        {
+            //先找缓存 面板是否隐藏，没有面板再创建
+            if (uiPanelDic.ContainsKey(panelName))
+            {
+                return (T)uiPanelDic[panelName];
+            }
+
+            //todo 通过资源管理器加载Panel,同时 Star 然后添加到Update 中
+            UIPanel panel = ResourceUI.LoadPanel(panelName);
+            //资源加载是更底层的东西，根据分层理念，外接调用panel panel 再处理加载
+
+            uiPanelDic.Add(panelName, panel);
+            return (T)panel;
+        }
     }
 }
