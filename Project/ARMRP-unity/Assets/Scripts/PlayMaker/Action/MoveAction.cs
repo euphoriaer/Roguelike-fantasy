@@ -55,10 +55,6 @@ namespace Assets.Scripts.PlayMaker.Action
             //3.通过事件委托 广播pos √
             //go.transform.GetComponent<Property>().m_Position = go.transform.position;
             //EventManager.NewMessage(new EventMessage { RolePosition = go.transform.position });
-
         }
-
-
-      
     }
 }

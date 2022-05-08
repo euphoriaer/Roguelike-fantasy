@@ -5,10 +5,8 @@ namespace Battle
     [UnityEngine.DisallowMultipleComponent]
     [UnityEngine.DefaultExecutionOrder(SystemOrder.PhysicsSystem)]
     [UnityEngine.AddComponentMenu("System/PropertySystem")]
-    public class PropertySystem : MonoBehaviour
+    internal class PropertySystem : SystemMonoBehaviour
     {
-       
-
         public int Attack;
 
         public int Blood;
@@ -25,15 +23,6 @@ namespace Battle
 
         public string Name;
 
-        private void OnValidate()
-        {
-            //移动脚本到末尾
-            while (UnityEditorInternal.ComponentUtility.MoveComponentDown(this))
-            {
-
-            }
-
-        }
         //public void OnCollisionEnter(Collision collision)
         //{
         //}

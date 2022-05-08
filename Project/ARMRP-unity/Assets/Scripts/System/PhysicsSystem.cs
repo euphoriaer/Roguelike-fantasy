@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 namespace Battle
 {
     [UnityEngine.DisallowMultipleComponent]
     [UnityEngine.DefaultExecutionOrder(SystemOrder.PhysicsSystem)]
     [UnityEngine.AddComponentMenu("System/PhysicsSystem")]
-    public class PhysicsSystem : MonoBehaviour
+    internal class PhysicsSystem : SystemMonoBehaviour
     {
         public void OnCollisionExit(Collision collision)
         {
@@ -23,25 +22,14 @@ namespace Battle
             };
         }
 
-        private void OnValidate()
-        {
-            //ÒÆ¶¯½Å±¾µ½Ä©Î²
-            while (UnityEditorInternal.ComponentUtility.MoveComponentDown(this))
-            {
-
-            }
-
-        }
-
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-
         }
-        // Update is called once per frame
-        void Update()
-        {
 
+        // Update is called once per frame
+        private void Update()
+        {
         }
     }
 }

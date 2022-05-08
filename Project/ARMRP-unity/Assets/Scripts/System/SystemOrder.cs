@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Battle
+﻿namespace Battle
 {
     public static class SystemOrder
     {
@@ -12,6 +6,6 @@ namespace Battle
         public const int PhysicsSystem = 600;
         public const int MoveSystem = 601;
         public const int BehitSystem = 602;
-
+        public const int UiSystem = 603;
     }
 }

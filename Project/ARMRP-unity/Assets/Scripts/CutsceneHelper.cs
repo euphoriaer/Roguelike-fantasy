@@ -142,7 +142,6 @@ public static class CutsceneHelper
 
             _cutscene.transform.SetParent(RoleActionCutscene.transform, false);
 
-            
             if (_cutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
             {
                 isLoop = true;
@@ -165,7 +164,7 @@ public static class CutsceneHelper
         for (int i = 1; i < slate.groups.Count; i++)
         {
             var cutsceneGroup = slate.groups[i];
-            cutsceneGroup.actor = player[i-1];
+            cutsceneGroup.actor = player[i - 1];
         }
         return slate;
     }

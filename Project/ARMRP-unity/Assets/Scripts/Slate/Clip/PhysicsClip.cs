@@ -11,12 +11,11 @@ using UnityPhysics;
 [Attachable(typeof(HurtTrack))]
 public class PhysicsClip : CutsceneClip<Transform>, IDirectable
 {
-
-    public bool IsNormalAttack=false;
+    public bool IsNormalAttack = false;
 
     [Sirenix.OdinInspector.HideIf("IsNormalAttack")]
-    [LabelText("伤害")] 
-    public int hurt=10;
+    [LabelText("伤害")]
+    public int hurt = 10;
 
     [FormerlySerializedAs("colliders")]
     [LabelText("碰撞框")]
@@ -48,7 +47,6 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
             return;
         }
 
-       
         _unityPhysic = new UnityPhysic(true, Shapes.ToArray(), actor.transform.position);
         _unityPhysic.PhysicObj.transform.SetParent(actor.transform, true);
         if (IsFollow)
@@ -57,7 +55,7 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
         }
 
         //需要设置碰撞事件
-        _triggerAction = (Collider collider) => 
+        _triggerAction = (Collider collider) =>
         {
             if (IsNormalAttack)
             {
@@ -67,7 +65,6 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
             {
                 collider?.GetComponent<BehitSystem>()?.Injured(actor, hurt);
             }
-            
         };
 
         _unityPhysic.TriggerEnterAction += _triggerAction;

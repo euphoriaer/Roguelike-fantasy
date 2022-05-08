@@ -6,7 +6,7 @@ namespace Battle
     [UnityEngine.DisallowMultipleComponent]
     [UnityEngine.DefaultExecutionOrder(SystemOrder.MoveSystem)]
     [UnityEngine.AddComponentMenu("System/MoveSystem")]
-    public class MoveSystem : MonoBehaviour
+    internal class MoveSystem : SystemMonoBehaviour
     {
         public Vector3 Direction;
 
@@ -18,13 +18,6 @@ namespace Battle
             //避免持续碰撞时  相机抖动
         }
 
-        private void OnValidate()
-        {
-            //移动脚本到末尾
-            while (UnityEditorInternal.ComponentUtility.MoveComponentDown(this))
-            {
-            }
-        }
         // Start is called before the first frame update
         private void Start()
         {

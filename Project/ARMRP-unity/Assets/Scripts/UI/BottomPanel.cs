@@ -1,11 +1,10 @@
-﻿using System;
-using Battle;
+﻿using Battle;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class BottomPanel : MonoBehaviour
+    public class BottomPanel : UIPanel
     {
         private Slider BloodSlider;
         private Slider BlueSlider;
@@ -13,7 +12,29 @@ namespace UI
         private GameObject player;
         private PropertySystem property;
 
-        public void Start()
+        public override string Name
+        {
+            get
+            {
+                return "BottomPanel";
+            }
+        }
+
+        public override void DestoryPanel()
+        {
+        }
+
+        public override void HidePanel()
+        {
+        }
+
+        public override UIPanel ShowPanel()
+        {
+            //todo ，路径加载,需要资源管理，人/物/ui/场景/地图
+            return null;
+        }
+
+        internal override void StarPanel()
         {
             BloodSlider = this.transform.Find("BloodSlider").GetComponent<Slider>();
             BlueSlider = this.transform.Find("BlueSlider").GetComponent<Slider>();
@@ -21,7 +42,7 @@ namespace UI
             property = player.GetComponent<PropertySystem>();
         }
 
-        private void Update()
+        internal override void UpdatePanel()
         {
             BloodSlider.maxValue = property.MaxBlood;
             BloodSlider.value = property.Blood;
