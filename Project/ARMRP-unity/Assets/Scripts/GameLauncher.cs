@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Battle;
+using UI;
+using UnityEngine;
 
 public class GameLauncher : MonoBehaviour
 {
@@ -8,4 +10,9 @@ public class GameLauncher : MonoBehaviour
     //加载UI
 
     //场景加载/卸载
+    public void Start()
+    {
+        UISystem uISystem = new UISystem();
+        uISystem.CreatePanel<BottomPanel>("");
+    }
 }

@@ -26,6 +26,7 @@ namespace UI
 
         public override void HidePanel()
         {
+            
         }
 
         public override UIPanel ShowPanel()
