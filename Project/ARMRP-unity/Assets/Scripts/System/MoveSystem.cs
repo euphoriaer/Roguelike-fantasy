@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Battle
@@ -10,11 +11,15 @@ namespace Battle
     {
         public Vector3 Direction;
 
-        public float Speed;
+        [LabelText("常规移动速度")]
+        public float MaxSpeed = 10;
+
+        [LabelText("当前移动速度")]
+        public float CurSpeed=10;
 
         private void FixedUpdate()
         {
-            this.transform.position = this.transform.position + Speed * Direction.normalized * Time.deltaTime;
+            this.transform.position = this.transform.position + CurSpeed * Direction.normalized * Time.deltaTime;
             //避免持续碰撞时  相机抖动
         }
 

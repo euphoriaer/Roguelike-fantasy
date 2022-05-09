@@ -41,8 +41,6 @@ namespace Battle
         [LabelText("气槽回复速度")]
         public float BuleAddSpeed = 10;
 
-        [LabelText("移动速度")]
-        public int MoveSpeed;
 
         [LabelText("攻击速度")]
         public float AttackSpeed;

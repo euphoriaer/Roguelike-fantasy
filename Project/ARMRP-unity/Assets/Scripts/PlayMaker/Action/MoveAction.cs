@@ -10,7 +10,7 @@ namespace Assets.Scripts.PlayMaker.Action
     {
         public FsmVector3 Direction;
 
-        public FsmFloat Speed;
+        //public FsmFloat Speed;
 
         public Space Space;
 
@@ -20,7 +20,7 @@ namespace Assets.Scripts.PlayMaker.Action
         {
             var go = Fsm.GetOwnerDefaultTarget(GameObject);
             //go.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            go.GetComponent<MoveSystem>().Speed = 0;
+            go.GetComponent<MoveSystem>().Direction = Vector3.zero;
             base.Exit();
         }
 
@@ -47,7 +47,7 @@ namespace Assets.Scripts.PlayMaker.Action
             //go.transform.Translate(Direction.Value * Speed.Value, Space);
             //go.transform.position = go.transform.position + Direction.Value * Speed.Value * Time.deltaTime;//相对
             //
-            go.GetComponent<MoveSystem>().Speed = Speed.Value;
+            //go.GetComponent<MoveSystem>().Speed = Speed.Value;
             go.GetComponent<MoveSystem>().Direction = Direction.Value;
             //go.transform.GetComponent<Rigidbody>().velocity = Direction.Value * Speed.Value;
             //1.适合entity机制 √√√
