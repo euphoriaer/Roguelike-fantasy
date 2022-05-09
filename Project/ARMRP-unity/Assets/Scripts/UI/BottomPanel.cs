@@ -35,10 +35,6 @@ namespace Battle.UI
             property = player.GetComponent<PropertySystem>();
         }
 
-        public override void DestoryPanel()
-        {
-        }
-
         public override void HidePanel()
         {
         }

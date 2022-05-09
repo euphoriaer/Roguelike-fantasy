@@ -8,12 +8,20 @@ namespace Battle.UI
     {
         //UI 内部不需要时序，只要保证UISystem的顺序即可
 
-        public abstract string Name { get; }
+        public virtual string Name { get; }
 
         public abstract UIPanel ShowPanel();
 
-        public abstract void HidePanel();
 
-        public abstract void DestoryPanel();
+        public abstract void HidePanel();
+      
+
+        public virtual void DestoryPanel()
+        {
+            GameObject.Destroy(this.gameObject);
+            //error 需要测试是否需要先Destory //Destory 与 Resource.Unload 的关系？
+
+            UIManager.Instate.DestoryPanel(this);
+        }
     }
 }

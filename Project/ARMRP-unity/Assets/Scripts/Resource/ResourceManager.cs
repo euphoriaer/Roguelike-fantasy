@@ -2,7 +2,7 @@
 
 namespace Battle.Resource
 {
-    public class ResourceManager
+    public class ResourceManager: BaseManager<ResourceManager>
     {
         //资源加载、卸载中枢，可替换加载方式，
 
@@ -21,17 +21,17 @@ namespace Battle.Resource
             Resource
         }
 
-        internal static T Load<T>(string path) where T : Object
+        internal  T Load<T>(string path) where T : Object
         {
            return Resources.Load<T>(path);
         }
 
-        internal static ResourceRequest LoadAsync<T>(string path) where T : Object
+        internal  ResourceRequest LoadAsync<T>(string path) where T : Object
         {
             return Resources.LoadAsync<T>(path);
         }
 
-        internal static void Unload(Object asset)
+        internal  void Unload(Object asset)
         {
             Resources.UnloadAsset(asset);
         }

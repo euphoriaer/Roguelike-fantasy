@@ -9,12 +9,18 @@ using System.Threading.Tasks;
 
 namespace Battle.Resource
 {
-    public class ResourceUI
+    public class ResourceUI: BaseManager<ResourceUI>
     {
-        public static UIPanel LoadPanel(string name)
+        public  UIPanel LoadPanel(string name)
         {
             //
-            return ResourceManager.Load<UIPanel>(name);
+            return ResourceManager.Instate.Load<UIPanel>(name);
         }
+
+        public void Unload(UnityEngine.Object uiPanel)
+        {
+            ResourceManager.Instate.Unload(uiPanel);
+        }
+        
     }
 }

@@ -1,9 +1,10 @@
 ﻿using Battle.Resource;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Battle.UI
 {
-    public class UIManager //error 需要单例支持各类Manager
+    public class UIManager:BaseManager<UIManager>
     {
         private Dictionary<string, UIPanel> uiPanelDic = new Dictionary<string, UIPanel>();
 
@@ -15,8 +16,7 @@ namespace Battle.UI
                 return uiPanelDic[panelName];
             }
 
-            //todo 通过资源管理器加载Panel,同时 Star 然后添加到Update 中
-            UIPanel panel = ResourceUI.LoadPanel(panelName);
+            UIPanel panel = ResourceUI.Instate.LoadPanel(panelName);
             //资源加载是更底层的东西，根据分层理念，外接调用panel panel 再处理加载
 
             uiPanelDic.Add(panelName, panel);
@@ -32,11 +32,25 @@ namespace Battle.UI
             }
 
             //todo 通过资源管理器加载Panel,同时 Star 然后添加到Update 中
-            UIPanel panel = ResourceUI.LoadPanel(panelName);
+            UIPanel panel = ResourceUI.Instate.LoadPanel(panelName);
             //资源加载是更底层的东西，根据分层理念，外接调用panel panel 再处理加载
 
             uiPanelDic.Add(panelName, panel);
             return (T)panel;
         }
+
+        public void DestoryPanel(string panelName)
+        {
+            GameObject.Destroy(uiPanelDic[panelName]);
+            ResourceUI.Instate.Unload(uiPanelDic[panelName]);
+        }
+
+        public void DestoryPanel(UIPanel panel)
+        {
+            GameObject.Destroy(panel);
+            ResourceUI.Instate.Unload(panel);
+        }
+
+
     }
 }
