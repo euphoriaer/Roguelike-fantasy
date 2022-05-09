@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Battle.UI
 {
-    public class UIManager:BaseManager<UIManager>
+    public class UIManager : BaseManager<UIManager>
     {
         private Dictionary<string, UIPanel> uiPanelDic = new Dictionary<string, UIPanel>();
 
@@ -39,6 +39,11 @@ namespace Battle.UI
             return (T)panel;
         }
 
+        public GameObject CreateGizmos(string gizmosName)
+        {
+            return ResourceUI.Instate.LoadGizmo(gizmosName);
+        }
+
         public void DestoryPanel(string panelName)
         {
             GameObject.Destroy(uiPanelDic[panelName]);
@@ -50,7 +55,5 @@ namespace Battle.UI
             GameObject.Destroy(panel);
             ResourceUI.Instate.Unload(panel);
         }
-
-
     }
 }

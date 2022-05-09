@@ -16,13 +16,13 @@ namespace Battle
             if (source.layer == PlayerLayer && this.gameObject.layer == EnemyLayer)
             {
                 //玩家打中了敌人  具体是普攻还是技能/特殊 取决于外部计算，此处只计算相对伤害
-                this.gameObject.GetComponent<PropertySystem>().Blood -= hurt;
+                this.gameObject.GetComponent<PropertySystem>().CurBlood -= hurt;
             }
 
             if (source.layer == EnemyLayer && this.gameObject.layer == PlayerLayer)
             {
                 //敌人打中了玩家  具体是普攻还是技能/特殊 取决于外部计算，此处只计算相对伤害
-                this.gameObject.GetComponent<PropertySystem>().Blood -= hurt;
+                this.gameObject.GetComponent<PropertySystem>().CurBlood -= hurt;
             }
         }
 
