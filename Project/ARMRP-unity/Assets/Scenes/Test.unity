@@ -15710,7 +15710,7 @@ MonoBehaviour:
   CurBlueSignNum: 0
   MaxBlueSignNum: 3
   BuleAddSpeed: 10
-  AttackSpeed: 0
+  AttackSpeed: 2
   curPlayClipOffset: 0
   LastPlayClip: {fileID: 0}
 --- !u!114 &1507583164
@@ -15767,7 +15767,7 @@ MonoBehaviour:
         actionEnabled: 01010101
         actionIsOpen: 01000000
         actionStartIndex: 00000000040000000b00000013000000
-        actionHashCodes: b3b5a705b691f7034f9a0803ff77a904
+        actionHashCodes: c926ea04b691f7034f9a0803ff77a904
         unityObjectParams:
         - {fileID: 6445269874376991220, guid: 7b7c3f3d65143264a97453cd90973f15, type: 3}
         fsmGameObjectParams:
@@ -15828,6 +15828,12 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         - useVariable: 1
           name: 
           tooltip: 
@@ -15861,12 +15867,12 @@ MonoBehaviour:
         - Run
         - 
         - Attack
-        byteData: 9a99993e0000803f000000006a000000
+        byteData: 9a99993e000000006a000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000014000000020000000200000012000000120000000f00000007000000130000001c0000000f0000001200000012000000170000001700000017000000170000001700000017000000070000001700000011000000
+        paramDataType: 0500000014000000020000000f00000012000000120000000f00000007000000130000001c0000000f0000001200000012000000170000001700000017000000170000001700000017000000070000001700000011000000
         paramName:
         - Cutscene
         - GameObject
@@ -15890,8 +15896,8 @@ MonoBehaviour:
         - key
         - sendEvent
         - storeResult
-        paramDataPos: 000000000000000000000000040000000000000001000000000000000800000000000000000000000100000002000000030000000000000001000000020000000300000004000000050000000c0000000600000000000000
-        paramByteDataSize: 00000000000000000400000004000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000
+        paramDataPos: 00000000000000000000000000000000000000000100000001000000040000000000000000000000020000000200000003000000000000000100000002000000030000000400000005000000080000000600000000000000
+        paramByteDataSize: 00000000000000000400000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000
     - name: Run
       description: 
       colorIndex: 0
@@ -15931,8 +15937,8 @@ MonoBehaviour:
         - 
         actionEnabled: 010101010101
         actionIsOpen: 010001000000
-        actionStartIndex: 00000000040000000b0000000f000000140000001c000000
-        actionHashCodes: b3b5a705b691f703fd40770016fa31044f9a0803ff77a904
+        actionStartIndex: 00000000040000000b0000000e000000130000001b000000
+        actionHashCodes: c926ea04b691f703eafd0a0116fa31044f9a0803ff77a904
         unityObjectParams:
         - {fileID: 4311730690515314150, guid: fdcae98a6c45198429e1489fa0dbdd98, type: 3}
         fsmGameObjectParams:
@@ -16009,18 +16015,18 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         - useVariable: 1
           name: 
           tooltip: 
           showInInspector: 0
           networkSync: 0
           value: 0
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 8
         fsmIntParams: []
         fsmBoolParams:
         - useVariable: 1
@@ -16066,12 +16072,12 @@ MonoBehaviour:
         - 
         - Idle
         - Attack
-        byteData: 9a99993e0000803f000000000000000001016a000000
+        byteData: 9a99993e000000000000000001016a000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000014000000020000000200000012000000120000000f00000007000000130000001c0000000f0000001c0000000f0000000700000014000000140000001c0000001c00000001000000010000001200000012000000170000001700000017000000170000001700000017000000070000001700000011000000
+        paramDataType: 0500000014000000020000000f00000012000000120000000f00000007000000130000001c0000000f0000001c0000000700000014000000140000001c0000001c00000001000000010000001200000012000000170000001700000017000000170000001700000017000000070000001700000011000000
         paramName:
         - Cutscene
         - GameObject
@@ -16085,7 +16091,6 @@ MonoBehaviour:
         - storeVector
         - storeMagnitude
         - Direction
-        - Speed
         - Space
         - GameObject
         - gameObject
@@ -16104,8 +16109,8 @@ MonoBehaviour:
         - key
         - sendEvent
         - storeResult
-        paramDataPos: 000000000000000000000000040000000000000001000000000000000800000000000000000000000100000001000000020000000c0000000100000002000000020000000300000010000000110000000200000003000000000000000100000002000000030000000400000005000000120000000600000000000000
-        paramByteDataSize: 00000000000000000400000004000000000000000000000000000000040000000000000000000000000000000000000000000000040000000000000000000000000000000000000001000000010000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000
+        paramDataPos: 00000000000000000000000000000000000000000100000001000000040000000000000000000000020000000100000008000000010000000200000002000000030000000c0000000d00000002000000030000000000000001000000020000000300000004000000050000000e0000000600000000000000
+        paramByteDataSize: 000000000000000004000000000000000000000000000000000000000400000000000000000000000000000000000000040000000000000000000000000000000000000001000000010000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000
     - name: Dodge
       description: 
       colorIndex: 0
@@ -16136,7 +16141,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: b3b5a705
+        actionHashCodes: c926ea04
         unityObjectParams:
         - {fileID: 6445269874376991220, guid: 586ed1be40164554ab81da67bdabbe9c, type: 3}
         fsmGameObjectParams: []
@@ -16160,7 +16165,13 @@ MonoBehaviour:
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
-        fsmFloatParams: []
+        fsmFloatParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -16169,19 +16180,19 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 000000000000803f
+        byteData: 00000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 05000000140000000200000002000000
+        paramDataType: 0500000014000000020000000f000000
         paramName:
         - Cutscene
         - GameObject
         - TransTime
         - Speed
-        paramDataPos: 00000000000000000000000004000000
-        paramByteDataSize: 00000000000000000400000004000000
+        paramDataPos: 00000000000000000000000000000000
+        paramByteDataSize: 00000000000000000400000000000000
     - name: Attack
       description: 
       colorIndex: 0
@@ -16206,15 +16217,17 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
+        - Assets.Scripts.PlayMaker.Action.GetPropertyValue
         - Assets.Scripts.PlayMaker.Action.PlayCutsceneRoleAction
         - Assets.Scripts.PlayMaker.Action.PlayCutsceneAction
         customNames:
         - 
         - 
-        actionEnabled: 0100
-        actionIsOpen: 0101
-        actionStartIndex: 0000000004000000
-        actionHashCodes: b3b5a705c2e4fb03
+        - 
+        actionEnabled: 010100
+        actionIsOpen: 010101
+        actionStartIndex: 000000000100000005000000
+        actionHashCodes: d06b6e01c926ea04c2e4fb03
         unityObjectParams:
         - {fileID: 860781094552933617, guid: 8904506e05564fd408665b75998cd65b, type: 3}
         - {fileID: 860781094552933617, guid: 8904506e05564fd408665b75998cd65b, type: 3}
@@ -16247,7 +16260,19 @@ MonoBehaviour:
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams: []
-        fsmFloatParams: []
+        fsmFloatParams:
+        - useVariable: 1
+          name: AttackSpeed
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 1
+          name: AttackSpeed
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -16256,21 +16281,22 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: cdcc4c3e00000040
+        byteData: cdcc4c3e
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000001400000002000000020000000500000014000000
+        paramDataType: 0f0000000500000014000000020000000f0000000500000014000000
         paramName:
+        - StoreAttackSpeed
         - Cutscene
         - GameObject
         - TransTime
         - Speed
         - Cutscene
         - FsmGameObject
-        paramDataPos: 000000000000000000000000040000000100000001000000
-        paramByteDataSize: 000000000000000004000000040000000000000000000000
+        paramDataPos: 00000000000000000000000000000000010000000100000001000000
+        paramByteDataSize: 00000000000000000000000004000000000000000000000000000000
     events:
     - name: Run
       isSystemEvent: 0
@@ -16307,7 +16333,13 @@ MonoBehaviour:
       linkTarget: 0
       colorIndex: 0
     variables:
-      floatVariables: []
+      floatVariables:
+      - useVariable: 1
+        name: AttackSpeed
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: 0
       intVariables: []
       boolVariables: []
       stringVariables: []
@@ -16330,7 +16362,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000
+      variableCategoryIDs: 0000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
