@@ -25,13 +25,40 @@ public class PlayAnimClip : CutsceneClip<Animator>
     private float _usedBlendAnimTime;
 
     [HideInInspector]
-    [SerializeField] private float _length = 1 / 30f;
+    [SerializeField] private float _length = 1f;
 
     private AnimationClip CurClip;
 
     [HideInInspector]
     public bool IsCrossing = false;
 
+    #region  todo 动画内部支持动作融合
+
+    [SerializeField]
+    [HideInInspector]
+    private float _blendIn = 0f;
+    [SerializeField]
+    [HideInInspector]
+    private float _blendOut = 0f;
+
+    public override float blendIn
+    {
+        get { return _blendIn; }
+        set { _blendIn = value; }
+    }
+
+    public override float blendOut
+    {
+        get { return _blendOut; }
+        set { _blendOut = value; }
+    }
+
+    public override bool canCrossBlend
+    {
+        get { return true; }
+    }
+
+    #endregion
     /// <summary>
     /// 默认长度为整个动画的时长
     /// </summary>
@@ -43,6 +70,10 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     private List<string> GetString()
     {
+        if (actor == null)
+        {
+            return null;
+        }
         List<string> ClipsNames = new List<string>();
         ClipsNames.Clear();
         var Animclips = ActorComponent.runtimeAnimatorController.animationClips;
@@ -101,9 +132,57 @@ public class PlayAnimClip : CutsceneClip<Animator>
 
     public override void Refresh()
     {   //设置Length 为对应_animName的长度 与播放速度成比例
+        if (actor == null)
+            return;
         length = ActorComponent.runtimeAnimatorController.animationClips.Where(p => p.name == AnimName).First().length;
         length = length / PlaySpeed;
     }
 
-    //Todo OnGui 红色表示动画长度
+    //OnGui 红色表示动画长度
+
+
+    ///----------------------------------------------------------------------------------------------
+    ///---------------------------------------UNITY EDITOR-------------------------------------------
+#if UNITY_EDITOR
+
+
+    //动画长度提示
+    protected override void OnClipGUI(Rect rect)
+    {
+
+        if (!Loop)
+        {
+            return;
+        }
+        //if (CurClip != null)  //默认颜色较暗淡，使用下方自定义颜色
+        //{
+        //    EditorTools.DrawLoopedLines(rect, CurClip.length / PlaySpeed,this.length,0);
+        //}
+
+        if (CurClip == null)
+            return;
+        //length 
+        float cycleLength = CurClip.length / PlaySpeed; //每帧长度  
+
+        cycleLength = Mathf.Abs(cycleLength);
+
+        if (cycleLength != 0 && length != 0)
+        {
+            //UnityEditor.Handles.color = new Color(84, 255, 159, 0.2f);
+            //Color rectangleColor = new Color(84, 255, 159, 0.2f);
+
+            for (float curFrame = 0; (curFrame < _length); curFrame += cycleLength)//循环绘制
+            {
+                var posX = (curFrame / length) * rect.width;
+                UnityEditor.Handles.DrawLine(new Vector2(posX, 0), new Vector2(posX, rect.height));
+            }
+
+            UnityEditor.Handles.color = Color.red;
+        }
+    }
+
+
+
+#endif
+
 }
