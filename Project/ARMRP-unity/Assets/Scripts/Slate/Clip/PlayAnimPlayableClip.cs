@@ -22,7 +22,7 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
     public bool Loop = false;
 
     [HideInInspector]
-    [SerializeField] private float _length = 1 / 30f;
+    [SerializeField] private float _length = 1f;
 
     private AnimationClipPlayable playableClip;
     private PlayableGraph playableGraph;
