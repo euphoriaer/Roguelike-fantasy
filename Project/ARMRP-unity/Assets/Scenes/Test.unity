@@ -11825,6 +11825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
+  CurSpeed: 20
 --- !u!1 &1007443323
 GameObject:
   m_ObjectHideFlags: 0
@@ -13628,6 +13629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
+  CurSpeed: 20
 --- !u!1 &1262129282
 GameObject:
   m_ObjectHideFlags: 0
@@ -16441,6 +16443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
+  CurSpeed: 20
 --- !u!1 &1508120241
 GameObject:
   m_ObjectHideFlags: 0
@@ -19154,6 +19157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
+  CurSpeed: 20
 --- !u!1 &1788114224
 GameObject:
   m_ObjectHideFlags: 0
@@ -20197,6 +20201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
+  CurSpeed: 20
 --- !u!1 &1929627820
 GameObject:
   m_ObjectHideFlags: 0

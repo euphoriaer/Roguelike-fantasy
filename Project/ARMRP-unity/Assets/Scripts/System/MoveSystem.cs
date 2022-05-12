@@ -11,23 +11,11 @@ namespace Battle
     {
         public Vector3 Direction;
 
-        [ShowInInspector]
+      
         [LabelText("当前移动速度")]
-        private float curSpeed;
+        public float CurSpeed;
 
-        public float CurSpeed
-        {
-            get
-            {
-                
-                return curSpeed;
-            }
-            set
-            {
-                //LerpTime = 0;
-                curSpeed = value;
-            }
-        }
+     
 
         private void FixedUpdate()
         {
