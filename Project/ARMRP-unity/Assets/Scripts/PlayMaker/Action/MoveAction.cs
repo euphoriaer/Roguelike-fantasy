@@ -21,6 +21,7 @@ namespace Assets.Scripts.PlayMaker.Action
             var go = Fsm.GetOwnerDefaultTarget(GameObject);
             //go.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go.GetComponent<MoveSystem>().Direction = Vector3.zero;
+            
             base.Exit();
         }
 
@@ -49,6 +50,7 @@ namespace Assets.Scripts.PlayMaker.Action
             //
             //go.GetComponent<MoveSystem>().Speed = Speed.Value;
             go.GetComponent<MoveSystem>().Direction = Direction.Value;
+            
             //go.transform.GetComponent<Rigidbody>().velocity = Direction.Value * Speed.Value;
             //1.适合entity机制 √√√
             //2.通过role对象传递pos √√

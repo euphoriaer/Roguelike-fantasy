@@ -11825,8 +11825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
-  MaxSpeed: 10
-  CurSpeed: 3
 --- !u!1 &1007443323
 GameObject:
   m_ObjectHideFlags: 0
@@ -13630,8 +13628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
-  MaxSpeed: 10
-  CurSpeed: 3
 --- !u!1 &1262129282
 GameObject:
   m_ObjectHideFlags: 0
@@ -15826,7 +15822,7 @@ MonoBehaviour:
         - Run
         - 
         - Attack
-        byteData: 9a99993e000000006a000000
+        byteData: cdcccc3d000000006a000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -16031,7 +16027,7 @@ MonoBehaviour:
         - 
         - Idle
         - Attack
-        byteData: 9a99993e000000000000000001016a000000
+        byteData: cdcccc3d000000000000000001016a000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -16240,7 +16236,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: cdcc4c3e
+        byteData: cdcccc3d
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -16445,8 +16441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
-  MaxSpeed: 10
-  CurSpeed: 10
 --- !u!1 &1508120241
 GameObject:
   m_ObjectHideFlags: 0
@@ -19160,8 +19154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
-  MaxSpeed: 10
-  CurSpeed: 3
 --- !u!1 &1788114224
 GameObject:
   m_ObjectHideFlags: 0
@@ -20205,8 +20197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0, z: 0}
-  MaxSpeed: 10
-  CurSpeed: 3
 --- !u!1 &1929627820
 GameObject:
   m_ObjectHideFlags: 0

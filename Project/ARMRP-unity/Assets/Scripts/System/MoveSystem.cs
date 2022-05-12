@@ -11,14 +11,29 @@ namespace Battle
     {
         public Vector3 Direction;
 
-        [LabelText("常规移动速度")]
-        public float MaxSpeed = 10;
-
+        [ShowInInspector]
         [LabelText("当前移动速度")]
-        public float CurSpeed=10;
+        private float curSpeed;
+
+        public float CurSpeed
+        {
+            get
+            {
+                
+                return curSpeed;
+            }
+            set
+            {
+                //LerpTime = 0;
+                curSpeed = value;
+            }
+        }
 
         private void FixedUpdate()
         {
+            //todo 速度可以增量平滑，为过渡动画留出时间 learp
+            //CurSpeed = Mathf.Lerp(0, MaxSpeed, LerpTime);
+            //LerpTime += LerpSpeed * GetComponent<PropertySystem>().DeltaTime;
             this.transform.position = this.transform.position + CurSpeed * Direction.normalized * this.transform.GetComponent<PropertySystem>().DeltaTime;
             //避免持续碰撞时  相机抖动
         }

@@ -33,6 +33,8 @@ namespace Assets.Scripts.PlayMaker.Action
             //go.transform.Translate(Direction.Value * Speed.Value, Space);
             //go.transform.position = go.transform.position + dir.normalized * Speed.Value * go.transform.GetComponent<PropertySystem>().Time;//相对
             go.transform.GetComponent<MoveSystem>().Direction = dir;
+            
+
 
             var distance = Vector3.Distance(go.transform.position, target.transform.position);
             if (distance <= arriveDistance.Value)

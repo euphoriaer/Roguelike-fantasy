@@ -29,6 +29,7 @@ namespace NodeCanvas.BehaviourTrees
         {
           
             MoveObj.value.GetComponent<MoveSystem>().Direction = Vector3.zero;
+            
             base.OnStop();
         }
 
@@ -46,6 +47,8 @@ namespace NodeCanvas.BehaviourTrees
             //MoveObj.value.transform.position = MoveObj.value.transform.position + direction.normalized * Speed.value * Time.deltaTime;//相对
             //MoveObj.value.GetComponent<MoveSystem>().CurSpeed = Speed.value;
             MoveObj.value.GetComponent<MoveSystem>().Direction = direction;
+            
+
         }
     }
 }
