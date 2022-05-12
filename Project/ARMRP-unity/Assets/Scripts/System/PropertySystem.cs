@@ -48,8 +48,15 @@ namespace Battle
         public float curPlayClipOffset;
 
         public AnimationClip LastPlayClip;
+
+        public float DeltaTime=0.01f;
         //public void OnCollisionEnter(Collision collision)
         //{
         //}
+        public void LateUpdate()
+        {
+           
+            //DeltaTime=UnityEngine.Time.deltaTime;
+        }
     }
 }

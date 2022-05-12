@@ -1,4 +1,5 @@
-﻿using HutongGames.PlayMaker;
+﻿using Battle;
+using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 
@@ -30,8 +31,8 @@ namespace Assets.Scripts.PlayMaker.Action
             if (go == null) return;
             var dir = target.transform.position - go.transform.position;
             //go.transform.Translate(Direction.Value * Speed.Value, Space);
-            go.transform.position = go.transform.position + dir.normalized * Speed.Value * Time.deltaTime;//相对
-
+            //go.transform.position = go.transform.position + dir.normalized * Speed.Value * go.transform.GetComponent<PropertySystem>().Time;//相对
+            go.transform.GetComponent<MoveSystem>().Direction = dir;
 
             var distance = Vector3.Distance(go.transform.position, target.transform.position);
             if (distance <= arriveDistance.Value)

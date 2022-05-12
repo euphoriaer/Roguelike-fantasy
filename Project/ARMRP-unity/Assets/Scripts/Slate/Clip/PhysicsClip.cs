@@ -57,6 +57,13 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
         //需要设置碰撞事件
         _triggerAction = (Collider collider) =>
         {
+            //时停方法  停止cutscene播放  ,直接停止对方的Time  即可
+
+            //foreach (var item in collider.gameObject.GetComponentsInChildren<Cutscene>())
+            //{
+            //    item.Pause();
+            //}
+
             if (IsNormalAttack)
             {
                 collider?.GetComponent<BehitSystem>()?.Injured(actor, actor.GetComponent<PropertySystem>().Attack);
@@ -66,8 +73,15 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
                 collider?.GetComponent<BehitSystem>()?.Injured(actor, hurt);
             }
         };
-
+        //Action<Collider> _triggerActionExit = (Collider collider) =>
+        //{
+        //    foreach (var item in collider.gameObject.GetComponentsInChildren<Cutscene>())
+        //    {
+        //        item.Resume();
+        //    }
+        //};
         _unityPhysic.TriggerEnterAction += _triggerAction;
+        //_unityPhysic.TriggerExitAction += _triggerActionExit;
     }
 
     protected override void OnExit()

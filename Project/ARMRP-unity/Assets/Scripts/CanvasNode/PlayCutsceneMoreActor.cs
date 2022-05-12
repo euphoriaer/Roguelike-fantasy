@@ -1,4 +1,5 @@
-﻿using NodeCanvas.Framework;
+﻿using Battle;
+using NodeCanvas.Framework;
 using ParadoxNotion;
 using Slate;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnUpdate()
         {
-            time += Time.deltaTime;
+            time += agent.GetComponent<PropertySystem>().DeltaTime;
             if (isLoopCutscene)
             {
                 cutscene.Sample(time % cutscene.length);

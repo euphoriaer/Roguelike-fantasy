@@ -19,7 +19,7 @@ namespace Battle
 
         private void FixedUpdate()
         {
-            this.transform.position = this.transform.position + CurSpeed * Direction.normalized * Time.deltaTime;
+            this.transform.position = this.transform.position + CurSpeed * Direction.normalized * this.transform.GetComponent<PropertySystem>().DeltaTime;
             //避免持续碰撞时  相机抖动
         }
 

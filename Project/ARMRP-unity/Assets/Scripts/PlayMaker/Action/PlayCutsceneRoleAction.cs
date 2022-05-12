@@ -1,4 +1,5 @@
-﻿using HutongGames.PlayMaker;
+﻿using Battle;
+using HutongGames.PlayMaker;
 using Slate;
 using System.Linq;
 using UnityEngine;
@@ -132,7 +133,7 @@ namespace Assets.Scripts.PlayMaker.Action
         {
             if (isCross)
             {
-                time += Time.deltaTime;
+                time += Fsm.GameObject.GetComponent<PropertySystem>().DeltaTime;
                 //需要融合
                 weight = Mathf.Lerp(0, 1, time / TransTime);
                 weight = Mathf.Clamp01(weight);
@@ -156,7 +157,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             if (!isCross)
             {
-                time += Time.deltaTime * Speed.Value;
+                time += Fsm.GameObject.GetComponent<PropertySystem>().DeltaTime* Speed.Value;
                 //防止循环Cutscene 拉回原点
                 //_cutscene.currentTime = time % _cutscene.length;
                 if (isLoopCutscene)

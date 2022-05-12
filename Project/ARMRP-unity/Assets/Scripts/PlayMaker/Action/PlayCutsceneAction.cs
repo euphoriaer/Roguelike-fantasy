@@ -1,4 +1,5 @@
-﻿using HutongGames.PlayMaker;
+﻿using Battle;
+using HutongGames.PlayMaker;
 using Slate;
 using UnityEngine;
 
@@ -50,7 +51,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         public override void OnUpdate()
         {
-            time += Time.deltaTime;
+            time += Fsm.GameObject.GetComponent<PropertySystem>().DeltaTime;
             if (isLoopCutscene)
             {
                 cutscene.Sample(time % cutscene.length);

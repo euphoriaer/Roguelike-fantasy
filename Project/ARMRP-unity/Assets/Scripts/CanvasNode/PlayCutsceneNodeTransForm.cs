@@ -1,4 +1,5 @@
-﻿using NodeCanvas.Framework;
+﻿using Battle;
+using NodeCanvas.Framework;
 using Slate;
 using System.Linq;
 using UnityEngine;
@@ -119,7 +120,7 @@ namespace NodeCanvas.Tasks.Actions
         {
             if (isCross)
             {
-                time += Time.deltaTime;
+                time += agent.GetComponent<PropertySystem>().DeltaTime;
                 //需要融合
                 weight = Mathf.Lerp(0, 1, time / TransTime);
                 weight = Mathf.Clamp01(weight);
@@ -143,7 +144,7 @@ namespace NodeCanvas.Tasks.Actions
 
             if (!isCross)
             {
-                time += Time.deltaTime * Speed;
+                time += agent.GetComponent<PropertySystem>().DeltaTime* Speed;
                 //防止循环Cutscene 拉回原点
                 //_cutscene.currentTime = time % _cutscene.length;
                 if (isLoopCutscene)
