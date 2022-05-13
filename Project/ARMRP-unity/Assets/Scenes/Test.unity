@@ -20411,8 +20411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Main
   Attack: 1
-  CurBlood: 0
-  MaxBlood: 0
+  CurBlood: 100
+  MaxBlood: 100
   CurBlue: 0
   CurBlueSignNum: 0
   MaxBlueSignNum: 0
