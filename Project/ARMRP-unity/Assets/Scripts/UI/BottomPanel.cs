@@ -90,6 +90,7 @@ namespace Battle.UI
 
         public override void HidePanel()
         {
+
         }
 
         public override UIPanel ShowPanel()
@@ -97,5 +98,7 @@ namespace Battle.UI
             //todo ，路径加载,需要资源管理，人/物/ui/场景/地图
             return null;
         }
+
+        
     }
 }

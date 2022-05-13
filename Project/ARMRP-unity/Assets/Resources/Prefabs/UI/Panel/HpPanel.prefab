@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5247284655796346526}
   - component: {fileID: 2918786046115411189}
   m_Layer: 5
-  m_Name: 'HpHolder '
+  m_Name: HpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

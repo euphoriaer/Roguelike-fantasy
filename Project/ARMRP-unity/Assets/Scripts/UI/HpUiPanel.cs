@@ -5,25 +5,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HpHolderUI : UIPanel
+public class HpUiPanel : UIPanel
 {
-    public GameObject player;
-    public Transform HpHolder;
     private Image HpImage;
     private PropertySystem property;
+    public float Fill = 0.1f;
+   
     [Range(0, 1)]
     public float vaule;
     private void Start()
     {
-        //player = GameObject.Find("player1");
-        //property = player.GetComponent<PropertySystem>();
-        //HpImage =transform.GetChild(0).GetComponent<Image>();
+        property = this.transform.GetComponentInParent<PropertySystem>();
+        HpImage =transform.GetChild(0).GetComponent<Image>();
     }
     private void Update()
     {
-        //vaule = (float)property.CurBlood/ property.MaxBlood;
-        //HpImage.fillAmount = vaule;
-        
+        vaule = (float)property.CurBlood/ property.MaxBlood;
+        Debug.Log(vaule);
+        HpImage.fillAmount = vaule;
+        //ÑªÁ¿³¯ÏòÉãÏñ»ú
     }
 
     public override UIPanel ShowPanel()
