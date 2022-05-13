@@ -24,6 +24,7 @@ public class HpUiPanel : UIPanel
         Debug.Log(vaule);
         HpImage.fillAmount = vaule;
         //ÑªÁ¿³¯ÏòÉãÏñ»ú
+        this.transform.forward = Camera.main.transform.forward;
     }
 
     public override UIPanel ShowPanel()
