@@ -21,7 +21,6 @@ public class HpUiPanel : UIPanel
     private void Update()
     {
         vaule = (float)property.CurBlood/ property.MaxBlood;
-        Debug.Log(vaule);
         HpImage.fillAmount = vaule;
         //ÑªÁ¿³¯ÏòÉãÏñ»ú
         this.transform.forward = Camera.main.transform.forward;
