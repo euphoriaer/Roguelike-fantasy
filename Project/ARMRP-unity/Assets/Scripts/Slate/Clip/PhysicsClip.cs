@@ -17,9 +17,14 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
     [LabelText("伤害")]
     public int hurt = 10;
 
+    [LabelText("附带Buff")]
+    public int BuffID;
+
     [FormerlySerializedAs("colliders")]
     [LabelText("碰撞框")]
     public List<UnityPhysic.Shape> Shapes; //todo 绘制时需要 根据当前Time 显示/隐藏
+
+    
 
     public bool IsFollow = false;
 
@@ -57,13 +62,19 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
         //需要设置碰撞事件
         _triggerAction = (Collider collider) =>
         {
-            //时停方法  停止cutscene播放  ,直接停止对方的Time  即可
+            //时停方法  停止cutscene播放  ,直接停止对方的Time  即可,
+            //error 减缓自己速度，增加卡肉
+            //error 打击音效
+
 
             //foreach (var item in collider.gameObject.GetComponentsInChildren<Cutscene>())
             //{
             //    item.Pause();
             //}
 
+            //对敌人Buff
+
+            BuffHelper.AddBuff(collider?.gameObject, BuffID);
             if (IsNormalAttack)
             {
                 collider?.GetComponent<BehitSystem>()?.Injured(actor, actor.GetComponent<PropertySystem>().Attack);

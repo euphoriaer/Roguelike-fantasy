@@ -7,8 +7,11 @@ namespace Battle
     [UnityEngine.DisallowMultipleComponent]
     [UnityEngine.DefaultExecutionOrder(SystemOrder.BuffSystem)]
     [UnityEngine.AddComponentMenu("System/BuffSystem")]
-    public class BuffSystem : SystemMonoBehaviour
+    public partial class BuffSystem : SystemMonoBehaviour
     {
+        /// <summary>
+        /// 可以采用类类型对象，替代buff 效果分发
+        /// </summary>
         private DistributeUtil<UnityAction<GameObject, Buff>, BuffTypeAttr, BuffSystem>
             buffDistributeUtil;
 
@@ -17,21 +20,23 @@ namespace Battle
             buffDistributeUtil = new DistributeUtil<UnityAction<GameObject, Buff>, BuffTypeAttr, BuffSystem>(this); ;
         }
 
-        public List<Buff> buffs;
+        public List<Buff> buffs = new List<Buff>();
 
         private void Update()
         {
-            foreach (var buff in buffs)
+            for (int i = 0; i < buffs.Count; i++)
             {
+                var buff = buffs[i];
                 #region Add
 
                 //判断是否生效中
                 if (buff.State == Buff.BuffState.New)
                 {
-                    //error 获取效果名,需要数据表
+                    buff.State = Buff.BuffState.Runing;
+                    // 获取效果名,需要数据表
 
                     //分发效果
-                    var buffmethod = buffDistributeUtil.GetMethod("Bleed_Add");
+                    var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffect + "_Add");
                     buffmethod.Invoke(buff.source, buff);
                 }
 
@@ -40,9 +45,13 @@ namespace Battle
                 #region Runing
 
                 //调用间隔效果
-                buff.IntervalCallAction(buff);
+                if (buff.IntervalCallAction != null)
+                {
+                    buff.IntervalCallAction(buff);
+                }
 
                 buff.BuffTime -= this.GetComponent<PropertySystem>().DeltaTime;
+                Debug.Log("BuffTime" + buff.BuffTime);
 
                 #endregion Runing
 
@@ -54,23 +63,13 @@ namespace Battle
                 if (buff.State == Buff.BuffState.Remove)
                 {
                     //error 获取效果名,需要数据表
-                    var buffmethod = buffDistributeUtil.GetMethod("Bleed_Remove");
+                    var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffect + "_Remove");
                     buffmethod.Invoke(buff.source, buff);
                     //分发效果
 
                     buffs.Remove(buff);
                 }
             }
-        }
-
-        [BuffTypeAttr(TypeName = "Bleed_Add")]
-        public void Bleed_Add(GameObject Source, Buff buff)
-        {
-        }
-
-        [BuffTypeAttr(TypeName = "Bleed_Remove")]
-        public void Bleed_Remove(GameObject Source, Buff buff)
-        {
         }
     }
 }

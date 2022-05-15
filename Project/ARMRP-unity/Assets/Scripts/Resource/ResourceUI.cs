@@ -15,6 +15,7 @@ namespace Battle.Resource
         public  UIPanel LoadPanel(string name)
         {
             string path = "Prefabs/UI/Panel/"+ name;
+            
             return ResourceManager.Instate.Load<UIPanel>(path);
         }
 

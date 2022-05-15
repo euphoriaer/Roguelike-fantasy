@@ -796,6 +796,7 @@ MonoBehaviour:
   CutsceneClipName: 
   IsNormalAttack: 1
   hurt: 5
+  BuffID: 1001
   Shapes:
   - Type: 0
     offset: {x: 0, y: 0.45, z: 1}
