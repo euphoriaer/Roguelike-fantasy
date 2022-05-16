@@ -24,7 +24,7 @@ public class Card : UIPanel
     public override UIPanel ShowPanel()
     {
         card.SetActive(true);
-        //todo 旋转动画
+        //error 旋转动画
         card.transform.rotation = Quaternion.EulerAngles(new Vector3(0,0,0));
         return this;
     }

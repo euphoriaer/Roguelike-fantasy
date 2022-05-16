@@ -9,7 +9,7 @@ public class CardPanel : UIPanel
 
     private void Start()
     {
-        //todo 通过MonsterManager 获取当前所有怪物，时停
+        
 
     }
 
@@ -25,6 +25,7 @@ public class CardPanel : UIPanel
 
     public override UIPanel ShowPanel()
     {
+        //todo 通过MonsterManager 获取当前所有怪物，时停
         return this;
     }
 

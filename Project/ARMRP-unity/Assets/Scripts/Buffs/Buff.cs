@@ -7,6 +7,7 @@ namespace Battle
     public class Buff
     {
         public float BuffTime;
+        public int BuffId;
         public GameObject source;
         public GameObject BuffID;
         public string BuffName;
@@ -37,13 +38,14 @@ namespace Battle
 
         public Buff(int buffID)
         {
+            BuffId = buffID;
             //读取Json, 获取Buff
-            BuffJson=BuffConfig.GetBuff(buffID);
-            BuffTime = ((int)BuffJson[BuffConfig.TIME]);
+            BuffJson =BuffConfig.GetBuff(buffID);
+            BuffTime = int.Parse(BuffJson[BuffConfig.TIME].ToString());
             State = BuffState.New;
-            BuffName = ((string)BuffJson[BuffConfig.NAME]);
-            BuffType = ((int)BuffJson[BuffConfig.TYPE]);
-            BuffEffect = ((string)BuffJson[BuffConfig.EFFECT]).Split(",")[0];
+            BuffName = (BuffJson[BuffConfig.NAME].ToString());
+            BuffType = int.Parse(BuffJson[BuffConfig.TYPE].ToString());
+            BuffEffect = (BuffJson[BuffConfig.EFFECT]).ToString().Split(",")[0];
         }
 
         public enum BuffState

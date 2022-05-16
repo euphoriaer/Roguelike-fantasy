@@ -1,26 +1,20 @@
 {
-  "1000": {
-    "ID": 1000,
-    "name": "流血",
-    "Time": 10,
-    "Type": 1,
-    "Effect": "Bleed,1,10",
-    "NAVICAT_ROWID": 1000
-  },
-  "1001": {
-    "ID": 1001,
-    "name": "流血",
-    "Time": 10,
-    "Type": 1,
-    "Effect": "Bleed,1,10",
-    "NAVICAT_ROWID": 1000
-  },
-  "1002": {
-    "ID": 1002,
-    "name": "流血",
-    "Time": 10,
-    "Type": 1,
-    "Effect": "Bleed,1,10",
-    "NAVICAT_ROWID": 1000
-  }
+    "1000": {
+        "Effect": "Bleed,1,10",
+        "Time": "3",
+        "Type": "1",
+        "name": "流血"
+    },
+    "1001": {
+        "Effect": "Bleed,1,11",
+        "Time": "3",
+        "Type": "1",
+        "name": "流血2"
+    },
+    "1002": {
+        "Effect": "Bleed,1,11",
+        "Time": "3",
+        "Type": "1",
+        "name": "流血3"
+    }
 }

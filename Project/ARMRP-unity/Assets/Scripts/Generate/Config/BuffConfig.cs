@@ -17,7 +17,7 @@ namespace Battle
 
         public static JsonData GetBuff(int id)
         {
-            //todo 尝试直接通过实体读取
+            //error 尝试直接通过实体读取
 
             var buffJson = JsonConfig.Read(CONFIG_NAME)[id.ToString()];
             return buffJson;
