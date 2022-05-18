@@ -11,6 +11,7 @@ namespace Battle
     {
         /// <summary>
         /// 可以采用类类型对象，替代buff 效果分发
+        /// 类类型对象会复杂些，但是结构更加清晰
         /// </summary>
         private DistributeUtil<UnityAction<GameObject, Buff>, BuffTypeAttr, BuffSystem>
             buffDistributeUtil;
