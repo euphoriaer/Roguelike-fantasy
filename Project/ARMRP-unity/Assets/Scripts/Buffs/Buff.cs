@@ -9,7 +9,6 @@ namespace Battle
         public float BuffTime;
         public int BuffId;
         public GameObject source;
-        public GameObject BuffID;
         public string BuffName;
         public BuffState State;
 
@@ -21,8 +20,10 @@ namespace Battle
         public JsonData BuffJson;
 
         /// <summary>
-        /// 1.带持续时间
-        /// 2.永久增益
+        /// 1.带持续时间,表示独立Buff,重复添加相互独立计算
+        /// 2.表示唯一Buff,不会重复添加，直到旧的结束，新的才能添加上
+        /// 3.表示唯一Buff，重复添加是刷新时间
+        /// 4.永久类型Buff,不重复，不随时间结束停止
         /// </summary>
         public int BuffType;
 

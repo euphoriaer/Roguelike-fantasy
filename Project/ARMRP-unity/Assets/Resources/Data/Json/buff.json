@@ -1,19 +1,19 @@
 {
-    "1000": {
-        "Effect": "Bleed,1,10",
-        "Time": "3",
-        "Type": "1",
-        "name": "流血"
-    },
     "1001": {
-        "Effect": "Bleed,1,11",
-        "Time": "3",
-        "Type": "1",
-        "name": "流血2"
+        "Effect": "Bleed,1,10",
+        "Time": "30",
+        "Type": "3",
+        "name": "流血1"
     },
     "1002": {
         "Effect": "Bleed,1,11",
-        "Time": "3",
+        "Time": "2",
+        "Type": "1",
+        "name": "流血2"
+    },
+    "1003": {
+        "Effect": "Bleed,1,11",
+        "Time": "1",
         "Type": "1",
         "name": "流血3"
     }

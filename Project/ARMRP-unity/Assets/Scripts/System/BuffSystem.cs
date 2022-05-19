@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,7 +21,7 @@ namespace Battle
         {
             buffDistributeUtil = new DistributeUtil<UnityAction<GameObject, Buff>, BuffTypeAttr, BuffSystem>(this); ;
         }
-
+        [ShowInInspector]
         public List<Buff> buffs = new List<Buff>();
 
         private void Update()
@@ -28,6 +29,7 @@ namespace Battle
             for (int i = 0; i < buffs.Count; i++)
             {
                 var buff = buffs[i];
+
                 #region Add
 
                 //判断是否生效中
@@ -56,7 +58,7 @@ namespace Battle
 
                 #endregion Runing
 
-                if (buff.BuffTime <= 0)
+                if (buff.BuffTime <= 0 && buff.BuffType != 4)
                 {
                     buff.State = Buff.BuffState.Remove;
                 }
@@ -71,6 +73,32 @@ namespace Battle
                     buffs.Remove(buff);
                 }
             }
+        }
+
+        public Buff FindBuff(Buff buff)
+        {
+            foreach (var item in buffs)
+            {
+                if (item.BuffId == buff.BuffId)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public Buff FindBuff(int buffID)
+        {
+            foreach (var item in buffs)
+            {
+                if (item.BuffId == buffID)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
     }
 }
