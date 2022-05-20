@@ -1,21 +1,29 @@
 ﻿using Battle.UI;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class CardPanel : UIPanel
 {
-    
-    private List<GameObject> cards=new List<GameObject>();
+    private List<Card> cards = new List<Card>();
 
     private void Start()
     {
-        
+    }
 
+    public void Update()
+    {
+        foreach (var card in cards)
+        {
+            if (card.isEnable)
+            {
+                card.Update();
+            }
+        }
     }
 
     public void AddCard(Card card)
     {
-        card.ShowPanel();
+        card.Show();
+        cards.Add(card);
     }
 
     public override void HidePanel()

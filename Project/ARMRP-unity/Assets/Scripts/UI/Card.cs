@@ -1,31 +1,43 @@
 ﻿using Battle.UI;
 using UnityEngine;
 
-public class Card : UIPanel
+public class Card
 {
-    private GameObject card;
+    public bool isEnable = false;
+    private GameObject cardObj;
+    private float lerpSpeed = 2f;
+
+    private float LerpTime = 0;
+
+    private float y;
 
     public Card(int cardId, GameObject parent)
     {
         //读取Json,获取ID;
-        card = GameObject.Instantiate(UIManager.Instate.CreateGizmos("Card"), parent.transform);
-       
+        cardObj = GameObject.Instantiate(UIManager.Instate.CreateGizmos("Card"), parent.transform);
+
         //error 通过ID 读取图片路径，替换
         //读取描述
         //增加按下事件 buff
-
     }
 
-    public override void HidePanel()
+    public void Hide()
     {
-        card.SetActive(false);
+        cardObj.SetActive(false);
+        isEnable = false;
     }
 
-    public override UIPanel ShowPanel()
+    public void Show()
     {
-        card.SetActive(true);
-        //error 旋转动画
-        card.transform.rotation = Quaternion.EulerAngles(new Vector3(0,0,0));
-        return this;
+        cardObj.SetActive(true);
+        y = cardObj.transform.rotation.eulerAngles.y;
+        isEnable = true;
+    }
+    public void Update()
+    {
+        LerpTime += lerpSpeed * Time.deltaTime;
+        float cury = Mathf.Lerp(y, 0, LerpTime);
+        cardObj.transform.rotation = Quaternion.Euler(new Vector3(0, cury, 0));
+        //cardObj.transform.rotation = Quaternion.EulerAngles(new Vector3(0, cury, 0)); 已过时不要使用
     }
 }
