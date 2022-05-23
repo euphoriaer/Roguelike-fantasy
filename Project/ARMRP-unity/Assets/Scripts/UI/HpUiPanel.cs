@@ -1,27 +1,27 @@
 using Battle;
 using Battle.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HpUiPanel : UIPanel
 {
-    private Image HpImage;
+    private Slider HpSlider;
     private PropertySystem property;
     public float Fill = 0.1f;
-   
+
     [Range(0, 1)]
     public float vaule;
+
     private void Start()
     {
         property = this.transform.GetComponentInParent<PropertySystem>();
-        HpImage =transform.GetChild(0).GetComponent<Image>();
+        HpSlider = transform.GetComponent<Slider>();
     }
+
     private void Update()
     {
-        vaule = (float)property.CurBlood/ property.MaxBlood;
-        HpImage.fillAmount = vaule;
+        vaule = (float)property.CurBlood / property.MaxBlood;
+        HpSlider.value = vaule;
         //ÑªÁ¿³¯ÏòÉãÏñ»ú
         this.transform.forward = Camera.main.transform.forward;
     }
@@ -33,6 +33,5 @@ public class HpUiPanel : UIPanel
 
     public override void HidePanel()
     {
-        
     }
 }

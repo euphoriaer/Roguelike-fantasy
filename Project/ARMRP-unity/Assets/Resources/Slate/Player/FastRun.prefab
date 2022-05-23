@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4311730690515314149}
   - component: {fileID: 4311730690515314150}
   m_Layer: 0
-  m_Name: '@FastRun'
+  m_Name: FastRun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

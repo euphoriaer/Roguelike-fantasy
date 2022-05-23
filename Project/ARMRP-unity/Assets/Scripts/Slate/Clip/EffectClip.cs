@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Battle;
+using Sirenix.OdinInspector;
 using Slate;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 [Attachable(typeof(EffectTrack))]
 public class EffectClip : CutsceneClip<Animator>, IDirectable
 {
+    //error 需要轨道控制粒子播放时间
     [LabelText("特效Prefab")]
     public GameObject Obj;
 
@@ -16,6 +18,11 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
     public override void Refresh()
     {
         Debug.Log("特效刷新了");
+        if (actor!=null)
+        {
+            particle = actor.GetComponent<ParticleSystem>();
+            _length = particle.duration;
+        }
     }
     
     public override float length
@@ -34,14 +41,15 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
     {
         Debug.Log("进入Fx enter");
         FxObj= GameObject.Instantiate(Obj, actor.transform.position,Quaternion.identity);
+        FxObj.transform.forward=actor.transform.forward;
         anim = FxObj.GetComponent<Animator>();
         particle = FxObj.GetComponent<ParticleSystem>();
+        particle.Play(true);
     }
 
     protected override void OnExit()
     {
-        Debug.Log("销毁Fx ");
-        //error chen 提高任务,实现一个环绕特效Cutscene 
+        
         GameObject.Destroy(FxObj);
         anim = null;
         particle = null;
@@ -52,7 +60,7 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
     protected override void OnUpdate(float time)
     {
         //自己研究
-        base.OnUpdate(time);
+      
         //判断是粒子特效 还是动画特效
         
         if (anim!=null)
@@ -62,7 +70,7 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
 
         if (particle!=null)
         {
-            particle.Play();
+            particle.Simulate(time,true);
         }
 
         if (isFollow)
