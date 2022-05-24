@@ -1,16 +1,20 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Battle.UI
 {
     internal class BottomPanel : UIPanel
     {
-        private Slider BloodSlider;
-        private Slider BlueSlider;
-
+        public Slider BloodSlider;
+        public Slider BlueSlider;
+        public GameObject BlueSignGrid;
+        public TextMeshProUGUI NumberText;
+ 
         private GameObject player;
         private PropertySystem property;
-        private GameObject blueNumSignObj;
+        
+
         public override string Name
         {
             get
@@ -54,23 +58,23 @@ namespace Battle.UI
             for (; i < property.CurBlueSignNum; i++)
             {
 
-                if (i > blueNumSignObj.transform.childCount - 1)
+                if (i > BlueSignGrid.transform.childCount - 1)
                 {//蓝标数量大于 标记物体数量
                  //UIManager.Instate.CreateGizmos("BlueSign");
-                    GameObject.Instantiate(UIManager.Instate.CreateGizmos("BlueSign"), blueNumSignObj.transform);
+                    GameObject.Instantiate(UIManager.Instate.CreateGizmos("BlueSign"), BlueSignGrid.transform);
                 }
                 else
                 {//蓝标数量小于/等于 标记物体数量 直接设置为True 即可
-                    blueNumSignObj.transform.GetChild(i).gameObject.SetActive(true);
+                    BlueSignGrid.transform.GetChild(i).gameObject.SetActive(true);
                 }
             }
-            int j = blueNumSignObj.transform.childCount;
+            int j = BlueSignGrid.transform.childCount;
             //多出的标记隐藏
             for (; j > property.CurBlueSignNum; j--)
             {
-                blueNumSignObj.transform.GetChild(j - 1).gameObject.SetActive(false);
+                BlueSignGrid.transform.GetChild(j - 1).gameObject.SetActive(false);
             }
-
+            NumberText.text= property.CurBlueSignNum.ToString();
         }
 
         private void UpdateBlueSign()
@@ -80,9 +84,9 @@ namespace Battle.UI
 
         public void Start()
         {
-            BloodSlider = this.transform.Find("BloodSlider").GetComponent<Slider>();
-            BlueSlider = this.transform.Find("BlueSlider").GetComponent<Slider>();
-            blueNumSignObj = this.transform.Find("BlueNumber").gameObject;
+            //BloodSlider = this.transform.Find("BloodSlider").GetComponent<Slider>();
+            //BlueSlider = this.transform.Find("BlueSlider").GetComponent<Slider>();
+            //BlueSignGrid = this.transform.Find("BlueNumber").gameObject;
             player = GameObject.Find("Player");
             property = player.GetComponent<PropertySystem>();
             BlueSlider.maxValue = 100;//气槽固定 0-100，不需要增加长度
