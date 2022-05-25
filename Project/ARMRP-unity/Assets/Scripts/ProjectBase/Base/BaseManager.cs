@@ -18,7 +18,7 @@ public class BaseManager<T> : MonoBehaviour where T : MonoBehaviour
                         var manager = GameObject.FindObjectOfType<T>();
                         if (manager == null)
                         {
-                            var gameObject = new GameObject();
+                            var gameObject = new GameObject("[MonoSingleton]" + typeof(T).Name, typeof(T));
                             manager = gameObject.AddComponent<T>();
                         }
                         instance = manager;
