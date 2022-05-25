@@ -7,7 +7,7 @@ using UnityEngine;
 [Attachable(typeof(EffectTrack))]
 public class EffectClip : CutsceneClip<Animator>, IDirectable
 {
-    //error 需要轨道控制粒子播放时间
+    //轨道控制粒子播放时间
     [LabelText("特效Prefab")]
     public GameObject Obj;
 

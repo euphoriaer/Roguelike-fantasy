@@ -65,7 +65,7 @@ namespace Battle
 
                 if (buff.State == Buff.BuffState.Remove)
                 {
-                    //error 获取效果名,需要数据表
+                    //获取效果名,数据表
                     var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffect + "_Remove");
                     buffmethod.Invoke(buff.source, buff);
                     //分发效果

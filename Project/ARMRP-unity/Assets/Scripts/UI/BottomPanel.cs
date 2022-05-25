@@ -61,7 +61,7 @@ namespace Battle.UI
                 if (i > BlueSignGrid.transform.childCount - 1)
                 {//蓝标数量大于 标记物体数量
                  //UIManager.Instate.CreateGizmos("BlueSign");
-                    GameObject.Instantiate(UIManager.Instate.CreateGizmos("BlueSign"), BlueSignGrid.transform);
+                    UIManager.Instate.CreateGizmos("BlueSign",BlueSignGrid);
                 }
                 else
                 {//蓝标数量小于/等于 标记物体数量 直接设置为True 即可

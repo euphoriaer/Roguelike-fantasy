@@ -1,4 +1,6 @@
-﻿using Battle.UI;
+﻿using Battle;
+using Battle.Resource;
+using Battle.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +13,7 @@ public class Card
     private Image icon;
     private TextMeshProUGUI text;
     private Button btn;
-    
+
     private float lerpSpeed = 2f;
 
     private float LerpTime = 0;
@@ -21,17 +23,32 @@ public class Card
     public Card(int cardId, GameObject parent)
     {
         //读取Json,获取ID;
-        cardObj = GameObject.Instantiate(UIManager.Instate.CreateGizmos("Card"), parent.transform);
-        icon= cardObj.transform.GetChild(1).GetComponent<Image>();
+        var cardJson = CardConfig.GetCard(cardId);
+        string iconPath = cardJson[CardConfig.IconPath].ToString();
+        string description = cardJson[CardConfig.Description].ToString();
+        int buffId = int.Parse(cardJson[CardConfig.BuffID].ToString());
+
+        cardObj = UIManager.Instate.CreateGizmos("Card",parent);
+        icon = cardObj.transform.GetChild(1).GetComponent<Image>();
         text = cardObj.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        btn= cardObj.transform.GetChild(3).GetComponent<Button>();
-            
-        //error 通过ID 读取图片路径，替换
+        btn = cardObj.transform.GetChild(3).GetComponent<Button>();
+
+        // 通过ID 读取图片路径，替换
+        icon.sprite = ResourceManager.Instate.Load<Sprite>($"UI/GUI PRO Kit - Fantasy RPG/Sprites/Component/Icon_ItemIcons_(Original)/{iconPath}");
+        text.text = description;
         //读取描述
         //增加按下事件 buff
+        btn.onClick.AddListener(() =>
+        {
+            //给主角添加Buff
+            BuffHelper.AddBuff(GameObject.FindGameObjectWithTag("Player"), buffId);
+            //销毁
+            UIManager.Instate.GetPanel("CardPanel").DestoryPanel();
+           
+        });
     }
 
-    public void Hide()
+    public void Destory()
     {
         cardObj.SetActive(false);
         isEnable = false;
@@ -43,6 +60,7 @@ public class Card
         y = cardObj.transform.rotation.eulerAngles.y;
         isEnable = true;
     }
+
     public void Update()
     {
         LerpTime += lerpSpeed * Time.deltaTime;

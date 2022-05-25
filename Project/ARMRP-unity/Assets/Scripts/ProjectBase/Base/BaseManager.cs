@@ -1,21 +1,31 @@
-﻿public class BaseManager<T> where T : new()
+﻿using UnityEngine;
+
+public class BaseManager<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T instate;
+    private static T instance;
+    private static readonly object syncLock = new object();
 
     public static T Instate
     {
         get
         {
-            return Getinstate();
+            if (instance == null)
+            {
+                lock (syncLock)
+                {
+                    if (instance == null)
+                    {
+                        var manager = GameObject.FindObjectOfType<T>();
+                        if (manager == null)
+                        {
+                            var gameObject = new GameObject();
+                            manager = gameObject.AddComponent<T>();
+                        }
+                        instance = manager;
+                    }
+                }
+            }
+            return instance;
         }
-    }
-
-    private static T Getinstate()
-    {
-        if (instate == null)
-        {
-            instate = new T();
-        }
-        return instate;
     }
 }
