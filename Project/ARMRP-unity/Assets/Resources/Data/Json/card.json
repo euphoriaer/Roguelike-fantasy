@@ -1,0 +1,20 @@
+{
+    "2000": {
+        "BuffID": "1001",
+        "CardType": "0",
+        "Description": "普通攻击伤害增加10%",
+        "IconPath": "icon_itemicon_sword"
+    },
+    "2001": {
+        "BuffID": "0",
+        "CardType": "0",
+        "Description": "远程攻击伤害增加10%",
+        "IconPath": "icon_itemicon_arrows"
+    },
+    "2002": {
+        "BuffID": "0",
+        "CardType": "0",
+        "Description": "回气速度增加20%",
+        "IconPath": "icon_itemicon_potionblue"
+    }
+}

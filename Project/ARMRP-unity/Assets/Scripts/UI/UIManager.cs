@@ -66,14 +66,12 @@ namespace Battle.UI
         {
             uiPanelDic.Remove(panelName);
             GameObject.Destroy(uiPanelDic[panelName]);
-            ResourceUI.Instate.Unload(uiPanelDic[panelName]);
         }
 
         public void DestoryPanel(UIPanel panel)
         {
             uiPanelDic.Remove(panel.name);
             GameObject.Destroy(panel);
-            ResourceUI.Instate.Unload(panel);
         }
 
         

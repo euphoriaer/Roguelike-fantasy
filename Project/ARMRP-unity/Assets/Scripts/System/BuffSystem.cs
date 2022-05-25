@@ -54,7 +54,7 @@ namespace Battle
                 }
 
                 buff.BuffTime -= this.GetComponent<PropertySystem>().DeltaTime;
-                Debug.Log("BuffTime" + buff.BuffTime);
+               
 
                 #endregion Runing
 
