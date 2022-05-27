@@ -15,8 +15,8 @@ public class AnimationSpreat : AssetPostprocessor
             //设置为Humannoid
             modelImporter.animationType = ModelImporterAnimationType.Human;
             //创建Avata
-            modelImporter.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
 
+            modelImporter.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
         }
     }
 
@@ -28,7 +28,6 @@ public class AnimationSpreat : AssetPostprocessor
         {
             if (assetPath.Contains(ToolsSettings.Instance.Mark))
             {
-                
                 //copy 动画
                 var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(assetPath);
                 //处理过的资源不带标记
@@ -41,14 +40,18 @@ public class AnimationSpreat : AssetPostprocessor
                     if (obj is AnimationClip)
                     {
                         var newClip = UnityEngine.Object.Instantiate(obj);
-                        var curClip= newClip as AnimationClip;
+                        var curClip = newClip as AnimationClip;
 
-                         //要在分离前进行操作
+                    
                         //error 暴露在工具中，批处理动画是否勾选烘焙全动作（旋转，Y，XZ）
-                        //AnimationClipSettings clipSetting = AnimationUtility.GetAnimationClipSettings(curClip);
-                        //clipSetting.keepOriginalOrientation = true;
-                        //clipSetting.keepOriginalPositionXZ = true;
-                        //clipSetting.keepOriginalPositionY = true;
+                        AnimationClipSettings clipSetting = AnimationUtility.GetAnimationClipSettings(curClip);
+                        clipSetting.keepOriginalOrientation = true;
+                        clipSetting.keepOriginalPositionXZ = true;
+                        clipSetting.keepOriginalPositionY = true;
+                        clipSetting.loopBlendPositionXZ = true;
+                        clipSetting.loopBlendPositionY = true;
+                        clipSetting.loopBlendOrientation = true;
+                        AnimationUtility.SetAnimationClipSettings(curClip, clipSetting);
 
                         AssetDatabase.CreateAsset(curClip, ToolsSettings.Instance.Anim + "/" + name + ".anim");
                         AssetDatabase.SaveAssets();
@@ -70,7 +73,7 @@ public class AnimationSpreat : AssetPostprocessor
                 {
                     Debug.Log("移动资源" + assetPath);
                     //去除标记，防止对资源多次操作
-                    string path = Path.GetFileName(assetPath).Replace(ToolsSettings.Instance.Mark,"");
+                    string path = Path.GetFileName(assetPath).Replace(ToolsSettings.Instance.Mark, "");
                     AssetDatabase.MoveAsset(assetPath, ToolsSettings.Instance.FBXfolder + "/" + path);
                 }
             }
