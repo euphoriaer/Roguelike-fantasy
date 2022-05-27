@@ -61,5 +61,15 @@ namespace AmplifyShaderEditor
 		{
 			AmplifyShaderEditorWindow.CreateConfirmationTemplateShader( "ed95fe726fd7b4644bb42f4d1ddd2bcd" );
 		}
+		[MenuItem( "Assets/Create/Amplify Shader/Universal/Experimental/2D Lit", false, 85 )]
+		public static void ApplyTemplateUniversalExperimental2DLit()
+		{
+			AmplifyShaderEditorWindow.CreateConfirmationTemplateShader( "199187dac283dbe4a8cb1ea611d70c58" );
+		}
+		[MenuItem( "Assets/Create/Amplify Shader/Universal/Experimental/2D Unlit", false, 85 )]
+		public static void ApplyTemplateUniversalExperimental2DUnlit()
+		{
+			AmplifyShaderEditorWindow.CreateConfirmationTemplateShader( "cf964e524c8e69742b1d21fbe2ebcc4a" );
+		}
 	}
 }
