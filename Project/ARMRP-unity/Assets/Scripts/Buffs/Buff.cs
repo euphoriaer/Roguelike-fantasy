@@ -1,4 +1,5 @@
 ﻿using LitJson;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,11 +28,12 @@ namespace Battle
         /// </summary>
         public int BuffType;
 
+    
         /// <summary>
-        /// buff效果，分发方法用
+        /// buff效果数据，0是效果类型
+        /// 0用来分发
         /// </summary>
-        public string BuffEffect;
-
+        public List<string> BuffEffectData=new List<string>();
         /// <summary>
         /// 上一次间隔效果触发的时间
         /// </summary>
@@ -46,7 +48,7 @@ namespace Battle
             State = BuffState.New;
             BuffName = (BuffJson[BuffConfig.NAME].ToString());
             BuffType = int.Parse(BuffJson[BuffConfig.TYPE].ToString());
-            BuffEffect = (BuffJson[BuffConfig.EFFECT]).ToString().Split(",")[0];
+            BuffEffectData.AddRange((BuffJson[BuffConfig.EFFECT]).ToString().Split(","));
         }
 
         public enum BuffState

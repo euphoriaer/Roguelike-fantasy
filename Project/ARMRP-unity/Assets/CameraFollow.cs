@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
+[UnityEngine.DisallowMultipleComponent]
 public class CameraFollow : MonoBehaviour
 {
     public Transform FollowTarget;
@@ -16,33 +18,33 @@ public class CameraFollow : MonoBehaviour
     {
         if (this.GetComponent<Camera>() == null)
         {
-            Debug.LogError("CameraFollow ±ØĞë¹ÒÔÚÏà»úÉÏ");
+            Debug.LogError("CameraFollow å¿…é¡»æŒ‚åœ¨ç›¸æœºä¸Š");
         }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        
     }
+
     private void LateUpdate()
     {
-        //Ê¹ÓÃLateUpdate ·½Ê½Åö×²Ê±Ïà»ú¶¶¶¯
+        //ä½¿ç”¨LateUpdate æ–¹å¼ç¢°æ’æ—¶ç›¸æœºæŠ–åŠ¨
         if (FollowTarget == null)
         {
             return;
         }
 
-        //»ñÈ¡µ±Ç°ÆÁÄ»¿í¸ß
+        //è·å–å½“å‰å±å¹•å®½é«˜
         float width = Screen.width;
         float height = Screen.height;
-        //¼ÆËãµØÃæÍ¶Éä×ø±ê ,ÄÜ¹»¿´µ½µÄ·¶Î§
+        //è®¡ç®—åœ°é¢æŠ•å°„åæ ‡ ,èƒ½å¤Ÿçœ‹åˆ°çš„èŒƒå›´
         float rotateXCam = this.transform.rotation.eulerAngles.x;
         float sin = Mathf.Sin(Mathf.PI / 180 * rotateXCam);
         float halfViewZ = this.GetComponent<Camera>().orthographicSize / sin;
 
         float halfViewX = (width / height) * this.GetComponent<Camera>().orthographicSize;
-        //ÅĞ¶Ïµ±Ç°½ÇÉ« ´¦ÓÚ¿ÉÊÓx·¶Î§µÄÎ»ÖÃ
+        //åˆ¤æ–­å½“å‰è§’è‰² å¤„äºå¯è§†xèŒƒå›´çš„ä½ç½®
         float compareXmin = Mathf.Abs(FollowTarget.position.x - xGroundRange.x);
         float compareXmax = Mathf.Abs(FollowTarget.position.x - xGroundRange.y);
 
@@ -51,32 +53,32 @@ public class CameraFollow : MonoBehaviour
 
         float xTransform;
         float zTransform;
-        if (compareXmin > halfViewX && compareXmax > halfViewX)//´óÓÚÆÁÄ»Ò»°ë¿ÉÊÓ¿í¶È£¬¸úËæ
+        if (compareXmin > halfViewX && compareXmax > halfViewX)//å¤§äºå±å¹•ä¸€åŠå¯è§†å®½åº¦ï¼Œè·Ÿéš
         {
             xTransform = FollowTarget.position.x;
         }
-        else//²»ĞèÒª¸úËæ
+        else//ä¸éœ€è¦è·Ÿéš
         {
             xTransform = this.transform.position.x;
         }
 
         if (compareZmin > halfViewZ && compareZmax > halfViewZ)
         {
-            //´óÓÚÆÁÄ»¿ÉÊÓµÄ£¬¸úËæ£¬ZminÏÂ±ß½ç£¬ZmaxÉÏ±ß½ç
+            //å¤§äºå±å¹•å¯è§†çš„ï¼Œè·Ÿéšï¼ŒZminä¸‹è¾¹ç•Œï¼ŒZmaxä¸Šè¾¹ç•Œ
             float tan = Mathf.Tan(Mathf.PI / 180 * rotateXCam);
             float offset = this.transform.position.y / tan;
-            //Ê¹ÈËÎï´¦ÓÚ×îÖĞ¼ä
+            //ä½¿äººç‰©å¤„äºæœ€ä¸­é—´
             zTransform = FollowTarget.position.z - offset;
         }
-        else// ²»ĞèÒª¸úËæ
+        else// ä¸éœ€è¦è·Ÿéš
         {
             zTransform = this.transform.position.z;
         }
 
         this.transform.position = new Vector3(xTransform, this.transform.position.y, zTransform);
     }
+
     private void FixedUpdate()
     {
-        
     }
 }

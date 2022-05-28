@@ -11,13 +11,13 @@ namespace Battle
         //参数2，每次触发伤害
 
         [BuffTypeAttr(TypeName = "Bleed_Add")]
-        public void Bleed_Add(GameObject Source, Buff buff)
+        public void Bleed_Add(GameObject source, Buff buff)
         {
             Debug.Log("流血效果");
         }
 
         [BuffTypeAttr(TypeName = "Bleed_Remove")]
-        public void Bleed_Remove(GameObject Source, Buff buff)
+        public void Bleed_Remove(GameObject source, Buff buff)
         {
             Debug.Log("流血效果移除");
         }

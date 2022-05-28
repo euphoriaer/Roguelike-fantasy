@@ -11873,7 +11873,7 @@ MonoBehaviour:
   CurBlueSignNum: 0
   MaxBlueSignNum: 3
   BuleAddSpeed: 10
-  AttackSpeed: 2
+  AttackSpeed: 3
   curPlayClipOffset: 0
   LastPlayClip: {fileID: 0}
   DeltaTime: 0.01

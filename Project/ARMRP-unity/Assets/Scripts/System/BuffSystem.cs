@@ -39,7 +39,7 @@ namespace Battle
                     // 获取效果名,需要数据表
 
                     //分发效果
-                    var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffect + "_Add");
+                    var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffectData[0] + "_Add");
                     buffmethod.Invoke(buff.source, buff);
                 }
 
@@ -66,7 +66,7 @@ namespace Battle
                 if (buff.State == Buff.BuffState.Remove)
                 {
                     //获取效果名,数据表
-                    var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffect + "_Remove");
+                    var buffmethod = buffDistributeUtil.GetMethod(buff.BuffEffectData[0] + "_Remove");
                     buffmethod.Invoke(buff.source, buff);
                     //分发效果
 
