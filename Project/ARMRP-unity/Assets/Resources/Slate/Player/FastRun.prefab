@@ -128,9 +128,9 @@ MonoBehaviour:
     _animatedParameters: []
   CutsceneClipName: '@FastRun'
   animationClip: {fileID: 7400000, guid: d61fcf17f79df7440974b4e6a3311664, type: 2}
-  PlaySpeed: 1
+  PlaySpeed: 1.5
   Loop: 1
-  _length: 0.73333335
+  _length: 0.4888889
   useRootMotion: 0
   isRootMotionPreBaked: 0
   rmPositions: []
@@ -240,7 +240,7 @@ MonoBehaviour:
   groups:
   - {fileID: 4311730690081709957}
   - {fileID: 4311730688971327109}
-  _length: 0.73333335
+  _length: 0.4888889
   _viewTimeMin: -0.10623282
   _viewTimeMax: 2.6580122
 --- !u!1 &4311730690778593790

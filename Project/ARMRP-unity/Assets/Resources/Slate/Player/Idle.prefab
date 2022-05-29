@@ -68,10 +68,10 @@ MonoBehaviour:
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
-  animationClip: {fileID: 7400000, guid: 8fca83d0c1aabd44e932d1b03a4a215d, type: 2}
+  animationClip: {fileID: 7400000, guid: 43acca3170a9d5d488e8ecdfcdec51be, type: 2}
   PlaySpeed: 1
   Loop: 0
-  _length: 1.95
+  _length: 1.9666668
   useRootMotion: 0
   isRootMotionPreBaked: 0
   rmPositions: []
@@ -352,7 +352,7 @@ MonoBehaviour:
   groups:
   - {fileID: 7519993058548168149}
   - {fileID: 2107183573183179343}
-  _length: 1.95
+  _length: 1.9666668
   _viewTimeMin: -2.707082
   _viewTimeMax: 6.4446907
 --- !u!1 &8366372032475158080
