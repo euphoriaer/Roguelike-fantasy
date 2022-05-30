@@ -13,6 +13,10 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
 
     [LabelText("特效是否跟随人物")]
     public bool isFollow=false;
+    [LabelText("偏移")]
+    public Vector3 Offset=Vector3.zero;
+    [LabelText("旋转")]
+    public Vector3 Rotation=Vector3.zero;
 
     [Button("刷新", 40)]
     public override void Refresh()
@@ -40,8 +44,10 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
     protected override void OnEnter()
     {
         Debug.Log("进入Fx enter");
-        FxObj= GameObject.Instantiate(Obj, actor.transform.position,Quaternion.identity);
+        FxObj= GameObject.Instantiate(Obj, actor.transform.position,Quaternion.identity, actor.transform);
         FxObj.transform.forward=actor.transform.forward;
+        FxObj.transform.localPosition += Offset;
+        //FxObj.transform.rotation=Quaternion.Euler(Rotation);
         anim = FxObj.GetComponent<Animator>();
         particle = FxObj.GetComponent<ParticleSystem>();
         particle.Play(true);
@@ -75,7 +81,7 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
 
         if (isFollow)
         {
-            FxObj.transform.position = actor.transform.position;
+            FxObj.transform.position = actor.transform.position+ Offset;
         }
 
     }

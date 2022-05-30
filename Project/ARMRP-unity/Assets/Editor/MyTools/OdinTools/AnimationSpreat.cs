@@ -23,11 +23,12 @@ public class AnimationSpreat : AssetPostprocessor
     private void OnPostprocessModel(GameObject g)
     {
         string name = g.name;
-        Debug.Log("动画资源分离" + assetPath + "   ");
+        
         EditorApplication.delayCall += () =>
         {
             if (assetPath.Contains(ToolsSettings.Instance.Mark))
             {
+                Debug.Log("动画资源分离" + assetPath + "   ");
                 //copy 动画
                 var assets = AssetDatabase.LoadAllAssetRepresentationsAtPath(assetPath);
                 //处理过的资源不带标记
@@ -79,7 +80,7 @@ public class AnimationSpreat : AssetPostprocessor
             }
             else
             {
-                Debug.Log("导入模型，创建控制器" + assetPath);
+                //Debug.Log("导入模型" + assetPath);
             }
         };
     }
