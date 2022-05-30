@@ -64,93 +64,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c300c03cd67094eaa68f7a83f08695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0.033333335
+  _startTime: 0
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
   animationClip: {fileID: 7400000, guid: e3565d949d348ef4292ff9db0af6d896, type: 2}
   PlaySpeed: 1
   Loop: 0
-  _length: 1.2
+  _length: 1.2333333
   useRootMotion: 1
   isRootMotionPreBaked: 0
   rmPositions:
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
-  - {x: 4.996, y: 0, z: 18.987}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   rmRotations:
+  - {x: 0, y: 0, z: 0, w: 1}
+  - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
@@ -256,6 +260,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3940132531010313182}
+  - {fileID: 5275440709494805820}
   m_Father: {fileID: 3307217911193695099}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -272,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tracks:
+  - {fileID: 6382403422828418957}
   - {fileID: 8186232294141532199}
   _sections: []
   _isCollapsed: 0
@@ -423,5 +429,76 @@ MonoBehaviour:
   - {fileID: 5671230059500815380}
   - {fileID: 5070729129481883276}
   _length: 1.2333333
-  _viewTimeMin: -1
-  _viewTimeMax: 21
+  _viewTimeMin: -0.23105972
+  _viewTimeMax: 1.9738051
+--- !u!1 &9221852773617374809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5275440709494805820}
+  - component: {fileID: 6382403422828418957}
+  - component: {fileID: 443654962085684058}
+  m_Layer: 0
+  m_Name: "\u6309\u952E\u54CD\u5E94\u8F68\u9053"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5275440709494805820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221852773617374809}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8443898200217885433}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6382403422828418957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221852773617374809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65d93d32680cf54d8ed6dcd77fd8527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: "\u6309\u952E\u54CD\u5E94\u8F68\u9053"
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _active: 1
+  _isLocked: 0
+  _actionClips:
+  - {fileID: 443654962085684058}
+  _customHeight: 300
+--- !u!114 &443654962085684058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9221852773617374809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b71484db9481049bcef29a10f425f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTime: 0.53333336
+  _animationData:
+    _animatedParameters: []
+  CutsceneClipName: 
+  KeyCode: 106
+  AttackCutscene: {fileID: 4647766954937823293, guid: 65b08605bc9989140840a11cb27fa914, type: 3}
+  _length: 0.7

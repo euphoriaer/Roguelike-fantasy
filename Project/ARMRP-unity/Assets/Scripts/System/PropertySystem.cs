@@ -51,15 +51,7 @@ namespace Battle
         public AnimationClip LastPlayClip;
 
         public float DeltaTime=0.01f;
-        //public void OnCollisionEnter(Collision collision)
-        //{
-        //}
-        /// <summary>
-        /// 用于多段攻击 是否完成攻击阶段
-        /// </summary>
-        public bool isFinishAttack = false;
-
-        public Cutscene curPlayCutscene;
+  
         public void LateUpdate()
         {
            

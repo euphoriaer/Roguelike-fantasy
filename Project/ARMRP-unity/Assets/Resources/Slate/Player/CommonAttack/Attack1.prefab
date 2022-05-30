@@ -137,13 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b71484db9481049bcef29a10f425f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 1.2666668
+  _startTime: 0.5666667
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
   KeyCode: 106
   AttackCutscene: {fileID: 7041991350321781344, guid: d6b30535bfe1aa84c9f6e622a8c3a603, type: 3}
-  _length: 11.033334
+  _length: 1.7166668
 --- !u!1 &5759750158463111645
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,9 +249,9 @@ MonoBehaviour:
   groups:
   - {fileID: 5759750158463111647}
   - {fileID: 5759750159571840061}
-  _length: 12.333334
-  _viewTimeMin: -1
-  _viewTimeMax: 21
+  _length: 2.2833335
+  _viewTimeMin: -1.9839501
+  _viewTimeMax: 5.9393015
 --- !u!1 &5759750159059282068
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,14 +316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c300c03cd67094eaa68f7a83f08695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
+  _startTime: 0.016666668
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
   animationClip: {fileID: 7400000, guid: bd36d529675278846a6ad46eeb498b20, type: 2}
   PlaySpeed: 0.5
   Loop: 0
-  _length: 7.683334
+  _length: 2.266667
   useRootMotion: 0
   isRootMotionPreBaked: 0
   rmPositions:

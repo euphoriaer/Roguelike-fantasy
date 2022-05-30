@@ -120,7 +120,7 @@ MonoBehaviour:
   animationClip: {fileID: 7400000, guid: b9a93ec532970f14084a140a738b3e10, type: 2}
   PlaySpeed: 1
   Loop: 1
-  _length: 13.016667
+  _length: 1.1666667
   useRootMotion: 1
   isRootMotionPreBaked: 0
   rmPositions:
@@ -271,6 +271,76 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
+--- !u!1 &2855041979653289477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2394691665958970906}
+  - component: {fileID: 3386503338768413404}
+  - component: {fileID: 6320924582401247098}
+  m_Layer: 0
+  m_Name: "\u6309\u952E\u54CD\u5E94\u8F68\u9053"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2394691665958970906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855041979653289477}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1582936448825520681}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3386503338768413404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855041979653289477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65d93d32680cf54d8ed6dcd77fd8527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: "\u6309\u952E\u54CD\u5E94\u8F68\u9053"
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _active: 1
+  _isLocked: 0
+  _actionClips:
+  - {fileID: 6320924582401247098}
+  _customHeight: 300
+--- !u!114 &6320924582401247098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855041979653289477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b71484db9481049bcef29a10f425f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTime: 0.43333337
+  _animationData:
+    _animatedParameters: []
+  CutsceneClipName: 
+  AttackCutscene: {fileID: 2113297867080247999, guid: a535c256613073046a436ee8ac15e741, type: 3}
+  _length: 0.73333323
 --- !u!1 &4690232504220735115
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,9 +397,9 @@ MonoBehaviour:
   groups:
   - {fileID: 5333977378226165648}
   - {fileID: 1041689574802598993}
-  _length: 13.083334
-  _viewTimeMin: -1
-  _viewTimeMax: 21
+  _length: 1.1666667
+  _viewTimeMin: -0.18316224
+  _viewTimeMax: 2.526911
 --- !u!1 &8072722015624768203
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +430,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1583513738970679057}
+  - {fileID: 2394691665958970906}
   m_Father: {fileID: 1716378883861830528}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -376,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tracks:
+  - {fileID: 3386503338768413404}
   - {fileID: 6160651699657235350}
   _sections: []
   _isCollapsed: 0

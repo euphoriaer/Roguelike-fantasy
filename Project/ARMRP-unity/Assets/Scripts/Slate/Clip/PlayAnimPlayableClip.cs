@@ -173,11 +173,7 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
         {
             ApplyBakedRootMotion(time);
         }
-        if (time/length >= 1)
-        {
-            Debug.Log("完美退出" + time);
-            actor.gameObject.GetComponent<PropertySystem>().isFinishAttack = true;
-        }
+
     }
 
     private void ApplyBakedRootMotion(float time)

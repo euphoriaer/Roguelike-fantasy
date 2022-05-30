@@ -44,8 +44,6 @@ namespace Assets.Scripts.PlayMaker.Action
         private float time;
         private float weight;
 
-        
-
         public override void Exit()
         {
             var animClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
@@ -159,7 +157,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
             if (!isCross)
             {
-                time += Fsm.GameObject.GetComponent<PropertySystem>().DeltaTime* Speed.Value;
+                time += Fsm.GameObject.GetComponent<PropertySystem>().DeltaTime * Speed.Value;
                 //防止循环Cutscene 拉回原点
                 //_cutscene.currentTime = time % _cutscene.length;
                 if (isLoopCutscene)
@@ -182,11 +180,7 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private void _cutscene_OnStop()
         {
-            if (Owner.GetComponent<PropertySystem>().isFinishAttack)
-            {
-                Finish();
-            }
-            
+            Finish();
         }
     }
 }

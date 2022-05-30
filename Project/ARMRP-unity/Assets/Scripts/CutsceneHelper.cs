@@ -3,6 +3,7 @@ using Slate;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public static class CutsceneHelper
 {
@@ -117,11 +118,36 @@ public static class CutsceneHelper
         return null;
     }
 
+
+    /// <summary>
+    /// 唯一Cutscene
+    /// </summary>
+    /// <param name="cutscene"></param>
+    /// <param name="actors"></param>
+    /// <param name="finish">当前Cutscene 完成</param>
+    /// <param name="breakEvent">当前Cutscene 被中断</param>
+    /// <param name="MultCutsceneFinish">多段攻击结束后 完成的Cutscene事件</param>
+    public static void InstateAction(Cutscene cutscene,GameObject actors,UnityAction finish=null,UnityAction breakEvent=null, UnityAction MultCutsceneFinish=null)
+    {
+        if (cutscene != null)
+        {
+            var _cutscene = CutsceneHelper.Instate(cutscene, actors);
+            actors.GetComponent<CutsceneSystem>().CurCutscene = _cutscene;
+            actors.GetComponent<CutsceneSystem>().FinishEvent += finish;
+            actors.GetComponent<CutsceneSystem>().BreakEvent += breakEvent;
+            if (MultCutsceneFinish!=null)
+            {
+                actors.GetComponent<CutsceneSystem>().MultCutsceneFinishEvent += MultCutsceneFinish;
+
+            }
+        }
+    }
+
     /// <summary>
     /// 唯一Cutscene
     /// </summary>
     /// <returns></returns>
-    public static ref Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
+    public static  Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
     {
         if (cutscene != null)
         {
@@ -152,11 +178,11 @@ public static class CutsceneHelper
                 isLoop = false;
             }
             _cutscene.updateMode = Cutscene.UpdateMode.Manual;//error 应该放在Cutscene System进行融合与播放
-            actors[0].GetComponent<PropertySystem>().curPlayCutscene = _cutscene; 
-            return ref actors[0].GetComponent<PropertySystem>().curPlayCutscene;
+            actors[0].GetComponent<CutsceneSystem>().CurCutscene = _cutscene; 
+            return  actors[0].GetComponent<CutsceneSystem>().CurCutscene;
         }
         isLoop = false;
-        return ref actors[0].GetComponent<PropertySystem>().curPlayCutscene;
+        return  actors[0].GetComponent<CutsceneSystem>().CurCutscene;
     }
 
     public static Cutscene Instate(Cutscene inCutscene, params GameObject[] player)
