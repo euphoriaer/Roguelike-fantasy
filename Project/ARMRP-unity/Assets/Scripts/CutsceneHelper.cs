@@ -1,4 +1,5 @@
-﻿using Slate;
+﻿using Battle;
+using Slate;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -120,7 +121,7 @@ public static class CutsceneHelper
     /// 唯一Cutscene
     /// </summary>
     /// <returns></returns>
-    public static Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
+    public static ref Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
     {
         if (cutscene != null)
         {
@@ -150,11 +151,12 @@ public static class CutsceneHelper
             {
                 isLoop = false;
             }
-            _cutscene.updateMode = Cutscene.UpdateMode.Manual;
-            return _cutscene;
+            _cutscene.updateMode = Cutscene.UpdateMode.Manual;//error 应该放在Cutscene System进行融合与播放
+            actors[0].GetComponent<PropertySystem>().curPlayCutscene = _cutscene; 
+            return ref actors[0].GetComponent<PropertySystem>().curPlayCutscene;
         }
         isLoop = false;
-        return null;
+        return ref actors[0].GetComponent<PropertySystem>().curPlayCutscene;
     }
 
     public static Cutscene Instate(Cutscene inCutscene, params GameObject[] player)

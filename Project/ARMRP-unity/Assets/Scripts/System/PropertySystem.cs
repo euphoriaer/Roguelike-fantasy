@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using Slate;
 using UnityEngine;
 
 namespace Battle
@@ -53,6 +54,12 @@ namespace Battle
         //public void OnCollisionEnter(Collision collision)
         //{
         //}
+        /// <summary>
+        /// 用于多段攻击 是否完成攻击阶段
+        /// </summary>
+        public bool isFinishAttack = false;
+
+        public Cutscene curPlayCutscene;
         public void LateUpdate()
         {
            

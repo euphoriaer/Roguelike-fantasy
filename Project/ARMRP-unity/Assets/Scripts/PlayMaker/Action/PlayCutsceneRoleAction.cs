@@ -44,6 +44,8 @@ namespace Assets.Scripts.PlayMaker.Action
         private float time;
         private float weight;
 
+        
+
         public override void Exit()
         {
             var animClip = cutscene.GetCutsceneClip<PlayAnimPlayableClip>().First().animationClip;
@@ -180,7 +182,11 @@ namespace Assets.Scripts.PlayMaker.Action
 
         private void _cutscene_OnStop()
         {
-            Finish();
+            if (Owner.GetComponent<PropertySystem>().isFinishAttack)
+            {
+                Finish();
+            }
+            
         }
     }
 }

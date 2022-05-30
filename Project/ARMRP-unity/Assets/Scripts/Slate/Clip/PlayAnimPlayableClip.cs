@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Battle;
+using Sirenix.OdinInspector;
 using Slate;
 using System.Collections.Generic;
 using UnityEngine;
@@ -172,6 +173,11 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
         {
             ApplyBakedRootMotion(time);
         }
+        if (time/length >= 1)
+        {
+            Debug.Log("完美退出" + time);
+            actor.gameObject.GetComponent<PropertySystem>().isFinishAttack = true;
+        }
     }
 
     private void ApplyBakedRootMotion(float time)
@@ -196,6 +202,7 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
 
     protected override void OnExit()
     {
+
         base.OnExit();
     }
 
@@ -205,6 +212,7 @@ public class PlayAnimPlayableClip : CutsceneClip<Animator>, IDirectable
         length = animationClip.length / PlaySpeed;
     }
 
+    
     //Todo OnGui 红色表示动画长度
 
     public override string info

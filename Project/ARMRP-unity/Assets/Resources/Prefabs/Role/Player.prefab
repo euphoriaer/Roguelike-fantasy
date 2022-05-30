@@ -1377,6 +1377,8 @@ MonoBehaviour:
   curPlayClipOffset: 0
   LastPlayClip: {fileID: 0}
   DeltaTime: 0.01
+  isFinishAttack: 0
+  curPlayCutscene: {fileID: 0}
 --- !u!114 &879215550727349006
 MonoBehaviour:
   m_ObjectHideFlags: 0
