@@ -44,10 +44,10 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
     protected override void OnEnter()
     {
         Debug.Log("进入Fx enter");
-        FxObj= GameObject.Instantiate(Obj, actor.transform.position,Quaternion.identity, actor.transform);
-        FxObj.transform.forward=actor.transform.forward;
+        FxObj = GameObject.Instantiate(Obj, actor.transform.position, Quaternion.identity, actor.transform);
+        FxObj.transform.forward = actor.transform.forward;
         FxObj.transform.localPosition += Offset;
-        //FxObj.transform.rotation=Quaternion.Euler(Rotation);
+        FxObj.transform.localRotation=Quaternion.Euler(Rotation);
         anim = FxObj.GetComponent<Animator>();
         particle = FxObj.GetComponent<ParticleSystem>();
         particle.Play(true);
@@ -81,7 +81,7 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
 
         if (isFollow)
         {
-            FxObj.transform.position = actor.transform.position+ Offset;
+            //FxObj.transform.position = actor.transform.position+ Offset;
         }
 
     }

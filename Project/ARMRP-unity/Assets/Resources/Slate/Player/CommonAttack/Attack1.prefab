@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u7279\u6548\u8F68\u9053"
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _active: 0
+  _active: 1
   _isLocked: 0
   _actionClips:
   - {fileID: 681024943}
@@ -69,7 +69,7 @@ MonoBehaviour:
     _animatedParameters: []
   CutsceneClipName: 
   Obj: {fileID: 7833080812639516201, guid: 340d75e00ac9461448c19e81f8fad36f, type: 3}
-  isFollow: 0
+  isFollow: 1
   Offset: {x: 0, y: 1, z: 1}
   Rotation: {x: 0, y: 0, z: 0}
   _length: 1.2333333
