@@ -81,7 +81,7 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
 
         if (isFollow)
         {
-            //FxObj.transform.position = actor.transform.position+ Offset;
+            
         }
 
     }

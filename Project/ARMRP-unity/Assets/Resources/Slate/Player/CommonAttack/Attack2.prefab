@@ -550,12 +550,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b71484db9481049bcef29a10f425f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0.9333334
+  _startTime: 0.55
   _animationData:
     _animatedParameters: []
   CutsceneClipName: 
   AttackCutscene: {fileID: 2113297867080247999, guid: a535c256613073046a436ee8ac15e741, type: 3}
-  _length: 0.5333333
+  _length: 0.9166667
 --- !u!1 &4690232504220735115
 GameObject:
   m_ObjectHideFlags: 0
