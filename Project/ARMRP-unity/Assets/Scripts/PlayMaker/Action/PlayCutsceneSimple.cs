@@ -17,7 +17,6 @@ namespace Assets.Scripts.PlayMaker.Action
             var go = Fsm.GetOwnerDefaultTarget(FsmGameObject);
             CutsceneHelper.InstateAction(Cutscene, go, MultCutsceneFinish: () => {
                 Finish();
-                Finished =true;
             });
         }
     }

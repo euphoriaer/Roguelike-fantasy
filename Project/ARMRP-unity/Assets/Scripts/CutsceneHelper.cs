@@ -177,7 +177,7 @@ public static class CutsceneHelper
             {
                 isLoop = false;
             }
-            _cutscene.updateMode = Cutscene.UpdateMode.Manual;//error 应该放在Cutscene System进行融合与播放
+            _cutscene.updateMode = Cutscene.UpdateMode.Manual;
             actors[0].GetComponent<CutsceneSystem>().CurCutscene = _cutscene; 
             return  actors[0].GetComponent<CutsceneSystem>().CurCutscene;
         }

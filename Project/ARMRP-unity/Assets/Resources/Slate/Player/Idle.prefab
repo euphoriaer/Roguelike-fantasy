@@ -69,11 +69,13 @@ MonoBehaviour:
     _animatedParameters: []
   CutsceneClipName: 
   animationClip: {fileID: 7400000, guid: 43acca3170a9d5d488e8ecdfcdec51be, type: 2}
-  PlaySpeed: 1
-  Loop: 0
-  _length: 1.9666668
-  useRootMotion: 0
   isRootMotionPreBaked: 0
+  Loop: 0
+  PlaySpeed: 1
+  StarOffsetTime: 0
+  useRootMotion: 0
+  CorssTransTime: 0.1
+  _length: 1.9666668
   rmPositions: []
   rmRotations: []
 --- !u!1 &525572788276487078

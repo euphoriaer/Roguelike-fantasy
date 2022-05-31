@@ -32,7 +32,7 @@ public class DistributeUtil<T1, T2, T3>
     public DistributeUtil(object? obj)
     {
         Cache = new Dictionary<string, T1>();
-        //error GetMethods 方法获取
+        //error 使用类类型对象 取代分发
         var methods = typeof(T3).GetMethods(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
         foreach (var method in methods)
