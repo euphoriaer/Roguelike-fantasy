@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u7279\u6548\u8F68\u9053"
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _active: 0
+  _active: 1
   _isLocked: 0
   _actionClips:
   - {fileID: 3124089937490524973}
