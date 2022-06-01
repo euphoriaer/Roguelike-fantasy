@@ -8,8 +8,8 @@ using UnityEngine.Playables;
 
 namespace NodeCanvas.Tasks.Actions
 {
-    [ParadoxNotion.Design.Name("Play PlayCutscene Node TransForm")]
-    [ParadoxNotion.Design.Category("Animator")]
+    [ParadoxNotion.Design.Name("PlayCutsceneNodeTransForm")]
+    [ParadoxNotion.Design.Category("My Nodes/Cutscene")]
     public class PlayCutsceneNodeTransForm : ActionTask<Transform>
     {
         public Cutscene Cutscene;

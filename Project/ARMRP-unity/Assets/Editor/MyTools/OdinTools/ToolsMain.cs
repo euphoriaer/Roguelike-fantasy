@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEngine;
 
 public class ToolsMain : OdinMenuEditorWindow
 {
@@ -14,6 +11,7 @@ public class ToolsMain : OdinMenuEditorWindow
         var window = GetWindow<ToolsMain>();
         window.position = GUIHelper.GetEditorWindowRect().AlignCenter(1000, 500);
     }
+
     protected override OdinMenuTree BuildMenuTree()
     {
         OdinMenuTree tree = new OdinMenuTree();
@@ -23,5 +21,4 @@ public class ToolsMain : OdinMenuEditorWindow
         tree.DefaultMenuStyle.IconSize = 80;
         return tree;
     }
-  
 }

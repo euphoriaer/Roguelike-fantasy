@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace NodeCanvas.Tasks.Actions
 {
-    [ParadoxNotion.Design.Name("Play Cutscene MoreActor")]
-    [ParadoxNotion.Design.Category("Animator")]
+    [ParadoxNotion.Design.Name("PlayCutsceneMoreActor")]
+    [ParadoxNotion.Design.Category("My Nodes/Play Cutscene MoreActor")]
     public class PlayCutsceneMoreActor : ActionTask<Transform>
     {
         public Cutscene Cutscene;

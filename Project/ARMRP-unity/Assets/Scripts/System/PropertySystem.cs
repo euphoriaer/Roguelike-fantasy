@@ -51,6 +51,7 @@ namespace Battle
         public AnimationClip LastPlayClip;
 
         public float DeltaTime=0.01f;
+        
   
         public void LateUpdate()
         {

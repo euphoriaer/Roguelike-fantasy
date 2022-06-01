@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace NodeCanvas.BehaviourTrees
 {
-    [Category("My Nodes")]
+    [Category("My Nodes/Move")]
     [ParadoxNotion.Design.Icon("SomeIcon")]
     [Description("MoveGameobject")]
     public class SimpleMove : ActionTask<Transform>
