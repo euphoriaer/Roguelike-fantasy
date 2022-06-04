@@ -31,8 +31,12 @@ namespace Battle
             //如果有手机端，可根据轮盘距离决定移动速度数值
 
             //取消缓动使用GetAxisRaw
-            var h = Input.GetAxis("Horizontal"); 
-            var v = Input.GetAxis("Vertical"); 
+            var h = Input.GetAxis("Horizontal");
+            var v = Input.GetAxis("Vertical");
+
+            //GetAxisRaw 判断是否松开
+            var hCancel = Input.GetAxisRaw("Horizontal");
+            var vCancel = Input.GetAxisRaw("Vertical");
 
             //XZ 平面
             //相对方向
@@ -43,11 +47,13 @@ namespace Battle
             forward = forward.normalized;
             Vector3 right = new Vector3(forward.z, 0, -forward.x);
 
-            InputDirector = h * right + v * forward;
+            InputDirector = h * right * Mathf.Abs(hCancel) + v * forward * Mathf.Abs(vCancel);
+            //InputDirector = h * right  + v * forward;
             if (MoveEvent != null)
             {
                 MoveEvent(InputDirector);
             }
+            //松开按键
         }
     }
 }
