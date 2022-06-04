@@ -47,8 +47,17 @@ namespace Battle
             forward = forward.normalized;
             Vector3 right = new Vector3(forward.z, 0, -forward.x);
 
-            InputDirector = h * right * Mathf.Abs(hCancel) + v * forward * Mathf.Abs(vCancel);
+            //版本1:没有缓动，松开时不能及时切换状态
             //InputDirector = h * right  + v * forward;
+
+            //版本2:缓动，但是松开转向生硬，因为轴速度切为0 太快又需要转向缓动
+            //InputDirector = h * right * Mathf.Abs(hCancel) + v * forward * Mathf.Abs(vCancel);
+
+            //版本3：hCancel vCancel 全为0,才0，有1，则为1
+            InputDirector = h * right * Mathf.Clamp01(Mathf.Abs(hCancel)+ Mathf.Abs(vCancel)) + v * forward * Mathf.Clamp01(Mathf.Abs(hCancel) + Mathf.Abs(vCancel));
+            
+
+
             if (MoveEvent != null)
             {
                 MoveEvent(InputDirector);
