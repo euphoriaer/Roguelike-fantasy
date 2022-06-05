@@ -164,82 +164,13 @@ namespace Battle
 
         #region 手动改帧间隔控制速度
 
-        //private void Update()
-        //{
-        //    if (isCross)
-        //    {   //动作融合
-        //        //error 需要从节点Cutscene 获取cutscene 播放速度，
-        //        //因为有攻击cutscene ,有移动 ，播放速度由节点从PropertySystem获取
-        //        time += this.GetAddComponent<PropertySystem>().LogicDeltaTime;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
-
-        //        weight = Mathf.Lerp(0, 1, time / TransTime);
-
-        //        //clipPlayable0.SetTime(time + offsetTime);
-
-        //        //clipPlayable1.SetTime();
-
-        //        mixerPlayable.SetInputWeight(0, 1.0f - weight);
-
-        //        mixerPlayable.SetInputWeight(1, weight);
-        //        //
-        //        if (Mathf.Abs(weight - 1) < 0.0001)
-        //        {
-        //            Debug.Log("融合完成  偏移时间" + offsetTime);
-        //            playableGraph.Stop();
-        //            isCross = false;
-        //            //使cutscene 从0开始播放，计时重置,融合到下一个Cutscene 第一帧
-        //            time = 0;
-        //            curCutscene.Play();
-        //        }
-        //    }
-
-        //    if (!isCross)
-        //    {
-        //        time += this.GetAddComponent<PropertySystem>().LogicDeltaTime;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
-
-        //        if (isLoopCutscene)
-        //        {
-        //            CurCutscene.Sample(time % CurCutscene.length);
-        //        }
-        //        else
-        //        {
-        //            if (time >= CurCutscene.length)
-        //            {
-        //                CurCutscene.Stop();
-        //                if (MultCutsceneFinishEvent != null)
-        //                {
-        //                    MultCutsceneFinishEvent();
-        //                    MultCutsceneFinishEvent = null;
-        //                }
-        //                if (FinishEvent != null)
-        //                {
-        //                    FinishEvent();
-        //                }
-        //            }
-        //            else
-        //            {
-        //                CurCutscene.Sample(time);
-        //            }
-        //        }
-        //    }
-        //}
-
-        #endregion 手动改帧间隔控制
-
-        #region FixedUpdate补帧
-
-        private void FixedUpdate()
+        private void Update()
         {
-            if (CurCutscene==null)
-            {
-                return;
-            }
-            
             if (isCross)
             {   //动作融合
                 //error 需要从节点Cutscene 获取cutscene 播放速度，
                 //因为有攻击cutscene ,有移动 ，播放速度由节点从PropertySystem获取
-                time += this.GetAddComponent<PropertySystem>().FixedDeltaTime*CutsceneSpeed;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
+                time += PropertySystem.MathfDeltatime;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
 
                 weight = Mathf.Lerp(0, 1, time / TransTime);
 
@@ -264,7 +195,7 @@ namespace Battle
 
             if (!isCross)
             {
-                time += this.GetAddComponent<PropertySystem>().FixedDeltaTime * CutsceneSpeed; ;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
+                time += PropertySystem.MathfDeltatime;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
 
                 if (isLoopCutscene)
                 {
@@ -274,8 +205,7 @@ namespace Battle
                 {
                     if (time >= CurCutscene.length)
                     {
-                        //CurCutscene.Stop();
-                        
+                        CurCutscene.Stop();
                         if (MultCutsceneFinishEvent != null)
                         {
                             MultCutsceneFinishEvent();
@@ -292,15 +222,85 @@ namespace Battle
                     }
                 }
             }
+        }
 
-            //if (lastCutscene!=null)
-            //{
-            //    //销毁上一个
-            //    GameObject.Destroy(lastCutscene.gameObject);
-            //}
+        #endregion 手动改帧间隔控制
+
+        #region FixedUpdate补帧  //存在断帧问题，因为FixedUpdate不是每帧调用
+
+        //private void FixedUpdate()
+        //{
+        //    if (CurCutscene==null)
+        //    {
+        //        return;
+        //    }
+            
+        //    if (isCross)
+        //    {   //动作融合
+        //        //error 需要从节点Cutscene 获取cutscene 播放速度，
+        //        //因为有攻击cutscene ,有移动 ，播放速度由节点从PropertySystem获取
+        //        time += this.GetAddComponent<PropertySystem>().FixedDeltaTime*CutsceneSpeed;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
+
+        //        weight = Mathf.Lerp(0, 1, time / TransTime);
+
+        //        //clipPlayable0.SetTime(time + offsetTime);
+
+        //        //clipPlayable1.SetTime();
+
+        //        mixerPlayable.SetInputWeight(0, 1.0f - weight);
+
+        //        mixerPlayable.SetInputWeight(1, weight);
+        //        //
+        //        if (Mathf.Abs(weight - 1) < 0.0001)
+        //        {
+        //            Debug.Log("融合完成  偏移时间" + offsetTime);
+        //            playableGraph.Stop();
+        //            isCross = false;
+        //            //使cutscene 从0开始播放，计时重置,融合到下一个Cutscene 第一帧
+        //            time = 0;
+        //            curCutscene.Play();
+        //        }
+        //    }
+
+        //    if (!isCross)
+        //    {
+        //        time += this.GetAddComponent<PropertySystem>().FixedDeltaTime * CutsceneSpeed; ;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
+
+        //        if (isLoopCutscene)
+        //        {
+        //            CurCutscene.Sample(time % CurCutscene.length);
+        //        }
+        //        else
+        //        {
+        //            if (time >= CurCutscene.length)
+        //            {
+        //                //CurCutscene.Stop();
+                        
+        //                if (MultCutsceneFinishEvent != null)
+        //                {
+        //                    MultCutsceneFinishEvent();
+        //                    MultCutsceneFinishEvent = null;
+        //                }
+        //                if (FinishEvent != null)
+        //                {
+        //                    FinishEvent();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                CurCutscene.Sample(time);
+        //            }
+        //        }
+        //    }
+
+        //    //if (lastCutscene!=null)
+        //    //{
+        //    //    //销毁上一个
+        //    //    GameObject.Destroy(lastCutscene.gameObject);
+        //    //}
             
 
-        }
+        //}
 
         #endregion FixedUpdate补帧
     }
