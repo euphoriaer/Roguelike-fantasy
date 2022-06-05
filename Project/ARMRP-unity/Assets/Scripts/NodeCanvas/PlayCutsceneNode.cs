@@ -51,7 +51,7 @@ namespace NodeCanvas.Tasks.Actions
 
         protected override void OnUpdate()
         {
-            time += agent.GetComponent<PropertySystem>().DeltaTime;
+            time += agent.GetComponent<PropertySystem>().FixedDeltaTime;
             if (isLoopCutscene)
             {
                 cutscene.Sample(time % cutscene.length);

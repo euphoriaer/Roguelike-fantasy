@@ -53,7 +53,7 @@ namespace Battle
                     buff.IntervalCallAction(buff);
                 }
 
-                buff.BuffTime -= this.GetComponent<PropertySystem>().DeltaTime;
+                buff.BuffTime -= this.GetComponent<PropertySystem>().FixedDeltaTime;
                
 
                 #endregion Runing
