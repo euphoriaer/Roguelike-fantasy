@@ -8,7 +8,7 @@ using UnityEngine;
 namespace NodeCanvas.Tasks.Actions
 {
     [ParadoxNotion.Design.Name("PlayCutsceneMoreActor")]
-    [ParadoxNotion.Design.Category("My Nodes/Play Cutscene MoreActor")]
+    [ParadoxNotion.Design.Category("My Nodes/Cutscene")]
     public class PlayCutsceneMoreActor : ActionTask<Transform>
     {
         public Cutscene Cutscene;
@@ -33,8 +33,8 @@ namespace NodeCanvas.Tasks.Actions
                 time = 0;
                 //播放Action
                 //cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
-
-                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, CutscenePlayers.value.ToArray());
+                //
+                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, actors:CutscenePlayers.value.ToArray());
 
                 cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 // 防止拉回原点

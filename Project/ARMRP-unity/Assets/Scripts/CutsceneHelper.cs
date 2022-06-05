@@ -127,12 +127,12 @@ public static class CutsceneHelper
     /// <param name="finish">当前Cutscene 完成</param>
     /// <param name="breakEvent">当前Cutscene 被中断</param>
     /// <param name="MultCutsceneFinish">多段攻击结束后 完成的Cutscene事件</param>
-    public static void InstateAction(Cutscene cutscene,GameObject actors,UnityAction finish=null,UnityAction breakEvent=null, UnityAction MultCutsceneFinish=null)
+    public static void InstateAction(Cutscene cutscene,GameObject actors, float speed = 1, UnityAction finish=null,UnityAction breakEvent=null, UnityAction MultCutsceneFinish=null)
     {
         if (cutscene != null)
         {
             var _cutscene = CutsceneHelper.Instate(cutscene, actors);
-            actors.GetComponent<CutsceneSystem>().CurCutscene = _cutscene;
+            actors.GetComponent<CutsceneSystem>().SetCutscene(_cutscene, speed);
             actors.GetComponent<CutsceneSystem>().FinishEvent += finish;
             actors.GetComponent<CutsceneSystem>().BreakEvent += breakEvent;
             if (MultCutsceneFinish!=null)
@@ -147,7 +147,7 @@ public static class CutsceneHelper
     /// 唯一Cutscene
     /// </summary>
     /// <returns></returns>
-    public static  Cutscene InstateAction(out bool isLoop, Cutscene cutscene, params GameObject[] actors)
+    public static  Cutscene InstateAction(out bool isLoop, Cutscene cutscene,float speed=0, params GameObject[] actors)
     {
         if (cutscene != null)
         {
@@ -178,7 +178,7 @@ public static class CutsceneHelper
                 isLoop = false;
             }
             _cutscene.updateMode = Cutscene.UpdateMode.Manual;
-            actors[0].GetComponent<CutsceneSystem>().CurCutscene = _cutscene; 
+            actors[0].GetComponent<CutsceneSystem>().SetCutscene(_cutscene, speed);
             return  actors[0].GetComponent<CutsceneSystem>().CurCutscene;
         }
         isLoop = false;

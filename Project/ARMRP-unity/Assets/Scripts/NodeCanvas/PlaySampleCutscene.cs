@@ -1,4 +1,5 @@
-﻿using NodeCanvas.Framework;
+﻿using Battle;
+using NodeCanvas.Framework;
 using Slate;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace NodeCanvas.Tasks.Actions
     public class PlaySampleCutscene : ActionTask<Transform>
     {
         public BBParameter<Cutscene> Cutscene;
+        public BBParameter<float> CutsceneSpeed=1;
 
         protected override void OnExecute()
         {
@@ -21,6 +23,18 @@ namespace NodeCanvas.Tasks.Actions
             CutsceneHelper.InstateAction(Cutscene.value, agent.gameObject, MultCutsceneFinish: () => {
                 EndAction();
             });
+        }
+
+        protected override void OnUpdate()
+        {
+            agent.GetComponent<CutsceneSystem>().CutsceneSpeed= CutsceneSpeed.value;
+        }
+
+        protected override void OnStop()
+        {
+            
+            agent.GetComponent<CutsceneSystem>().CutsceneSpeed = 1;
+            //CutsceneSpeed = 1;
         }
     }
 }

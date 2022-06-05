@@ -17,6 +17,8 @@ namespace Battle
         /// </summary>
         public UnityAction BreakEvent;
 
+        public float CutsceneSpeed = 1;
+
         /// <summary>
         /// 播放完成
         /// </summary>
@@ -34,6 +36,7 @@ namespace Battle
         private AnimationClipPlayable clipPlayable1;
         private AnimationClip curClip;
         private Cutscene curCutscene;
+        private Cutscene lastCutscene;
         private bool isCross = false;
         private bool isLoopCutscene;
         private AnimationClip lastClip;
@@ -43,16 +46,74 @@ namespace Battle
         private GameObject RoleActionCutscene;
         private float time;
         private float weight;
-
         public Cutscene CurCutscene
         {
             get
             {
                 return curCutscene;
             }
-            set
+        }
+        /// <summary>
+        /// 不输入速度默认采用上次的速度
+        /// </summary>
+        /// <param name="cutscene"></param>
+        /// <param name="speed"></param>
+        public void SetCutscene(Cutscene cutscene, float speed = 0)
+        {
+            //Cutscene之间的动画融合
+            if (speed!=0)
             {
-                SetNewCutscene(value);
+                CutsceneSpeed = speed;
+            }
+            
+            float stopTime = 0;
+            if (curCutscene != null)
+            {
+                //销毁旧的
+                if (BreakEvent != null)
+                {
+                    BreakEvent();
+                }
+                //上一个动画片段
+                lastClip = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].animationClip;
+                //上一个动画结尾
+                stopTime = curCutscene.currentTime;
+                TransTime = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].CorssTransTime;
+                curCutscene.Stop();
+                lastCutscene= curCutscene;
+                
+            }
+
+            BreakEvent = null;
+            FinishEvent = null;
+            //播放新的
+            curCutscene = cutscene;
+            if (curCutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
+            {
+                isLoopCutscene = true;
+            }
+            else
+            {
+                isLoopCutscene = false;
+            }
+            curCutscene.updateMode = Cutscene.UpdateMode.Manual;
+            time = 0;
+            //当前动画片段
+            curClip = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].animationClip;
+            var starTime = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].StarOffsetTime;
+            curCutscene.transform.SetParent(RoleActionCutscene.transform, false);
+
+            //判断是否需要融合
+            if ((lastClip != null) && (curClip != null) && (TransTime > 0))
+            {
+                isCross = true;
+                Corss(lastClip, stopTime, curClip, starTime);
+            }
+            else
+            {
+                //不需要融合，播放Cutscene
+                isCross = false;
+                curCutscene.Play();
             }
         }
 
@@ -101,61 +162,7 @@ namespace Battle
             Debug.Log("开始融合");
         }
 
-        private void SetNewCutscene(Cutscene value)
-        {
-            //Cutscene之间的动画融合
-
-            float stopTime = 0;
-            if (curCutscene != null)
-            {
-                //销毁旧的
-                if (BreakEvent != null)
-                {
-                    BreakEvent();
-                }
-                //上一个动画片段
-                lastClip = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].animationClip;
-                //上一个动画结尾
-                stopTime = curCutscene.currentTime;
-                TransTime = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].CorssTransTime;
-                curCutscene.Stop();
-                GameObject.Destroy(curCutscene.gameObject);
-            }
-
-            BreakEvent = null;
-            FinishEvent = null;
-            //播放新的
-            curCutscene = value;
-            if (curCutscene.defaultWrapMode == Cutscene.WrapMode.Loop)
-            {
-                isLoopCutscene = true;
-            }
-            else
-            {
-                isLoopCutscene = false;
-            }
-            curCutscene.updateMode = Cutscene.UpdateMode.Manual;
-            time = 0;
-            //当前动画片段
-            curClip = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].animationClip;
-            var starTime = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].StarOffsetTime;
-            curCutscene.transform.SetParent(RoleActionCutscene.transform, false);
-
-            //判断是否需要融合
-            if ((lastClip != null) && (curClip != null) && (TransTime >= 0))
-            {
-                isCross = true;
-                Corss(lastClip, stopTime, curClip, starTime);
-            }
-            else
-            {
-                //不需要融合，播放Cutscene
-                isCross = false;
-                curCutscene.Play();
-            }
-        }
-
-        //#region 手动改帧间隔控制速度
+        #region 手动改帧间隔控制速度
 
         //private void Update()
         //{
@@ -217,16 +224,22 @@ namespace Battle
         //    }
         //}
 
-        //#endregion 手动改帧间隔控制
+        #endregion 手动改帧间隔控制
 
         #region FixedUpdate补帧
+
         private void FixedUpdate()
         {
+            if (CurCutscene==null)
+            {
+                return;
+            }
+            
             if (isCross)
             {   //动作融合
                 //error 需要从节点Cutscene 获取cutscene 播放速度，
                 //因为有攻击cutscene ,有移动 ，播放速度由节点从PropertySystem获取
-                time += this.GetAddComponent<PropertySystem>().FixedDeltaTime;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
+                time += this.GetAddComponent<PropertySystem>().FixedDeltaTime*CutsceneSpeed;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
 
                 weight = Mathf.Lerp(0, 1, time / TransTime);
 
@@ -251,7 +264,7 @@ namespace Battle
 
             if (!isCross)
             {
-                time += this.GetAddComponent<PropertySystem>().FixedDeltaTime;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
+                time += this.GetAddComponent<PropertySystem>().FixedDeltaTime * CutsceneSpeed; ;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
 
                 if (isLoopCutscene)
                 {
@@ -261,7 +274,8 @@ namespace Battle
                 {
                     if (time >= CurCutscene.length)
                     {
-                        CurCutscene.Stop();
+                        //CurCutscene.Stop();
+                        
                         if (MultCutsceneFinishEvent != null)
                         {
                             MultCutsceneFinishEvent();
@@ -278,7 +292,16 @@ namespace Battle
                     }
                 }
             }
+
+            //if (lastCutscene!=null)
+            //{
+            //    //销毁上一个
+            //    GameObject.Destroy(lastCutscene.gameObject);
+            //}
+            
+
         }
-        #endregion
+
+        #endregion FixedUpdate补帧
     }
 }
