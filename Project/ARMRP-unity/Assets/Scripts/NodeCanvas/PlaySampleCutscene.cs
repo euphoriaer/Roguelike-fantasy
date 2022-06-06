@@ -33,8 +33,6 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnStop()
         {
             
-            agent.GetComponent<CutsceneSystem>().CutsceneSpeed = 1;
-            //CutsceneSpeed = 1;
         }
     }
 }

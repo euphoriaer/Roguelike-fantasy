@@ -36,16 +36,17 @@ namespace Battle
         private AnimationClipPlayable clipPlayable1;
         private AnimationClip curClip;
         private Cutscene curCutscene;
-        private Cutscene lastCutscene;
         private bool isCross = false;
         private bool isLoopCutscene;
         private AnimationClip lastClip;
+        private Cutscene lastCutscene;
         private AnimationMixerPlayable mixerPlayable;
         private float offsetTime = 0;
         private PlayableGraph playableGraph;
         private GameObject RoleActionCutscene;
         private float time;
         private float weight;
+
         public Cutscene CurCutscene
         {
             get
@@ -53,6 +54,7 @@ namespace Battle
                 return curCutscene;
             }
         }
+
         /// <summary>
         /// 不输入速度默认采用上次的速度
         /// </summary>
@@ -61,11 +63,11 @@ namespace Battle
         public void SetCutscene(Cutscene cutscene, float speed = 0)
         {
             //Cutscene之间的动画融合
-            if (speed!=0)
+            if (speed != 0)
             {
                 CutsceneSpeed = speed;
             }
-            
+
             float stopTime = 0;
             if (curCutscene != null)
             {
@@ -80,8 +82,7 @@ namespace Battle
                 stopTime = curCutscene.currentTime;
                 TransTime = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].CorssTransTime;
                 curCutscene.Stop();
-                lastCutscene= curCutscene;
-                
+                lastCutscene = curCutscene;
             }
 
             BreakEvent = null;
@@ -170,7 +171,7 @@ namespace Battle
             {   //动作融合
                 //error 需要从节点Cutscene 获取cutscene 播放速度，
                 //因为有攻击cutscene ,有移动 ，播放速度由节点从PropertySystem获取
-                time += PropertySystem.MathfDeltatime;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
+                time += PropertySystem.MathfDeltatime * CutsceneSpeed;//* this.GetAddComponent<PropertySystem>().AttackSpeed;
 
                 weight = Mathf.Lerp(0, 1, time / TransTime);
 
@@ -195,7 +196,7 @@ namespace Battle
 
             if (!isCross)
             {
-                time += PropertySystem.MathfDeltatime;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
+                time += PropertySystem.MathfDeltatime * CutsceneSpeed;/** this.GetAddComponent<PropertySystem>().AttackSpeed*/;
 
                 if (isLoopCutscene)
                 {
@@ -224,7 +225,7 @@ namespace Battle
             }
         }
 
-        #endregion 手动改帧间隔控制
+        #endregion 手动改帧间隔控制速度
 
         #region FixedUpdate补帧  //存在断帧问题，因为FixedUpdate不是每帧调用
 
@@ -234,7 +235,7 @@ namespace Battle
         //    {
         //        return;
         //    }
-            
+
         //    if (isCross)
         //    {   //动作融合
         //        //error 需要从节点Cutscene 获取cutscene 播放速度，
@@ -275,7 +276,7 @@ namespace Battle
         //            if (time >= CurCutscene.length)
         //            {
         //                //CurCutscene.Stop();
-                        
+
         //                if (MultCutsceneFinishEvent != null)
         //                {
         //                    MultCutsceneFinishEvent();
@@ -298,10 +299,9 @@ namespace Battle
         //    //    //销毁上一个
         //    //    GameObject.Destroy(lastCutscene.gameObject);
         //    //}
-            
 
         //}
 
-        #endregion FixedUpdate补帧
+        #endregion FixedUpdate补帧  //存在断帧问题，因为FixedUpdate不是每帧调用
     }
 }
