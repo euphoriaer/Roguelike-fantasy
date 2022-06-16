@@ -12,19 +12,20 @@ namespace Battle
         public Vector3 Direction;
 
       
-        [LabelText("µ±Ç°ÒÆ¶¯ËÙ¶È")]
+        [LabelText("ï¿½ï¿½Ç°ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½")]
         public float CurSpeed;
 
         
 
         private void FixedUpdate() 
         {
-            //todo ËÙ¶È¿ÉÒÔÔöÁ¿Æ½»¬£¬Îª¹ý¶É¶¯»­Áô³öÊ±¼ä learp
+            //todo ï¿½Ù¶È¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ learp
             //CurSpeed = Mathf.Lerp(0, MaxSpeed, LerpTime);
             //LerpTime += LerpSpeed * GetComponent<PropertySystem>().DeltaTime;
             this.transform.position = this.transform.position + CurSpeed * Direction.normalized *
                 this.transform.GetComponent<PropertySystem>().FixedDeltaTime;
-            //±ÜÃâ³ÖÐøÅö×²Ê±  Ïà»ú¶¶¶¯
+            //Ê¹ï¿½Ã±ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¶ï¿½ï¿½ï¿½×²Òªï¿½Ô¼ï¿½Ð´
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²Ê±  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 
         // Start is called before the first frame update

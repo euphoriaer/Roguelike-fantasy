@@ -7,14 +7,14 @@ using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-[TypeInfoBox("<size=20>Ò»¼ü´ò°ü</size>")]
+[TypeInfoBox("<size=20>ä¸€é”®æ‰“åŒ…</size>")]
 public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
 {
     private const int addressableBundlesDirOrder = 3;
     private const int AddressableButtonOrder = 2;
-    private const int AddressablesµØÖ·¹ÜÀíOrder = 3;
-    private const int PlayerSetting´ò°üÉèÖÃOrder = 4;
-    private const int PlayerSetting´ò°ü½á¹ûOrder = 5;
+    private const int Addressablesåœ°å€ç®¡ç†Order = 3;
+    private const int PlayerSettingæ‰“åŒ…è®¾ç½®Order = 4;
+    private const int PlayerSettingæ‰“åŒ…ç»“æœOrder = 5;
     private const string HFS = "HFS";
     private string androidPath;
     private string winPath;
@@ -22,13 +22,13 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
     private bool isBuild = false;
 #pragma warning restore CS0414
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ", null, TitleAlignments.Left, true, true, false, PlayerSetting´ò°üÉèÖÃOrder)]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®", null, TitleAlignments.Left, true, true, false, PlayerSettingæ‰“åŒ…è®¾ç½®Order)]
     public BuildConfig buildConfig;
 
     private List<string> m_activeScene = new List<string>();
 
     [ShowInInspector]
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ", null, TitleAlignments.Left, true, true, false, PlayerSetting´ò°üÉèÖÃOrder)]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®", null, TitleAlignments.Left, true, true, false, PlayerSettingæ‰“åŒ…è®¾ç½®Order)]
     public List<string> activeScenes
     {
         get
@@ -48,7 +48,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
 
     private bool isBuilding;
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ")]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®")]
     public AndroidSdkVersions androidSDK_Version
     {
         get
@@ -64,7 +64,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
     }
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
     [FolderPath(AbsolutePath = true)]
     public string buildPath
     {
@@ -86,7 +86,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
     }
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
     [ReadOnly]
     public BuildTargetGroup buildTarget
     {
@@ -107,7 +107,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
     }
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
     public string companyName
     {
         get
@@ -120,7 +120,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
     }
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
     public string productName
     {
         get
@@ -134,8 +134,8 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
     }
 
     [ReadOnly]
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
-    [InfoBox("½«Òª´ò°üµÄ°æ±¾ºÅ£¨²»¿ÉĞŞ¸Ä£¬Ä¬ÈÏ×ÔÔö£©")]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
+    [InfoBox("å°†è¦æ‰“åŒ…çš„ç‰ˆæœ¬å·ï¼ˆä¸å¯ä¿®æ”¹ï¼Œé»˜è®¤è‡ªå¢ï¼‰")]
     public string version
     {
         get
@@ -148,7 +148,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
     }
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
     public int versionIncrease
     {
         get
@@ -168,7 +168,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
     }
 
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ"), ShowInInspector]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®"), ShowInInspector]
     public ScriptingImplementation scriptingBacked
     {
         get
@@ -183,9 +183,9 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
     }
 
     /// <summary>
-    /// ´ò°ü
+    /// æ‰“åŒ…
     /// </summary>
-    [TitleGroup("PlayerSetting ´ò°üÉèÖÃ")]
+    [TitleGroup("PlayerSetting æ‰“åŒ…è®¾ç½®")]
     [Button(90), GUIColor(0.4f, 0.8f, 1f)]
     public void BuildPackage()
     {
@@ -196,13 +196,13 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
 
         PlayerSettings.Android.targetSdkVersion = androidSDK_Version;
 
-        #region ¿ªÊ¼´ò°ü
+        #region å¼€å§‹æ‰“åŒ…
 
         isBuilding = BuildPipeline.isBuildingPlayer;
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = activeScenes.ToArray();
-        //´ò°üÄ¿±êÂ·¾¶
+        //æ‰“åŒ…ç›®æ ‡è·¯å¾„
         androidPath = buildPath + @"\" + buildTarget.ToString() + @"\" + productName + "_" + version + ".apk";
         winPath = buildPath + @"\" + buildTarget.ToString() + @"\" + productName + "_" + version + ".exe";
         if (buildTarget == BuildTargetGroup.Android)
@@ -213,7 +213,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         {
             buildPlayerOptions.locationPathName = winPath;
         }
-        //´ò°üÄ¿±êÆ½Ì¨
+        //æ‰“åŒ…ç›®æ ‡å¹³å°
         if (buildTarget.ToString() == "Standalone")
         {
             buildPlayerOptions.target = BuildTarget.StandaloneWindows;
@@ -242,28 +242,28 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
         isBuilding = BuildPipeline.isBuildingPlayer;
 
-        #endregion ¿ªÊ¼´ò°ü
+        #endregion å¼€å§‹æ‰“åŒ…
     }
 
     
 
     /// <summary>
-    /// ´ò°üÊ§°Ü
+    /// æ‰“åŒ…å¤±è´¥
     /// </summary>
     /// <param name="report"></param>
     private void FailBuild(BuildReport report)
     {
-        buildResult = "´ò°üÊ§°Ü£¬Çë¿´ConsoleĞÅÏ¢";
+        buildResult = "æ‰“åŒ…å¤±è´¥ï¼Œè¯·çœ‹Consoleä¿¡æ¯";
     }
 
     /// <summary>
-    /// ´ò°ü³É¹¦
+    /// æ‰“åŒ…æˆåŠŸ
     /// </summary>
     /// <param name="report"></param>
     private void SucessBuild(BuildReport report)
     {
         BuildSummary summary = report.summary;
-        string size = "¼ì²â´ò°ü´óĞ¡Ê§°Ü";
+        string size = "æ£€æµ‹æ‰“åŒ…å¤§å°å¤±è´¥";
         if (File.Exists(androidPath))
         {
             FileInfo apk = new FileInfo(androidPath);
@@ -277,9 +277,9 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
 
         string time = " " + summary.totalTime + "s";
-        buildResult = "´ò°ü³É¹¦: " + summary.outputPath + "\n" +
-            "°²×°ºó´óĞ¡: " + size + "\n" +
-            "´ò°üÊ±³¤: " + time + "\n";
+        buildResult = "æ‰“åŒ…æˆåŠŸ: " + summary.outputPath + "\n" +
+            "å®‰è£…åå¤§å°: " + size + "\n" +
+            "æ‰“åŒ…æ—¶é•¿: " + time + "\n";
 
         string[] versionsNum = PlayerSettings.bundleVersion.Split('.');
         int tempInt = int.Parse(versionsNum[2]) + versionIncrease;
@@ -290,7 +290,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         EditorUtility.OpenWithDefaultApp(buildPath.Replace(@"/", @"\"));
     }
 
-    [TitleGroup("PlayerSetting ´ò°ü½á¹û", null, TitleAlignments.Left, true, true, false, PlayerSetting´ò°ü½á¹ûOrder)]
+    [TitleGroup("PlayerSetting æ‰“åŒ…ç»“æœ", null, TitleAlignments.Left, true, true, false, PlayerSettingæ‰“åŒ…ç»“æœOrder)]
     [ReadOnly]
     [MultiLineProperty(3), ShowInInspector]
     public string buildResult
@@ -306,10 +306,10 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
     }
 
     /// <summary>
-    /// »ñÈ¡ÎÄ¼ş¼ĞµÄ´óĞ¡
+    /// è·å–æ–‡ä»¶å¤¹çš„å¤§å°
     /// </summary>
-    /// <param name="dir">ÎÄ¼ş¼ĞÄ¿Â¼</param>
-    /// <param name="dirSize">·µ»ØÎÄ¼ş¼Ğ´óĞ¡£¬´«µİÒıÓÃ</param>
+    /// <param name="dir">æ–‡ä»¶å¤¹ç›®å½•</param>
+    /// <param name="dirSize">è¿”å›æ–‡ä»¶å¤¹å¤§å°ï¼Œä¼ é€’å¼•ç”¨</param>
     private static void GetDirSizeByPath(string dir, ref long dirSize)
     {
         try
@@ -331,7 +331,7 @@ public class OneKeyBuildlEditor : GlobalConfig<OneKeyBuildlEditor>
         }
         catch (Exception ex)
         {
-            Console.WriteLine("»ñÈ¡ÎÄ¼ş´óĞ¡Ê§°Ü" + ex.Message);
+            Console.WriteLine("è·å–æ–‡ä»¶å¤§å°å¤±è´¥" + ex.Message);
         }
     }
 }

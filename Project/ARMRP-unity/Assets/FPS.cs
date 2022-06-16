@@ -4,19 +4,19 @@ using UnityEngine;
 public class FPS : MonoBehaviour
 {
     /// <summary>
-    /// ÉÏÒ»´Î¸üÐÂÖ¡ÂÊµÄÊ±¼ä
+    /// ï¿½ï¿½Ò»ï¿½Î¸ï¿½ï¿½ï¿½Ö¡ï¿½Êµï¿½Ê±ï¿½ï¿½
     /// </summary>
     private float m_lastUpdateShowTime = 0f;
     /// <summary>
-    /// ¸üÐÂÏÔÊ¾Ö¡ÂÊµÄÊ±¼ä¼ä¸ô
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ö¡ï¿½Êµï¿½Ê±ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private readonly float m_updateTime = 0.05f;
     /// <summary>
-    /// Ö¡Êý
+    /// Ö¡ï¿½ï¿½
     /// </summary>
     private int m_frames = 0;
     /// <summary>
-    /// Ö¡¼ä¼ä¸ô
+    /// Ö¡ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private float m_frameDeltaTime = 0;
     private float m_FPS = 0;
@@ -54,7 +54,7 @@ public class FPS : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(m_fps, "FPS: " + m_FPS, m_style);
-        GUI.Label(m_dtime, "¼ä¸ô: " + m_frameDeltaTime, m_style);
+        GUI.Label(m_dtime, "ï¿½ï¿½ï¿½: " + m_frameDeltaTime, m_style);
         GUI.Label(m_Unitydtime, "Unitydtime " + Time.deltaTime, m_style);
     }
 }
