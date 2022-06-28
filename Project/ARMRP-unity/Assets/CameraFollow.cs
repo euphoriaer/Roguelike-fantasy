@@ -1,5 +1,4 @@
 using UnityEngine;
-
 [RequireComponent(typeof(Camera))]
 [UnityEngine.DisallowMultipleComponent]
 public class CameraFollow : MonoBehaviour
@@ -77,6 +76,10 @@ public class CameraFollow : MonoBehaviour
 
         this.transform.position = new Vector3(xTransform, this.transform.position.y, zTransform);
     }
+
+
+
+
 
     private void FixedUpdate()
     {

@@ -4,19 +4,19 @@ using UnityEngine;
 public class FPS : MonoBehaviour
 {
     /// <summary>
-    /// ��һ�θ���֡�ʵ�ʱ��
+    /// 上一次更新帧率的时间
     /// </summary>
     private float m_lastUpdateShowTime = 0f;
     /// <summary>
-    /// ������ʾ֡�ʵ�ʱ����
+    /// 更新显示帧率的时间间隔
     /// </summary>
     private readonly float m_updateTime = 0.05f;
     /// <summary>
-    /// ֡��
+    /// 帧数
     /// </summary>
     private int m_frames = 0;
     /// <summary>
-    /// ֡����
+    /// 帧间间隔
     /// </summary>
     private float m_frameDeltaTime = 0;
     private float m_FPS = 0;
@@ -54,7 +54,7 @@ public class FPS : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(m_fps, "FPS: " + m_FPS, m_style);
-        GUI.Label(m_dtime, "���: " + m_frameDeltaTime, m_style);
+        GUI.Label(m_dtime, "间隔: " + m_frameDeltaTime, m_style);
         GUI.Label(m_Unitydtime, "Unitydtime " + Time.deltaTime, m_style);
     }
 }

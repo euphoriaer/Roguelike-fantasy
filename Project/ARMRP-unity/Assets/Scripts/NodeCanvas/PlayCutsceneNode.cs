@@ -30,7 +30,7 @@ namespace NodeCanvas.Tasks.Actions
                 time = 0;
                 //播放Action
                 //cutscene = CutsceneHelper.Instate(CutscenePlayer.value, Cutscene);
-                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene,actors: CutscenePlayer.value);
+                cutscene = CutsceneHelper.InstateAction(out isLoopCutscene, Cutscene, actors: CutscenePlayer.value);
 
                 cutscene.updateMode = Cutscene.UpdateMode.Manual;
                 // 防止拉回原点

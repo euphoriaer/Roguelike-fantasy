@@ -23,7 +23,7 @@ public class AnimationSpreat : AssetPostprocessor
     private void OnPostprocessModel(GameObject g)
     {
         string name = g.name;
-        
+
         EditorApplication.delayCall += () =>
         {
             if (assetPath.Contains(ToolsSettings.Instance.Mark))
@@ -43,7 +43,6 @@ public class AnimationSpreat : AssetPostprocessor
                         var newClip = UnityEngine.Object.Instantiate(obj);
                         var curClip = newClip as AnimationClip;
 
-                    
                         //error 暴露在工具中，批处理动画是否勾选烘焙全动作（旋转，Y，XZ）
                         AnimationClipSettings clipSetting = AnimationUtility.GetAnimationClipSettings(curClip);
                         clipSetting.keepOriginalOrientation = true;

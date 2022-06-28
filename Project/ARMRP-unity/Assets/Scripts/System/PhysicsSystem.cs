@@ -9,7 +9,7 @@ namespace Battle
     {
         public void OnCollisionExit(Collision collision)
         {
-            //±ÜÃâË«·½±»×²·É
+            //é¿å…åŒæ–¹è¢«æ’é£
 
             if (this.TryGetComponent<Rigidbody>(out Rigidbody curRigbody))
             {

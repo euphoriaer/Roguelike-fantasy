@@ -1,4 +1,4 @@
-﻿using Battle;
+using Battle;
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using Slate;
