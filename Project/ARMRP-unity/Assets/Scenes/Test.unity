@@ -526,7 +526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673574441325141262, guid: abc081e32961b5b458b6a0543903a69d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc081e32961b5b458b6a0543903a69d, type: 3}
@@ -564,14 +564,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters:
-  - _json: '{"_targetVariableID":"1abd6a8a-c23b-4275-a65d-ad3c8e2bb72a","$type":"NodeCanvas.Framework.ExposedParameter`1[[Slate.Cutscene,
+  - _json: '{"_targetVariableID":"1abd6a8a-c23b-4275-a65d-ad3c8e2bb72a","_value":1,"$type":"NodeCanvas.Framework.ExposedParameter`1[[Slate.Cutscene,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
-    _references: []
-  - _json: '{"_targetVariableID":"df4288ae-f685-497d-a0ab-a3ffaa76cb57","_value":1,"$type":"NodeCanvas.Framework.ExposedParameter`1[[NodeCanvas.BehaviourTrees.BehaviourTree,
-      ParadoxNotion, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references:
     - {fileID: 0}
-    - {fileID: 11400000, guid: ce81b5f6724914d4a88aab13e676942e, type: 2}
+    - {fileID: 860781094552933617, guid: 8904506e05564fd408665b75998cd65b, type: 3}
+  - _json: '{"_targetVariableID":"321ef5a9-d690-4363-a539-c99b8bbfb748","_value":1,"$type":"NodeCanvas.Framework.ExposedParameter`1[[Slate.Cutscene,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references:
+    - {fileID: 0}
+    - {fileID: 860781094552933617, guid: f0ab9b0abdffcd048b560414bf131230, type: 3}
+  - _json: '{"_targetVariableID":"69c58efe-cd44-4b07-add2-0bcac2b3b21c","_value":1,"$type":"NodeCanvas.Framework.ExposedParameter`1[[Slate.Cutscene,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references:
+    - {fileID: 0}
+    - {fileID: 3344479222986439966, guid: 1dd36151d0ef39745ab3a2d3c71c7568, type: 3}
   _boundGraphSerialization: 
   _boundGraphObjectReferences: []
   _boundGraphSource:
@@ -588,6 +595,20 @@ MonoBehaviour:
   _updateMode: 0
   _graph: {fileID: 11400000, guid: c233858865094a04a9017f156b22f5b2, type: 2}
   _blackboard: {fileID: 301393417}
+--- !u!114 &301393420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301393416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7a1689182bded41affbfd021b48c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CutsceneSpeed: 1
+  TransTime: 0
 --- !u!1 &312050855
 GameObject:
   m_ObjectHideFlags: 0
