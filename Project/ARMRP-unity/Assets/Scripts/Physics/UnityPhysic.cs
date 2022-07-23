@@ -72,7 +72,7 @@ namespace UnityPhysics
             {
                 var shape = shapes[i];
                 BoxCollider boxCollider = _physicObj.AddComponent<BoxCollider>();
-                boxCollider.center = new Vector3(shape.offset.x, shape.offset.y + 0.5f, shape.offset.z);
+                boxCollider.center = new Vector3(shape.offset.x, shape.offset.y +shape.size.y/2, shape.offset.z);
                 boxCollider.size = shape.size;
                 boxCollider.isTrigger = isTrigger;
             }

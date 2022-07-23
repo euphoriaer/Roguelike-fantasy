@@ -114,8 +114,10 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
     //     Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     // }
 
+    
     protected override void OnDrawGizmosSelected()
     {
+        //todo 始终绘制在屏幕上
         Gizmos.color = Color.red;
         if (IsFollow)
         {
@@ -154,7 +156,7 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
                     Gizmos.DrawWireCube(boxCenter, new Vector3(collider.size.x, collider.size.y, collider.size.z));
 
                     break;
-
+                //todo 非Box碰撞
                 //case Shape.ShapeType.Circle:
                 //    float angle = collider.size.x;
                 //    float radius = collider.size.y;
