@@ -52,10 +52,31 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
         particle = FxObj.GetComponent<ParticleSystem>();
         particle.Play(true);
     }
+    
+
+    public void ReverseEnter()
+    {
+        //
+    }
+
+    public void Reverse()
+    {
+        if (!Application.isPlaying)
+        {
+            //编辑模式下，删除Hierarchy 物件
+            DestroyImmediate(FxObj);
+            return;
+        }
+    }
 
     protected override void OnExit()
     {
-        
+        if (!Application.isPlaying)
+        {
+            //编辑模式下，删除Hierarchy 物件
+            DestroyImmediate(FxObj);
+            return;
+        }
         GameObject.Destroy(FxObj);
         anim = null;
         particle = null;
