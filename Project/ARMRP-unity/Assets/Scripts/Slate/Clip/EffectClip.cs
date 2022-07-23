@@ -43,7 +43,7 @@ public class EffectClip : CutsceneClip<Animator>, IDirectable
 
     protected override void OnEnter()
     {
-        Debug.Log("进入Fx enter");
+        //Debug.Log("进入Fx enter");
         FxObj = GameObject.Instantiate(Obj, actor.transform.position, Quaternion.identity, actor.transform);
         FxObj.transform.forward = actor.transform.forward;
         FxObj.transform.localPosition += Offset;

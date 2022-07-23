@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9acdf334-efb4-4055-bb2b-b23e2e60c3bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Physics/UnityPhysic.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Physics/UnityPhysic.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Slate/Player/@Attack (1).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Slate/Player/@Attack (1).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Physics/TestPhysics.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Physics/TestPhysics.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Monster/Monster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Monster/Monster.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Slate/Monster/杂鱼/Move.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Slate/Monster/杂鱼/Move.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/EffectClip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/EffectClip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/CutsceneSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/CutsceneSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ThirdParty/ParadoxNotion/SLATE Cinematic Sequencer/Framework/Cutscene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/ParadoxNotion/SLATE Cinematic Sequencer/Framework/Cutscene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
@@ -18,10 +15,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6f7cbd2409704976852490551564c873157600/bb/afbe5725/Gizmos.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6551b9c19f2745feb215e71ca8a3356a1a000/84/cadcb39b/SphereCollider.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -34,16 +27,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "rider.run.widget.enabled.cache": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.0f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\UnityProject\Roguelike-fantasy\Project\ARMRP-unity -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\UnityProject\Roguelike-fantasy\Project\ARMRP-unity" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -54,10 +56,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="51840">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="51840" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -77,6 +79,7 @@
       <workItem from="1651652071032" duration="12824000" />
       <workItem from="1651676543327" duration="1167000" />
       <workItem from="1651761202209" duration="3003000" />
+      <workItem from="1658578506727" duration="847000" />
     </task>
     <servers />
   </component>
@@ -106,15 +109,21 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/ThirdParty/ParadoxNotion/SLATE Cinematic Sequencer/Cameras/DirectorGUI.cs</url>
           <line>53</line>
-          <properties documentPath="F:\unity3D\Roguelike-fantasy\Project\ARMRP-unity\Assets\ThirdParty\ParadoxNotion\SLATE Cinematic Sequencer\Cameras\DirectorGUI.cs" initialLine="53" containingFunctionPresentation="method 'Awake'">
+          <properties documentPath="F:\unity3D\Roguelike-fantasy\Project\ARMRP-unity\Assets\ThirdParty\ParadoxNotion\SLATE Cinematic Sequencer\Cameras\DirectorGUI.cs" initialLine="53" containingFunctionPresentation="method 'Awake'" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/System/CutsceneSystem.cs</url>
+          <line>84</line>
+          <properties documentPath="C:\UnityProject\Roguelike-fantasy\Project\ARMRP-unity\Assets\Scripts\System\CutsceneSystem.cs" initialLine="84" containingFunctionPresentation="method 'SetCutscene'">
             <startOffsets>
-              <option value="2244" />
+              <option value="2479" />
             </startOffsets>
             <endOffsets>
-              <option value="2245" />
+              <option value="2498" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

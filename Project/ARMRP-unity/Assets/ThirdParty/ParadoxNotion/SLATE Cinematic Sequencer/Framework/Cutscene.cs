@@ -894,7 +894,7 @@ namespace Slate
             }
 
 #if UNITY_EDITOR
-            Debug.Log(string.Format("<b>({0}) Global Message Send:</b> '{1}' ({2})", name, message, value), gameObject);
+            //Debug.Log(string.Format("<b>({0}) Global Message Send:</b> '{1}' ({2})", name, message, value), gameObject);
 #endif
         }
 

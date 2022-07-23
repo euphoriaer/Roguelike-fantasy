@@ -74,6 +74,7 @@ namespace Battle
                 //销毁旧的
                 if (BreakEvent != null)
                 {
+                    //调用上一个动作的销毁事件
                     BreakEvent();
                 }
                 //上一个动画片段
@@ -82,6 +83,8 @@ namespace Battle
                 stopTime = curCutscene.currentTime;
                 TransTime = curCutscene.GetCutsceneClip<PlayAnimPlayableClip>()[0].CorssTransTime;
                 curCutscene.Stop();
+                
+                GameObject.Destroy(curCutscene.gameObject);
                 lastCutscene = curCutscene;
             }
 
@@ -160,7 +163,7 @@ namespace Battle
 
             //播放该图。
             playableGraph.Play();
-            Debug.Log("开始融合");
+            //Debug.Log("开始融合");
         }
 
         #region 手动改帧间隔控制速度
@@ -185,7 +188,7 @@ namespace Battle
                 //
                 if (Mathf.Abs(weight - 1) < 0.0001)
                 {
-                    Debug.Log("融合完成  偏移时间" + offsetTime);
+                    //Debug.Log("融合完成  偏移时间" + offsetTime);
                     playableGraph.Stop();
                     isCross = false;
                     //使cutscene 从0开始播放，计时重置,融合到下一个Cutscene 第一帧
