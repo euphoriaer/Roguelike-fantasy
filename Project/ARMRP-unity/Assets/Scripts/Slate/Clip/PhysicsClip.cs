@@ -13,18 +13,17 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
 {
     public bool IsNormalAttack = false;
 
-    [Sirenix.OdinInspector.HideIf("IsNormalAttack")]
-    [LabelText("伤害")]
+    [Sirenix.OdinInspector.HideIf("IsNormalAttack")] [LabelText("伤害")]
     public int hurt = 10;
 
-    [LabelText("附带Buff")]
+    [LabelText("附带Buff")] 
     public int BuffID;
 
-    [FormerlySerializedAs("colliders")]
-    [LabelText("碰撞框")]
+    [FormerlySerializedAs("colliders")] [LabelText("碰撞框")]
     public List<UnityPhysic.Shape> Shapes; //todo 绘制时需要 根据当前Time 显示/隐藏
 
-    
+    [LabelText("播放Cutscene")] 
+    public List<HitBox> HitBoxes;
 
     public bool IsFollow = false;
 
@@ -34,7 +33,7 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
         set { _length = value; }
     }
 
-    [HideInInspector][SerializeField] private float _length = 1f;
+    [HideInInspector] [SerializeField] private float _length = 1f;
 
     private List<BoxCollider> _colliders = new List<BoxCollider>();
     private Action<Collider> _triggerAction;
@@ -114,7 +113,7 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
     //     Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
     // }
 
-    
+
     protected override void OnDrawGizmosSelected()
     {
         //todo 始终绘制在屏幕上
@@ -147,10 +146,10 @@ public class PhysicsClip : CutsceneClip<Transform>, IDirectable
                     else
                     {
                         boxCenter = actor.transform.position +
-                                     new Vector3(collider.offset.x,
-                                         collider.offset.y,
-                                         collider.offset.z) +
-                                     new Vector3(0, collider.size.y * 0.5f, 0);
+                                    new Vector3(collider.offset.x,
+                                        collider.offset.y,
+                                        collider.offset.z) +
+                                    new Vector3(0, collider.size.y * 0.5f, 0);
                     }
 
                     Gizmos.DrawWireCube(boxCenter, new Vector3(collider.size.x, collider.size.y, collider.size.z));

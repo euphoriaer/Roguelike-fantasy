@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9acdf334-efb4-4055-bb2b-b23e2e60c3bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HitBox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HitBox.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Slate/Player/CommonAttack/Attack1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Slate/Player/CommonAttack/Attack1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/EffectClip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/EffectClip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,10 +54,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="51840">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="51840" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -77,6 +78,7 @@
       <workItem from="1651676543327" duration="1167000" />
       <workItem from="1651761202209" duration="3003000" />
       <workItem from="1658578506727" duration="847000" />
+      <workItem from="1658653727973" duration="298000" />
     </task>
     <servers />
   </component>
