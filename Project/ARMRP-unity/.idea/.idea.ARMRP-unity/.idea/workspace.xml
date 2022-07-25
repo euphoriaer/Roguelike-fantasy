@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9acdf334-efb4-4055-bb2b-b23e2e60c3bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HitBox.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HitBox.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ARMRP-unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slate/Clip/PhysicsClip.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
