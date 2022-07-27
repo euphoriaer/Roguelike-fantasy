@@ -8,8 +8,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Orange.Tool.SOCreator
-{
     public class ScriptableObjectCreator : OdinMenuEditorWindow
     {
         static HashSet<Type> scriptableObjectTypes = new HashSet<Type>(AssemblyUtilities.GetTypes(AssemblyTypeFlags.CustomTypes)
@@ -134,5 +132,5 @@ namespace Orange.Tool.SOCreator
             }
         }
     }
-}
+
 

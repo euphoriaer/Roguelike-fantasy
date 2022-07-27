@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class ToolsMain : OdinMenuEditorWindow
 {
-    [MenuItem("Tools/ÎÒµÄ¹¤¾ßÏä")]
+    [MenuItem("Tools/æˆ‘çš„å·¥å…·ç®±")]
     private static void OpenWindow()
     {
         var window = GetWindow<ToolsMain>();
@@ -15,8 +15,9 @@ public class ToolsMain : OdinMenuEditorWindow
     protected override OdinMenuTree BuildMenuTree()
     {
         OdinMenuTree tree = new OdinMenuTree();
-        tree.Add("ÉèÖÃ", ToolsSettings.Instance, EditorIcons.SettingsCog);
-        tree.Add("Ò»¼ü´ò°ü¹¤¾ß", OneKeyBuildlEditor.Instance, EditorIcons.SmartPhone);
+        tree.Add("è®¾ç½®", ToolsSettings.Instance, EditorIcons.SettingsCog);
+        tree.Add("ä¸€é”®æ‰“åŒ…å·¥å…·", OneKeyBuildlEditor.Instance, EditorIcons.SmartPhone);
+        tree.Add("æ€ªç‰©åˆ›å»ºå·¥å…·", MonsterCreate.Instance, EditorIcons.CloudsRainySunny);
         tree.DefaultMenuStyle.SetHeight(80);
         tree.DefaultMenuStyle.IconSize = 80;
         return tree;
