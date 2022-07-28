@@ -69,10 +69,85 @@ MonoBehaviour:
     _animatedParameters: []
   CutsceneClipName: 
   Obj: {fileID: 7833080812639516201, guid: 340d75e00ac9461448c19e81f8fad36f, type: 3}
-  isFollow: 1
+  isFollow: 0
   Offset: {x: 0, y: 1, z: 1}
   Rotation: {x: 0, y: 0, z: 0}
+  EndDestory: 1
   _length: 1.2333333
+--- !u!1 &664222700997198772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6311849186473634355}
+  - component: {fileID: 919263962421182075}
+  - component: {fileID: 1759708797260239903}
+  m_Layer: 0
+  m_Name: "\u7279\u6548\u8F68\u9053"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6311849186473634355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664222700997198772}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5759750159571840062}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &919263962421182075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664222700997198772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7eb5ad7558d5024b884b4f4974a2282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: "\u7279\u6548\u8F68\u9053"
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _active: 1
+  _isLocked: 0
+  _actionClips:
+  - {fileID: 1759708797260239903}
+  _customHeight: 300
+--- !u!114 &1759708797260239903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664222700997198772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc84dcc3e3d21d84eb0a6134c20d9f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTime: 0.35000002
+  _animationData:
+    _animatedParameters: []
+  CutsceneClipName: 
+  Obj: {fileID: 2790239246667695447, guid: 2f0c96fa9be733c49b02f90a5800ef48, type: 3}
+  isFollow: 0
+  Offset: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 0, z: 0}
+  EndDestory: 1
+  _length: 0.5166667
 --- !u!1 &1308317163703088930
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +611,7 @@ Transform:
   - {fileID: 5759750159059282071}
   - {fileID: 681024942}
   - {fileID: 3229566241631216748}
+  - {fileID: 6311849186473634355}
   m_Father: {fileID: 5759750159071248252}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -552,6 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tracks:
+  - {fileID: 919263962421182075}
   - {fileID: 1288913089677377049}
   - {fileID: 681024944}
   - {fileID: 5759750159059282069}
