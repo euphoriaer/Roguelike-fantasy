@@ -146,7 +146,7 @@ MonoBehaviour:
   isFollow: 0
   Offset: {x: 0, y: 0, z: 0}
   Rotation: {x: 0, y: 0, z: 0}
-  EndDestory: 1
+  EndDestory: 0
   _length: 0.5166667
 --- !u!1 &1308317163703088930
 GameObject:

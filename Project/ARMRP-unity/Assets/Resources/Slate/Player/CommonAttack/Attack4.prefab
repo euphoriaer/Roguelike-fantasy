@@ -118,9 +118,10 @@ MonoBehaviour:
     _animatedParameters: []
   CutsceneClipName: 
   Obj: {fileID: 7833080812639516201, guid: 340d75e00ac9461448c19e81f8fad36f, type: 3}
-  isFollow: 1
+  isFollow: 0
   Offset: {x: 0, y: 1, z: 0}
   Rotation: {x: 0, y: 0, z: 55}
+  EndDestory: 1
   _length: 0.6833334
 --- !u!1 &2628297898834532217
 GameObject:
