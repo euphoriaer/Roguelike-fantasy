@@ -557,6 +557,80 @@ MonoBehaviour:
   CutsceneClipName: 
   AttackCutscene: {fileID: 2113297867080247999, guid: a535c256613073046a436ee8ac15e741, type: 3}
   _length: 0.9166667
+--- !u!1 &2935615036439812613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5178531480659273245}
+  - component: {fileID: 1266573495600361383}
+  - component: {fileID: 2192160023200448371}
+  m_Layer: 0
+  m_Name: "\u7279\u6548\u8F68\u9053"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5178531480659273245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935615036439812613}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1582936448825520681}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1266573495600361383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935615036439812613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7eb5ad7558d5024b884b4f4974a2282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: "\u7279\u6548\u8F68\u9053"
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _active: 1
+  _isLocked: 0
+  _actionClips:
+  - {fileID: 2192160023200448371}
+  _customHeight: 300
+--- !u!114 &2192160023200448371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935615036439812613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc84dcc3e3d21d84eb0a6134c20d9f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTime: 0.40000004
+  _animationData:
+    _animatedParameters: []
+  CutsceneClipName: 
+  Obj: {fileID: 6354191709117940274, guid: 1aa709ca474efa84c88af3d285df5132, type: 3}
+  isFollow: 0
+  Offset: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 0, z: 0}
+  EndDestory: 0
+  _length: 1.0000001
 --- !u!1 &4690232504220735115
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +722,7 @@ Transform:
   - {fileID: 1583513738970679057}
   - {fileID: 2394691665958970906}
   - {fileID: 6255299680244826628}
+  - {fileID: 5178531480659273245}
   m_Father: {fileID: 1716378883861830528}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -664,6 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tracks:
+  - {fileID: 1266573495600361383}
   - {fileID: 3233038407654947104}
   - {fileID: 3386503338768413404}
   - {fileID: 6160651699657235350}
