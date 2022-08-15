@@ -1,4 +1,4 @@
-﻿using Sirenix.OdinInspector;
+using Sirenix.OdinInspector;
 using Slate;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -54,7 +54,7 @@ namespace Battle
                 return curCutscene;
             }
         }
-
+        
         /// <summary>
         /// 不输入速度默认采用上次的速度
         /// </summary>

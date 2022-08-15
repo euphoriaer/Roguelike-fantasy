@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Battle
 {
+    [RequireComponent(typeof(PropertySystem))]
     [RequireComponent(typeof(BehitSystem))]
     [UnityEngine.DisallowMultipleComponent]
     [UnityEngine.DefaultExecutionOrder(SystemOrder.MoveSystem)]
@@ -11,11 +12,8 @@ namespace Battle
     {
         public Vector3 Direction;
 
-      
         [LabelText("当前移动速度")]
         public float CurSpeed;
-
-        
 
         private void FixedUpdate() 
         {
