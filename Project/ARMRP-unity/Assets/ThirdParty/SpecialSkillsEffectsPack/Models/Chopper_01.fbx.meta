@@ -1,69 +1,185 @@
 fileFormatVersion: 2
 guid: 3ed747c9226ee47eebc908b07221d955
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Chopper01_MissilePods
-    100002: //RootNode
-    100004: Chopper_01_Body
-    100006: Chopper_01_Gun
-    100008: Chopper_01_Guns
-    100010: Chopper_01_HellFirePod
-    100012: Chopper_01_HellFirePod2
-    100014: Chopper_01_MainPropel
-    100016: Chopper_01_MainPropeller
-    100018: Chopper_01_MainProperllerRader
-    100020: Chopper_01_Propel
-    100022: Chopper_01_RockePod
-    100024: Chopper_01_RockePod2
-    100026: Chopper_01_SubPropel
-    100028: Chopper_01_Weapons
-    400000: Chopper01_MissilePods
-    400002: //RootNode
-    400004: Chopper_01_Body
-    400006: Chopper_01_Gun
-    400008: Chopper_01_Guns
-    400010: Chopper_01_HellFirePod
-    400012: Chopper_01_HellFirePod2
-    400014: Chopper_01_MainPropel
-    400016: Chopper_01_MainPropeller
-    400018: Chopper_01_MainProperllerRader
-    400020: Chopper_01_Propel
-    400022: Chopper_01_RockePod
-    400024: Chopper_01_RockePod2
-    400026: Chopper_01_SubPropel
-    400028: Chopper_01_Weapons
-    2100000: Chopper_01_Material
-    2300000: Chopper_01_Body
-    2300002: Chopper_01_Gun
-    2300004: Chopper_01_HellFirePod
-    2300006: Chopper_01_HellFirePod2
-    2300008: Chopper_01_MainPropeller
-    2300010: Chopper_01_MainProperllerRader
-    2300012: Chopper_01_RockePod
-    2300014: Chopper_01_RockePod2
-    2300016: Chopper_01_SubPropel
-    3300000: Chopper_01_Body
-    3300002: Chopper_01_Gun
-    3300004: Chopper_01_HellFirePod
-    3300006: Chopper_01_HellFirePod2
-    3300008: Chopper_01_MainPropeller
-    3300010: Chopper_01_MainProperllerRader
-    3300012: Chopper_01_RockePod
-    3300014: Chopper_01_RockePod2
-    3300016: Chopper_01_SubPropel
-    4300000: Chopper_01_Body
-    4300002: Chopper_01_MainPropeller
-    4300004: Chopper_01_MainProperllerRader
-    4300006: Chopper_01_SubPropel
-    4300008: Chopper_01_RockePod
-    4300010: Chopper_01_HellFirePod
-    4300012: Chopper_01_HellFirePod2
-    4300014: Chopper_01_RockePod2
-    4300016: Chopper_01_Gun
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Chopper01_MissilePods
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Chopper_01_Body
+  - first:
+      1: 100006
+    second: Chopper_01_Gun
+  - first:
+      1: 100008
+    second: Chopper_01_Guns
+  - first:
+      1: 100010
+    second: Chopper_01_HellFirePod
+  - first:
+      1: 100012
+    second: Chopper_01_HellFirePod2
+  - first:
+      1: 100014
+    second: Chopper_01_MainPropel
+  - first:
+      1: 100016
+    second: Chopper_01_MainPropeller
+  - first:
+      1: 100018
+    second: Chopper_01_MainProperllerRader
+  - first:
+      1: 100020
+    second: Chopper_01_Propel
+  - first:
+      1: 100022
+    second: Chopper_01_RockePod
+  - first:
+      1: 100024
+    second: Chopper_01_RockePod2
+  - first:
+      1: 100026
+    second: Chopper_01_SubPropel
+  - first:
+      1: 100028
+    second: Chopper_01_Weapons
+  - first:
+      4: 400000
+    second: Chopper01_MissilePods
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Chopper_01_Body
+  - first:
+      4: 400006
+    second: Chopper_01_Gun
+  - first:
+      4: 400008
+    second: Chopper_01_Guns
+  - first:
+      4: 400010
+    second: Chopper_01_HellFirePod
+  - first:
+      4: 400012
+    second: Chopper_01_HellFirePod2
+  - first:
+      4: 400014
+    second: Chopper_01_MainPropel
+  - first:
+      4: 400016
+    second: Chopper_01_MainPropeller
+  - first:
+      4: 400018
+    second: Chopper_01_MainProperllerRader
+  - first:
+      4: 400020
+    second: Chopper_01_Propel
+  - first:
+      4: 400022
+    second: Chopper_01_RockePod
+  - first:
+      4: 400024
+    second: Chopper_01_RockePod2
+  - first:
+      4: 400026
+    second: Chopper_01_SubPropel
+  - first:
+      4: 400028
+    second: Chopper_01_Weapons
+  - first:
+      21: 2100000
+    second: Chopper_01_Material
+  - first:
+      23: 2300000
+    second: Chopper_01_Body
+  - first:
+      23: 2300002
+    second: Chopper_01_Gun
+  - first:
+      23: 2300004
+    second: Chopper_01_HellFirePod
+  - first:
+      23: 2300006
+    second: Chopper_01_HellFirePod2
+  - first:
+      23: 2300008
+    second: Chopper_01_MainPropeller
+  - first:
+      23: 2300010
+    second: Chopper_01_MainProperllerRader
+  - first:
+      23: 2300012
+    second: Chopper_01_RockePod
+  - first:
+      23: 2300014
+    second: Chopper_01_RockePod2
+  - first:
+      23: 2300016
+    second: Chopper_01_SubPropel
+  - first:
+      33: 3300000
+    second: Chopper_01_Body
+  - first:
+      33: 3300002
+    second: Chopper_01_Gun
+  - first:
+      33: 3300004
+    second: Chopper_01_HellFirePod
+  - first:
+      33: 3300006
+    second: Chopper_01_HellFirePod2
+  - first:
+      33: 3300008
+    second: Chopper_01_MainPropeller
+  - first:
+      33: 3300010
+    second: Chopper_01_MainProperllerRader
+  - first:
+      33: 3300012
+    second: Chopper_01_RockePod
+  - first:
+      33: 3300014
+    second: Chopper_01_RockePod2
+  - first:
+      33: 3300016
+    second: Chopper_01_SubPropel
+  - first:
+      43: 4300000
+    second: Chopper_01_Body
+  - first:
+      43: 4300002
+    second: Chopper_01_MainPropeller
+  - first:
+      43: 4300004
+    second: Chopper_01_MainProperllerRader
+  - first:
+      43: 4300006
+    second: Chopper_01_SubPropel
+  - first:
+      43: 4300008
+    second: Chopper_01_RockePod
+  - first:
+      43: 4300010
+    second: Chopper_01_HellFirePod
+  - first:
+      43: 4300012
+    second: Chopper_01_HellFirePod2
+  - first:
+      43: 4300014
+    second: Chopper_01_RockePod2
+  - first:
+      43: 4300016
+    second: Chopper_01_Gun
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -72,8 +188,10 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftLowerLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -96,25 +214,34 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -123,12 +250,127 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
-    human: []
-    skeleton: []
+    serializedVersion: 3
+    human:
+    - boneName: Chopper_01_Weapons
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Chopper_01_RockePod2
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Chopper_01_RockePod
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Chopper_01_Guns
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Chopper_01_Gun
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Chopper_01(Clone)
+      parentName: 
+      position: {x: -0.003484514, y: 0.36189458, z: -0.6084357}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chopper_01_Body
+      parentName: Chopper_01(Clone)
+      position: {x: 0.00030198114, y: -0.06827597, z: -0.24523905}
+      rotation: {x: -0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 6, y: 6, z: 6}
+    - name: Chopper_01_Propel
+      parentName: Chopper_01(Clone)
+      position: {x: -0, y: 0.95008975, z: 0}
+      rotation: {x: -0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 6, y: 6, z: 6}
+    - name: Chopper_01_MainPropel
+      parentName: Chopper_01_Propel
+      position: {x: -0.57764256, y: -0.14465237, z: 0.000062751766}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chopper_01_MainPropeller
+      parentName: Chopper_01_MainPropel
+      position: {x: 0.40023053, y: 0.10574884, z: -0.000062751766}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0627471, y: 1.0627471, z: 1.0627471}
+    - name: Chopper_01_MainProperllerRader
+      parentName: Chopper_01_MainPropel
+      position: {x: 0.39948422, y: 0.14651021, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.72907764, y: 0.17012124, z: 0.72907764}
+    - name: Chopper_01_SubPropel
+      parentName: Chopper_01_Propel
+      position: {x: 0.7178618, y: 0.022252295, z: -0.010862302}
+      rotation: {x: 1, y: -1.699539e-33, z: 2.7755576e-17, w: 6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chopper_01_Weapons
+      parentName: Chopper_01(Clone)
+      position: {x: 0.01413996, y: -0.71278197, z: 2.1995363}
+      rotation: {x: -0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 6, y: 6, z: 6}
+    - name: Chopper01_MissilePods
+      parentName: Chopper_01_Weapons
+      position: {x: -0.2110531, y: 0.13249291, z: -0.0022939083}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chopper_01_RockePod
+      parentName: Chopper01_MissilePods
+      position: {x: 0.3698723, y: -0.11815019, z: 0.28286597}
+      rotation: {x: 0.09229595, y: -0.09229595, z: 0.7010574, w: 0.7010574}
+      scale: {x: 0.24726975, y: 0.8679357, z: 0.24726975}
+    - name: Chopper_01_HellFirePod
+      parentName: Chopper01_MissilePods
+      position: {x: 0.36570078, y: -0.0858625, z: 0.19554503}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.1698444, y: 1.1698444, z: 1.3307091}
+    - name: Chopper_01_HellFirePod2
+      parentName: Chopper01_MissilePods
+      position: {x: 0.36570078, y: -0.0858625, z: -0.19549999}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.1698444, y: 1.1698444, z: 1.3307091}
+    - name: Chopper_01_RockePod2
+      parentName: Chopper01_MissilePods
+      position: {x: 0.3698723, y: -0.11815019, z: -0.28289998}
+      rotation: {x: 0.09229595, y: -0.09229595, z: 0.7010574, w: 0.7010574}
+      scale: {x: 0.24726975, y: 0.8679357, z: 0.24726975}
+    - name: Chopper_01_Guns
+      parentName: Chopper_01_Weapons
+      position: {x: -0.2110531, y: 0.13249291, z: -0.0022939083}
+      rotation: {x: 0.000000089406946, y: -0, z: 0.8956988, w: 0.44466123}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Chopper_01_Gun
+      parentName: Chopper_01_Guns
+      position: {x: 0.101212755, y: -0.17328213, z: 0}
+      rotation: {x: 0, y: -0, z: -0.0693351, w: 0.99759346}
+      scale: {x: 0.47462553, y: 0.25532833, z: 0.25532833}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -136,13 +378,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 10
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
